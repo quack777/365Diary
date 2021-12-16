@@ -1,0 +1,246 @@
+.Login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Login > section:nth-child(1) {
+  width: 45%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-top: 10vh;
+}
+
+.Login > section:nth-child(1) .slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Login > section:nth-child(1) .slide > p:nth-child(2) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18.75px;
+  line-height: 23px;
+  text-align: center;
+
+  /* color/sub/blue */
+
+  color: #084861;
+}
+
+/* .Login .overflow {
+  overflow: hidden;
+  width: 457px;
+  height: auto;
+}
+
+.Login .box {
+  display: flex;
+  flex-wrap: nowrap;
+  animation-name: aa;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+} */
+
+.Login > section:nth-child(1) .slide > p:nth-child(3) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 170%;
+  /* or 20px */
+
+  text-align: center;
+
+  /* color/grey/text02 */
+
+  color: #98999c;
+
+  flex: 0 0 auto;
+  height: auto;
+}
+
+.Login > section:nth-child(1) > .changeBtns > img {
+  background: #e3e3e3;
+  margin: 0px 10px;
+  padding: 7px 9px;
+  border-radius: 50%;
+}
+
+.Login > section:nth-child(1) > .changeBtns > img:nth-child(1) {
+  transform: rotateY(180deg);
+}
+
+.Login > section:nth-child(2) {
+  width: 55%;
+  height: 100%;
+  background-color: #f9f8f9;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Login > section:nth-child(2) > p {
+  margin-left: 108px;
+}
+
+.Login > section:nth-child(2) > p:nth-child(1) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 50px;
+
+  /* color/sub/blue */
+
+  color: #084861;
+  margin-bottom: 10px;
+
+  position: relative;
+  bottom: 100px;
+}
+
+.Login > section:nth-child(2) > p:nth-child(2) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 170%;
+  /* or 36px */
+
+  /* color/grey/text02 */
+
+  color: #98999c;
+
+  margin-top: 0px;
+  position: relative;
+  bottom: 100px;
+}
+
+.Login > section:nth-child(2) .button {
+  width: 595px;
+  height: 84px;
+  background: #fdce52;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+.Login > section:nth-child(2) .button a {
+  text-decoration: none;
+}
+
+.Login > section:nth-child(2) .button p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 174.2%;
+  /* identical to box height, or 35px */
+
+  letter-spacing: 0.07em;
+
+  color: #341a1f;
+  margin-left: 19px;
+}
+
+.pp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 595px;
+  align-self: center;
+}
+
+.pp p {
+  margin: 20px 3px;
+}
+
+.pp > p:nth-child(1) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 170%;
+  /* or 36px */
+
+  text-align: center;
+
+  /* color/grey/text02 */
+
+  color: #98999c;
+}
+
+.pp a {
+  text-decoration: none;
+}
+
+.pp p:nth-child(2) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 170%;
+  /* or 36px */
+
+  text-align: center;
+
+  /* color/grey/text02 */
+
+  color: #000000;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  20% {
+    transform: translateX(0%);
+  }
+  40% {
+    transform: translateX(-100%);
+  }
+  60% {
+    transform: translateX(-200%);
+  }
+  80% {
+    transform: translateX(-300%);
+  }
+  100% {
+    transform: translateX(-300%);
+  }
+}
+
+@keyframes aa {
+  0% {
+    transform: translateX(0%);
+  }
+  25% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  75% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(-300%);
+  }
+}

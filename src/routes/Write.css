@@ -1,0 +1,173 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+KR:wght@300;400;700&display=swap");
+
+.Write {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Write > .questions {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 4rem;
+}
+
+.Write > .questions > p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 174.2%;
+  text-align: center;
+  color: #f88270;
+  margin: 6px auto;
+}
+
+.Write > .questions > div > p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 38px;
+  text-align: center;
+  color: #084861;
+  margin: 0 auto;
+}
+
+.Write > .writeBox {
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.Write > .writeBox > p {
+  align-self: flex-end;
+  margin-right: 60px;
+  position: relative;
+  bottom: 70px;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 174.2%;
+  /* identical to box height, or 35px */
+
+  text-align: right;
+
+  /* color/grey/text02 */
+
+  color: #98999c;
+}
+
+.Write > .writeBox textarea {
+  width: 826px;
+  height: 252px;
+  background: #f9f8f9;
+  border-radius: 16px;
+  border-style: none;
+  resize: none;
+  padding: 47px 37px;
+
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22.5px;
+  line-height: 174.2%;
+  /* or 52px */
+
+  /* color/sub/blue */
+
+  color: #084861;
+}
+
+.Write > .writeBox textarea:focus {
+  outline: none;
+}
+
+.Write > .writeBox > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Write > .writeBox > div > .twoBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Write > .writeBox > div > .twoBtn a {
+  text-decoration: none;
+}
+
+.Write > .writeBox > div > .twoBtn p {
+  margin: 0 20px;
+  padding: 11px 37px;
+}
+
+.Write > .writeBox > div > .twoBtn #first {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18.75px;
+  line-height: 174.2%;
+  /* identical to box height, or 44px */
+
+  letter-spacing: 0.07em;
+
+  /* color/grey/text02 */
+
+  color: #98999c;
+
+  background: #f9f8f9;
+  /* color/grey/text01 */
+
+  border: 2px solid #bbbbbb;
+  box-sizing: border-box;
+  border-radius: 16px;
+}
+
+.Write > .writeBox > div > .twoBtn #first:hover {
+  background: #ededed;
+}
+
+.Write > .writeBox > div > .twoBtn #first:active {
+  background: #dbdbdb;
+}
+
+.Write > .writeBox > div > .twoBtn #second {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18.75px;
+  line-height: 174.2%;
+  /* identical to box height, or 44px */
+
+  letter-spacing: 0.07em;
+
+  /* color/grey/01 */
+
+  color: #f9f8f9;
+
+  background: #7eb496;
+  border-radius: 16px;
+
+  padding: 13px 39px;
+  border: none;
+}
+
+.Write > .writeBox > div > .twoBtn #second:hover {
+  background: #9fd3b6;
+}
+
+.Write > .writeBox > div > .twoBtn #second:active {
+  background: #78aa8e;
+}

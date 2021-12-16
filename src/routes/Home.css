@@ -1,0 +1,257 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+KR:wght@300;400;700&display=swap");
+
+.Home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 65px;
+}
+
+.Home > .questions {
+}
+
+.Home > .questions > p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 174.2%;
+
+  text-align: center;
+  color: #f88270;
+
+  margin: 0 auto;
+}
+
+.Home > .questions > div {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+}
+
+.Home > .questions > div > p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 41.25px;
+  line-height: 57px;
+  text-align: center;
+  color: #084861;
+  margin: 0 25px;
+  max-width: 849px;
+  align-self: center;
+}
+
+.Home > .questions > div > img {
+  align-self: flex-start;
+  transform: translateY(10px);
+}
+
+.Home > .answers {
+  height: 400px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Home > .answers > .answer {
+  height: 310px;
+  width: 725px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 10px 20px 50px #f5f4f5;
+  border-radius: 16px;
+}
+
+/* 오늘 나의 생각 남기기 버튼 */
+/* 오늘 나의 생각 남기기 버튼 */
+.Home a {
+  text-decoration: none;
+}
+
+.Home #goWriteBtn {
+  /* Auto Layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 25px;
+
+  /* color/main/green */
+
+  background: #7eb496;
+  /* shadow */
+  border-radius: 100px;
+  border-style: none;
+
+  margin-bottom: 40px;
+
+  position: relative;
+  bottom: 60px;
+}
+
+.Home #goWriteBtn:hover {
+  background: #9fd3b6;
+}
+
+.Home #goWriteBtn:active {
+  background: #78aa8e;
+}
+
+.Home #goWriteBtn > p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18.75px;
+  line-height: 174.2%;
+  /* identical to box height, or 44px */
+
+  /* color/grey/01 */
+
+  color: #f9f8f9;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 20px;
+}
+
+.Home #goWriteBtn > img {
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 0px 20px;
+  position: relative;
+  bottom: 6px;
+}
+
+.Home .overflow {
+  overflow: hidden;
+  width: 90%;
+  margin-top: 80px;
+  margin-bottom: 0px;
+}
+
+.Home .Aanswers {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: all 2s;
+}
+
+.Home .Aanswers .Aanswer {
+  flex: 0 0 auto;
+  height: 232.5px;
+  width: 543.75px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 10px 20px 50px #f5f4f5;
+  margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Home .Aanswers .Aanswer > p:nth-child(1) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 174.2%;
+  /* identical to box height, or 35px */
+
+  letter-spacing: -0.05em;
+
+  /* color/sub/blue */
+
+  color: #084861;
+
+  margin-left: 50px;
+}
+
+.Home .Aanswers .Aanswer > p:nth-child(2) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 174.2%;
+  /* or 35px */
+
+  letter-spacing: -0.05em;
+
+  /* color/sub/blue */
+
+  color: #084861;
+
+  margin: 0 50px;
+}
+
+.Home .btnBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  bottom: 170px;
+}
+
+.Home .btnBox > img:nth-child(1) {
+  transform: rotateY(180deg);
+}
+
+.Home #bottom {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  align-self: flex-end;
+}
+
+.Home #bottom div {
+  align-self: center;
+}
+
+.Home #bottom p:nth-child(1) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 149.2%;
+  /* or 45px */
+
+  color: #084861;
+  margin: 0px;
+}
+
+.Home #bottom p:nth-child(2) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 149.2%;
+  /* or 45px */
+
+  color: #084861;
+  margin: 0px;
+}
+
+.Home #bottom p:nth-child(3) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 174.2%;
+  /* or 26px */
+
+  color: #084861;
+  width: 350px;
+}
+
+.Home img {
+  align-self: flex-end;
+}
