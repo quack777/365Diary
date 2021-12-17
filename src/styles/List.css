@@ -286,15 +286,3 @@
   border-radius: 16px;
 }
 
-
-.react-datepicker__month-container{
-  width: 70%;
-  text-align: center;
-    display: inline-block;
-
-
-}
-.react-datepicker__day-names{
-  display: flex;
-  justify-content: space-between;
-}
