@@ -1,10 +1,10 @@
 import React from "react";
-import signupImage from "../images/signupImage.png";
-import rigthArrow from '../images/Vector 1.png';
-import './Sign.css';
+import signupImage from "../styles/images/signupImage.png";
+import rigthArrow from "../styles/images/Vector 1.png";
+import "../styles/Sign.css";
 
 function Signup() {
-  return(
+  return (
     <div className="Signup">
       <section>
         <img src={signupImage}></img>
@@ -19,14 +19,14 @@ function Signup() {
         <p>회원가입</p>
         <p>회원이 되어 매일 나를 위한 질문을 받아보세요</p>
         <form>
-          <input id="id"type="text" required></input>
-          <input id="pwd"type="password" required></input>
+          <input id="id" type="text" required></input>
+          <input id="pwd" type="password" required></input>
           <p>카카오계정저장</p>
           <p>로그인</p>
         </form>
       </section>
     </div>
-  )
+  );
 }
 
 export default Signup;

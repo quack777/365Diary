@@ -1,13 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import toggle_unselected from "../images/main_private.png";
-import toggle_selected from "../images/main_public.png";
-import axios, { Axios } from 'axios';
+import toggle_unselected from "../styles/images/main_private.png";
+import toggle_selected from "../styles/images/main_public.png";
+import axios, { Axios } from "axios";
 
-import './Write.css';
+import "../styles/Write.css";
 
-function Write () {
+function Write() {
   const NewDate = new Date();
   const month = NewDate.getMonth() + 1;
   const date = NewDate.getDate();
@@ -23,7 +23,7 @@ function Write () {
 
   function writeSubmit(e) {
     e.preventDefault();
-    console.log(answer)
+    console.log(answer);
     const inputValue = e.target[0].value;
     e.target[0].value = "";
     console.log("submit");
@@ -36,26 +36,27 @@ function Write () {
     const date = String(now.getDate()).padStart(2, "0");
     const answerDate = `${month}${date}`;
 
-    console.log(year)
-    console.log(answerDate)
-    console.log(answer)
-    console.log(publica)
-    console.log(questionN)
-    console.log(typeof member)
-    axios.post('http://61.72.99.219:9130/answers/new', {
-      answer_year : year,
-      answer_date : answerDate,
-      answer : answer,
-      public_answer : publica,
-      question_num : questionN,
-      member_num : member
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    console.log(year);
+    console.log(answerDate);
+    console.log(answer);
+    console.log(publica);
+    console.log(questionN);
+    console.log(typeof member);
+    axios
+      .post("http://61.72.99.219:9130/answers/new", {
+        answer_year: year,
+        answer_date: answerDate,
+        answer: answer,
+        public_answer: publica,
+        question_num: questionN,
+        member_num: member,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   function inputCount(e) {
@@ -63,22 +64,22 @@ function Write () {
     let count = inputValue.length;
     // 한글이랑 영어 카운터 다름 해결필요
     setAnswer(inputValue);
-    console.log(answer)
+    console.log(answer);
     setCount(count);
   }
 
   function stateClose() {
-    setOpen(true)
-    setPublica("N")
+    setOpen(true);
+    setPublica("N");
   }
 
   function stateOpen() {
-    setOpen(false)
-    setPublica("Y")
+    setOpen(false);
+    setPublica("Y");
   }
 
   function sendData() {
-    console.log(answer)
+    console.log(answer);
   }
 
   useEffect(() => {
@@ -87,18 +88,17 @@ function Write () {
     const diff = now - start;
     const oneDay = 1000 * 60 * 60 * 24;
     const day = Math.floor(diff / oneDay) + 1;
-    const member_num = localStorage.getItem('member_num');
-    console.log(member_num)
+    const member_num = localStorage.getItem("member_num");
+    console.log(member_num);
     setMember(Number(member_num));
 
-    axios(
-      {
-        url: `/question/${day}`,
-        method: 'get',
-        baseURL: 'http://61.72.99.219:9130',
-        //withCredentials: true,
-      }
-      ).then(function (response) {
+    axios({
+      url: `/question/${day}`,
+      method: "get",
+      baseURL: "http://61.72.99.219:9130",
+      //withCredentials: true,
+    })
+      .then(function (response) {
         console.log(response.data);
         setQuestion(response.data.question);
         setQuestionN(response.data.question_num);
@@ -106,16 +106,18 @@ function Write () {
       .catch(function (error) {
         console.log(error);
       });
-  }, [])
+  }, []);
 
   const loca = useLocation();
   useEffect(() => {
     console.log(loca.state);
-  }, [])
-  return(
+  }, []);
+  return (
     <div className="Write">
       <div className="questions">
-        <p>{month}월 {date}일, {year}</p>
+        <p>
+          {month}월 {date}일, {year}
+        </p>
         <div>
           <p>{question}</p>
         </div>
@@ -125,16 +127,26 @@ function Write () {
         <p>{count}/200</p>
         <div>
           <div className="private">
-            {open ? <img src={toggle_selected} onClick={stateOpen}></img> : <img src={toggle_unselected} onClick={stateClose}></img>}
+            {open ? (
+              <img src={toggle_selected} onClick={stateOpen}></img>
+            ) : (
+              <img src={toggle_unselected} onClick={stateClose}></img>
+            )}
           </div>
           <div className="twoBtn">
-            <Link to="/365"><p id="first">작성취소</p></Link>
-            <Link to="/list"><button id="second" type="submit">저장하기</button></Link>
+            <Link to="/365">
+              <p id="first">작성취소</p>
+            </Link>
+            <Link to="/list">
+              <button id="second" type="submit">
+                저장하기
+              </button>
+            </Link>
             {/* <Link to="/list"><p id="second" onClick={sendData}>저장하기</p></Link> */}
           </div>
         </div>
       </form>
     </div>
-  )
+  );
 }
 export default Write;
