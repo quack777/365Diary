@@ -187,7 +187,9 @@ function List() {
 
       {calender ? (
         <div className="calendar">
-          <img src={xxxxx} onClick={closeCanlender}></img>
+          <div className="calendar_close">
+            <img src={xxxxx} onClick={closeCanlender}></img>
+          </div>
           <DatePicker
             selected={startDate}
             wrapperClassName="react-datepicker"
@@ -235,9 +237,34 @@ function List() {
                   console.log(error);
                 });
             }}
-            locale={ko}
+            renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
+              <>
+                <button
+                  type="button"
+                  class="react-datepicker__navigation react-datepicker__navigation--previous"
+                  aria-label="Previous Month"
+                  onClick={decreaseMonth}
+                >
+                  <span class="react-datepicker__navigation-icon react-datepicker__navigation-icon--previous">
+                    Previous Month
+                  </span>
+                </button>
+                <div>{date.getMonth() + 1}월</div>
+                <button
+                  type="button"
+                  class="react-datepicker__navigation react-datepicker__navigation--next"
+                  aria-label="Next Month"
+                  onClick={increaseMonth}
+                >
+                  <span class="react-datepicker__navigation-icon react-datepicker__navigation-icon--next">
+                    Next Month
+                  </span>
+                </button>
+              </>
+            )}
             dateFormat="MM월 dd일"
             inline
+            formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 3).toUpperCase()}
           />
         </div>
       ) : null}
