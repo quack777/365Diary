@@ -9,22 +9,20 @@ export default function List_answer({ dataAnswer, dataYear, showDelete }) {
   return (
     <div className="List">
       {dataAnswer.length > 0 ? (
-        dataAnswer.map((an, index) => {
+        dataAnswer.map((answer, index) => {
           return (
             <div className="list">
               <hr></hr>
               <div className="watch">
                 <p>{dataYear[index]}년의 나:</p>
-                <p>{an}</p>
+                <p>{answer}</p>
               </div>
               <div className="buttons">
                 <p>전체공개</p>
                 <Link
                   to={{
                     pathname: "/write",
-                    state: {
-                      aa: { an },
-                    },
+                    state: { answer },
                   }}
                 >
                   <div>

@@ -109,9 +109,6 @@ function Write() {
   }, []);
 
   const loca = useLocation();
-  useEffect(() => {
-    console.log(loca.state);
-  }, []);
   return (
     <div className="Write">
       <div className="questions">
@@ -123,7 +120,11 @@ function Write() {
         </div>
       </div>
       <form onSubmit={writeSubmit} className="writeBox">
-        <textarea onInput={inputCount} maxLength="200"></textarea>
+        <textarea
+          onInput={inputCount}
+          value={loca?.state?.answer}
+          maxLength="200"
+        ></textarea>
         <p>{count}/200</p>
         <div>
           <div className="private">
