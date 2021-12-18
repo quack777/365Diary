@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Link, Route } from "react-router-dom";
 import "../styles/List.css";
 import modify_normal from "../styles/images/modify_normal.png";
@@ -13,6 +13,8 @@ import Modify from "./Modify";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
+import Calender from "./util/Calender";
+import ListAnswerComponent from "./ListAnswerComponent";
 
 function List() {
   const NewDate = new Date();
@@ -54,74 +56,56 @@ function List() {
     setCalender(false);
   }
 
-  useEffect(() => {
-    const member_num = localStorage.getItem("member_num");
-    console.log(member_num);
-    setMember(Number(member_num));
+  let now = new Date();
+  let start = new Date(now.getFullYear(), 0, 0);
+  let diff = now - start;
+  let oneDay = 1000 * 60 * 60 * 24;
+  let day = Math.floor(diff / oneDay) + 1;
 
-    var now = new Date();
-    var start = new Date(now.getFullYear(), 0, 0);
-    var diff = now - start;
-    var oneDay = 1000 * 60 * 60 * 24;
-    var day = Math.floor(diff / oneDay) + 1;
-    axios({
-      url: `/answers/${day}/1`, // `/answers/${question_num}/${member_num}`
-      method: "get",
-      baseURL: "http://61.72.99.219:9130",
-    })
+  const getAns = useCallback(async () => {
+    const member_num = localStorage.getItem("member_num");
+    setMember(Number(member_num));
+    await axios
+      .get(`/answers/${day}/1`, { baseURL: "http://61.72.99.219:9130" })
       .then(function (response) {
-        console.log(response.data);
-        const aa = response.data;
-        const answer = aa.map((aa) => {
-          return aa.answer;
-        });
-        console.log(answer);
-        setDataAnswer(answer);
-        const answer_year = aa.map((aa) => {
-          return aa.answer_year;
-        });
-        console.log(answer_year);
+        const answer = response.data.map((item) => item.answer);
+        const answer_year = response.data.map((item) => item.answer_year);
+        const answer_num = response.data.map((item) => item.answer_num);
         setDataYear(answer_year);
-        const answer_num = aa.map((aa) => {
-          return aa.answer_num;
-        });
-        console.log(answer_num);
+        setDataAnswer(answer);
         setAnswerNum(answer_num);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [setDataYear, setDataAnswer, setAnswerNum, day]);
 
-  useEffect(() => {
-    var now = new Date();
-    var start = new Date(now.getFullYear(), 0, 0);
-    var diff = now - start;
-    var oneDay = 1000 * 60 * 60 * 24;
-    var day = Math.floor(diff / oneDay) + 1;
-    axios({
-      url: `/question/${day}`, // /question/{question_num}
-      method: "get",
-      baseURL: "http://61.72.99.219:9130",
-      //withCredentials: true,
-    })
+  const getQuestion = useCallback(async () => {
+    await axios
+      .get(`/question/${day}`, {
+        baseURL: "http://61.72.99.219:9130",
+      })
       .then(function (response) {
-        console.log(response.data);
         setQuestion(response.data.question);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [setQuestion, day]);
+
+  useEffect(() => {
+    getAns();
+    getQuestion();
+  }, [getAns, getQuestion]);
 
   function goTrash() {
     setDataAnswer(dataAnswer.filter((answer, index) => index !== deleteIndex)); //실제에서는 .then안에
     const aN = answerNum[deleteIndex];
-    axios({
-      url: `/answers/trashes/${aN}/${member}`, // /answers/trashes/{answer_num}/{member_num}
-      method: "patch",
-      baseURL: "http://61.72.99.219:9130",
-    })
+
+    axios
+      .patch(`/answers/trashes/${aN}/${member}`, {
+        baseURL: "http://61.72.99.219:9130",
+      })
       .then((response) => {
         console.log(response);
         setAnswerNum(answerNum.filter((an, index) => index !== deleteIndex));
@@ -140,38 +124,14 @@ function List() {
           </p>
           <p>{question}</p>
         </div>
-        <img src={monthBTN} onClick={seeCalender}></img>
+        <img src={monthBTN} alt="seeCalenderBtn" onClick={seeCalender} />
       </div>
-      {dataAnswer.map((an, index) => {
-        return (
-          <div className="list">
-            <hr></hr>
-            <div className="watch">
-              <p>{dataYear[index]}년의 나:</p>
-              <p>{an}</p>
-            </div>
-            <div className="buttons">
-              <p>전체공개</p>
-              <Link
-                to={{
-                  pathname: "/write",
-                  state: {
-                    aa: { an },
-                  },
-                }}
-              >
-                <div>
-                  <img src={modify_normal}></img>
-                </div>
-              </Link>
-              <img src={Line}></img>
-              <div onClick={() => showDelete(index)}>
-                <img src={delete_normal}></img>
-              </div>
-            </div>
-          </div>
-        );
-      })}
+
+      <ListAnswerComponent
+        showDelete={showDelete}
+        dataAnswer={dataAnswer}
+        dataYear={dataYear}
+      />
 
       {deletes ? (
         <div className="deleteModal" ref={deleteModalContainer}>
@@ -186,87 +146,12 @@ function List() {
       ) : null}
 
       {calender ? (
-        <div className="calendar">
-          <div className="calendar_close">
-            <img src={xxxxx} onClick={closeCanlender}></img>
-          </div>
-          <DatePicker
-            selected={startDate}
-            wrapperClassName="react-datepicker"
-            onChange={(date) => {
-              setStartDate(date);
-              console.log(date);
-              const now = date;
-              const start = new Date(now.getFullYear(), 0, 0);
-              const diff = now - start;
-              const oneDay = 1000 * 60 * 60 * 24;
-              const day = Math.floor(diff / oneDay) + 1;
-              console.log(day);
-              axios({
-                url: `/question/calendars/${day}`,
-                method: "get",
-                baseURL: "http://61.72.99.219:9130",
-              })
-                .then(function (response) {
-                  console.log(response.data);
-                  setQuestion(response.data.question);
-                })
-                .catch(function (error) {
-                  console.log(error);
-                });
-              axios({
-                url: `/answers/${day}/1`, // /answers/{question_num}/{member_num}
-                method: "get",
-                baseURL: "http://61.72.99.219:9130",
-              })
-                .then(function (response) {
-                  console.log(response.data);
-                  const aa = response.data;
-                  const answer = aa.map((aa) => {
-                    return aa.answer;
-                  });
-                  console.log(answer);
-                  setDataAnswer(answer);
-                  const answer_year = aa.map((aa) => {
-                    return aa.answer_year;
-                  });
-                  console.log(answer_year);
-                  setDataYear(answer_year);
-                })
-                .catch(function (error) {
-                  console.log(error);
-                });
-            }}
-            renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
-              <>
-                <button
-                  type="button"
-                  class="react-datepicker__navigation react-datepicker__navigation--previous"
-                  aria-label="Previous Month"
-                  onClick={decreaseMonth}
-                >
-                  <span class="react-datepicker__navigation-icon react-datepicker__navigation-icon--previous">
-                    Previous Month
-                  </span>
-                </button>
-                <div>{date.getMonth() + 1}월</div>
-                <button
-                  type="button"
-                  class="react-datepicker__navigation react-datepicker__navigation--next"
-                  aria-label="Next Month"
-                  onClick={increaseMonth}
-                >
-                  <span class="react-datepicker__navigation-icon react-datepicker__navigation-icon--next">
-                    Next Month
-                  </span>
-                </button>
-              </>
-            )}
-            dateFormat="MM월 dd일"
-            inline
-            formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 3).toUpperCase()}
-          />
-        </div>
+        <Calender
+          setDataYear={setDataYear}
+          setDataAnswer={setDataAnswer}
+          setQuestion={setQuestion}
+          setCalender={setCalender}
+        />
       ) : null}
     </div>
   );
