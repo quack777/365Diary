@@ -1,5 +1,5 @@
 diff --git a/node_modules/react-datepicker/dist/react-datepicker.css b/node_modules/react-datepicker/dist/react-datepicker.css
-index 0b5111e..6ee5c00 100644
+index 0b5111e..0640359 100644
 --- a/node_modules/react-datepicker/dist/react-datepicker.css
 +++ b/node_modules/react-datepicker/dist/react-datepicker.css
 @@ -2,15 +2,15 @@
@@ -119,27 +119,34 @@ index 0b5111e..6ee5c00 100644
  }
  
  .react-datepicker__year {
-@@ -258,6 +270,8 @@
+@@ -256,8 +268,10 @@
+ }
+ 
  .react-datepicker__month {
-   margin: 0.4rem;
+-  margin: 0.4rem;
    text-align: center;
 +  display: flex;
 +  flex-direction: column;
++  
  }
  .react-datepicker__month .react-datepicker__month-text,
  .react-datepicker__month .react-datepicker__quarter-text {
-@@ -378,6 +392,9 @@
+@@ -378,16 +392,19 @@
  .react-datepicker__day-names,
  .react-datepicker__week {
    white-space: nowrap;
 +  display: flex;
-+justify-content: space-evenly;
-+margin: 0.8rem;
++  justify-content: space-around;
++  margin: 0.8rem;
  }
  
  .react-datepicker__day-names {
-@@ -387,7 +404,7 @@
- .react-datepicker__day-name,
+-  margin-bottom: -8px;
++  padding-top: 14px;
+ }
+ 
+-.react-datepicker__day-name,
++
  .react-datepicker__day,
  .react-datepicker__time-name {
 -  color: #000;
@@ -147,7 +154,26 @@ index 0b5111e..6ee5c00 100644
    display: inline-block;
    width: 1.7rem;
    line-height: 1.7rem;
-@@ -399,9 +416,11 @@
+@@ -395,13 +412,30 @@
+   margin: 0.166rem;
+ }
+ 
++.react-datepicker__day-name{
++  color: #084861;
++  display: inline-block;
++  width: 4.125rem;
++  height:2.313rem;
++  line-height: 1.7rem;
++  text-align: center;
++  margin: 0.166rem;
++  background-color: #EAEAEB;
++  border-radius: 6px;
++  display: flex;
++  align-items: center;
++  justify-content: center;
++}
++
+ .react-datepicker__month--selected, .react-datepicker__month--in-selecting-range, .react-datepicker__month--in-range,
  .react-datepicker__quarter--selected,
  .react-datepicker__quarter--in-selecting-range,
  .react-datepicker__quarter--in-range {
@@ -161,7 +187,7 @@ index 0b5111e..6ee5c00 100644
  }
  .react-datepicker__month--selected:hover, .react-datepicker__month--in-selecting-range:hover, .react-datepicker__month--in-range:hover,
  .react-datepicker__quarter--selected:hover,
-@@ -475,9 +494,11 @@
+@@ -475,9 +509,11 @@
  .react-datepicker__year-text--selected,
  .react-datepicker__year-text--in-selecting-range,
  .react-datepicker__year-text--in-range {
@@ -175,7 +201,7 @@ index 0b5111e..6ee5c00 100644
  }
  .react-datepicker__day--selected:hover, .react-datepicker__day--in-selecting-range:hover, .react-datepicker__day--in-range:hover,
  .react-datepicker__month-text--selected:hover,
-@@ -489,7 +510,8 @@
+@@ -489,7 +525,8 @@
  .react-datepicker__year-text--selected:hover,
  .react-datepicker__year-text--in-selecting-range:hover,
  .react-datepicker__year-text--in-range:hover {
