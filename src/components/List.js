@@ -52,10 +52,6 @@ function List() {
     setCalender(true);
   }
 
-  function closeCanlender() {
-    setCalender(false);
-  }
-
   let now = new Date();
   let start = new Date(now.getFullYear(), 0, 0);
   let diff = now - start;
@@ -68,12 +64,9 @@ function List() {
     await axios
       .get(`/answers/${day}/1`, { baseURL: "http://61.72.99.219:9130" })
       .then(function (response) {
-        const answer = response.data.map((item) => item.answer);
-        const answer_year = response.data.map((item) => item.answer_year);
-        const answer_num = response.data.map((item) => item.answer_num);
-        setDataYear(answer_year);
-        setDataAnswer(answer);
-        setAnswerNum(answer_num);
+        setDataYear(response.data.map((item) => item.answer_year));
+        setDataAnswer(response.data.map((item) => item.answer));
+        setAnswerNum(response.data.map((item) => item.answer_num));
       })
       .catch(function (error) {
         console.log(error);
