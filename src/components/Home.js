@@ -38,12 +38,13 @@ function Home() {
   const [num, setNum] = useState(0);
 
   const answersBox = useRef();
-  function leftMove() {
+  function leftMove(a) {
     if (num >= -300) {
       console.log(answersBox.current.style.transition);
       setNum(num - 30);
       answersBox.current.style.transform = `translateX(${num}%)`;
     }
+    console.dir(a.target.src)
   }
   //데이터 세팅
   const [showdata, setShowdata] = useState();
@@ -142,9 +143,13 @@ function Home() {
             );
           })}
         </div>
-        <div className="btnBox">
+        {/* <div className="btnBox">
           <img src={arrow} onClick={leftMove}></img>
           <img src={arrow} onClick={rightMove}></img>
+        </div> */}
+        <div className="btnBox">
+          <button onClick={leftMove}></button>
+          <button onClick={rightMove}></button>
         </div>
       </div>
       <Link to="/write">
@@ -165,6 +170,7 @@ function Home() {
         </div>
         <img src={main}></img>
       </div>
+      <div className="backColor"></div>
     </div>
   );
 }

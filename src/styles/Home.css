@@ -6,10 +6,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 65px;
+  /* margin-top: 65px; */
+  background-color: #f9f8f9;
+  position: relative;
 }
 
 .Home > .questions {
+  margin-top: 65px;
 }
 
 .Home > .questions > p {
@@ -205,6 +208,27 @@
   transform: rotateY(180deg);
 }
 
+.Home .btnBox > button {
+  width: 105px;
+  height: 105px;
+  border-style: none;
+  background-color: transparent;
+  background-image: url(../styles/images/arrow01_normal.png);
+  background-position: center top;
+}
+
+.Home .btnBox > button:nth-child(1) {
+  transform: rotateY(180deg);
+}
+
+.Home .btnBox > button:hover {
+  background-image: url(../styles/images/arrow01_focused.png);
+}
+
+.Home .btnBox > button:active {
+  background-image: url(../styles/images/arrow01_pressed.png);
+}
+
 .Home #bottom {
   display: flex;
   justify-content: space-between;
@@ -254,4 +278,14 @@
 
 .Home img {
   align-self: flex-end;
+}
+
+.Home .backColor {
+  width: 100%;
+  height: 143px;
+  z-index: -10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #f9f8f9;
 }
