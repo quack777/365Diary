@@ -39,6 +39,7 @@ export default function Calender(props) {
         const answer_year = response.data.map((item) => item.answer_year);
         props.setDataAnswer(answer);
         props.setDataYear(answer_year);
+        props.setAnswerAllData(response.data);
       })
       .catch(function (error) {
         console.log(error);

@@ -143,8 +143,7 @@ function Write() {
                 저장하기
               </button>
             </Link>
-            {/* <Link to="/list"><p id="second" onClick={sendData}>저장하기</p></Link> */}
-          </div>
+            </div>
         </div>
       </form>
     </div>

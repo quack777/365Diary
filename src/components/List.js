@@ -37,6 +37,7 @@ function List() {
   const [member, setMember] = useState();
   const [deleteIndex, setDelteIndex] = useState();
   const [answerNum, setAnswerNum] = useState();
+  const [answerAllData, setAnswerAllData] = useState(["0"]);
 
   const deleteModalContainer = useRef();
   function showDelete(index) {
@@ -64,9 +65,11 @@ function List() {
     await axios
       .get(`/answers/${day}/1`, { baseURL: "http://61.72.99.219:9130" })
       .then(function (response) {
+        console.log(response.data)
         setDataYear(response.data.map((item) => item.answer_year));
         setDataAnswer(response.data.map((item) => item.answer));
         setAnswerNum(response.data.map((item) => item.answer_num));
+        setAnswerAllData(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -79,6 +82,7 @@ function List() {
         baseURL: "http://61.72.99.219:9130",
       })
       .then(function (response) {
+        console.log(response.data)
         setQuestion(response.data.question);
       })
       .catch(function (error) {
@@ -96,7 +100,7 @@ function List() {
     const aN = answerNum[deleteIndex];
 
     axios
-      .patch(`/answers/trashes/${aN}/${member}`, {
+      .patch(`/answers/trashes/${aN}/1`, {
         baseURL: "http://61.72.99.219:9130",
       })
       .then((response) => {
@@ -124,6 +128,7 @@ function List() {
         showDelete={showDelete}
         dataAnswer={dataAnswer}
         dataYear={dataYear}
+        answerAllData={answerAllData}
       />
 
       {deletes ? (
@@ -144,6 +149,7 @@ function List() {
           setDataAnswer={setDataAnswer}
           setQuestion={setQuestion}
           setCalender={setCalender}
+          setAnswerAllData={setAnswerAllData}
         />
       ) : null}
     </div>
