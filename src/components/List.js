@@ -99,9 +99,14 @@ function List() {
     setDataAnswer(dataAnswer.filter((answer, index) => index !== deleteIndex)); //실제에서는 .then안에
     const aN = answerNum[deleteIndex];
 
-    axios
-      .patch(`/answers/trashes/${aN}/1`, {
+    axios({
+        url : `/answers/trashes/${aN}/1`,
+        method: "patch",
         baseURL: "http://61.72.99.219:9130",
+        data: {
+          answer_delete: "Y", //삭제이기때문에 항상 y로
+          delete_date : "2021-12-21", //오늘날짜로, date타입
+        }
       })
       .then((response) => {
         console.log(response);

@@ -70,9 +70,9 @@ function Write() {
         });
     } else {
       e.preventDefault();
-      axios
-        .patch({
+      axios({
           url: `/answers/pages/${loca.state.data.answer_num}/${member}`, // /answers/pages/{answer_num}/{member_num}
+          method: "patch",
           baseURL: "http://61.72.99.219:9130/",
           data: {
             answer : loca.state.data.answer,
