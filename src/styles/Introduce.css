@@ -147,6 +147,14 @@
   margin-top: 0px;
 }
 
+.Introduce > .goHome a > p:hover {
+  background: #9fd3b6;
+}
+
+.Introduce > .goHome a > p:active {
+  background: #78aa8e;
+}
+
 .Introduce > .bottom > p {
   font-family: Noto Sans;
   font-style: normal;
@@ -183,11 +191,48 @@
   color: #323436;
 }
 
-.casual > div {
+.casual #clickBtns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -100px;
+  position: relative;
+  top: 230px;
+}
+
+.casual #clickBtns > button {
+  width: 105px;
+  height: 105px;
+  border-style: none;
+  background-color: transparent;
+  background-image: url(../styles/images/arrow01_normal.png);
+  background-position: center top;
+}
+
+.casual #clickBtns > button:hover {
+  background-image: url(../styles/images/arrow01_focused.png);
+}
+
+.casual #clickBtns > button:active {
+  background-image: url(../styles/images/arrow01_pressed.png);
+}
+
+.casual #clickBtns > button:nth-child(1) {
+  transform: rotateY(180deg);
+  position: relative;
+  right: 130px;
+}
+
+.casual #clickBtns > button:nth-child(2) {
+  position: relative;
+  left: 130px;
+}
+
+.casual > .slide {
   align-self: center;
 }
 
-.casual > div > p:nth-child(2) {
+.casual > .slide > p:nth-child(2) {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: bold;
@@ -198,7 +243,7 @@
   color: #323436;
 }
 
-.casual > div > p:nth-child(3) {
+.casual > .slide > p:nth-child(3) {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: normal;
