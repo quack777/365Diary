@@ -75,9 +75,9 @@
 
 .Introduce > .second > p:nth-child(1) {
   align-self: flex-start;
-  font-family: Noto Sans;
+  font-family: Spoqa Han Sans Neo;
   font-style: normal;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 30px;
   line-height: 41px;
 
@@ -108,9 +108,9 @@
 }
 
 .Introduce > .goHome > p {
-  font-family: Noto Sans;
+  font-family: Spoqa Han Sans Neo;
   font-style: normal;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 41.25px;
   line-height: 56px;
   text-align: center;
@@ -156,9 +156,9 @@
 }
 
 .Introduce > .bottom > p {
-  font-family: Noto Sans;
+  font-family: Spoqa Han Sans Neo;
   font-style: normal;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 30px;
   line-height: 41px;
   /* identical to box height */
@@ -182,9 +182,9 @@
 }
 
 .casual > p {
-  font-family: Noto Sans;
+  font-family: Spoqa Han Sans Neo;
   font-style: normal;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 30px;
   line-height: 41px;
 
