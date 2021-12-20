@@ -45,6 +45,7 @@
   color: #084861;
 
   margin: 0 auto;
+  max-width: 760px;
 }
 
 .List > .list {
