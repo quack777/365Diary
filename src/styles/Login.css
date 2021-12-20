@@ -29,6 +29,11 @@
   align-items: center;
 }
 
+.Login > section:nth-child(1) .slide > img {
+  margin-bottom: 30px;
+  margin-left: 50px;
+}
+
 .Login > section:nth-child(1) .slide > p:nth-child(2) {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
@@ -41,20 +46,6 @@
 
   color: #084861;
 }
-
-/* .Login .overflow {
-  overflow: hidden;
-  width: 457px;
-  height: auto;
-}
-
-.Login .box {
-  display: flex;
-  flex-wrap: nowrap;
-  animation-name: aa;
-  animation-duration: 15s;
-  animation-iteration-count: infinite;
-} */
 
 .Login > section:nth-child(1) .slide > p:nth-child(3) {
   font-family: Spoqa Han Sans Neo;
@@ -72,17 +63,29 @@
 
   flex: 0 0 auto;
   height: auto;
+  margin-top: 0%;
+  margin-bottom: 50px;
 }
 
-.Login > section:nth-child(1) > .changeBtns > img {
-  background: #e3e3e3;
-  margin: 0px 10px;
-  padding: 7px 9px;
-  border-radius: 50%;
+.Login > section:nth-child(1) .practice > button {
+  width: 40px;
+  height: 65px;
+  border-style: none;
+  background-color: #ffffff;
+  background-image: url("../styles/images/arrow02_normal.png");
+  background-position: center center;
 }
 
-.Login > section:nth-child(1) > .changeBtns > img:nth-child(1) {
+.Login > section:nth-child(1) .practice > button:nth-child(1) {
   transform: rotateY(180deg);
+}
+
+.Login > section:nth-child(1) .practice > button:hover {
+  background-image: url("../styles/images/arrow02_focused.png");
+}
+
+.Login > section:nth-child(1) .practice > button:active {
+  background-image: url("../styles/images/arrow02_pressed.png");
 }
 
 .Login > section:nth-child(2) {
@@ -96,52 +99,58 @@
 }
 
 .Login > section:nth-child(2) > p {
-  margin-left: 108px;
+  margin-left: 100px;
+  position: relative;
+  bottom: 140px;
 }
 
 .Login > section:nth-child(2) > p:nth-child(1) {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: bold;
-  font-size: 40px;
-  line-height: 50px;
+  font-size: 30px;
+  line-height: 38px;
 
   /* color/sub/blue */
 
   color: #084861;
   margin-bottom: 10px;
-
-  position: relative;
-  bottom: 100px;
 }
 
 .Login > section:nth-child(2) > p:nth-child(2) {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: 500;
-  font-size: 21px;
+  font-size: 15px;
   line-height: 170%;
-  /* or 36px */
+  /* identical to box height, or 26px */
 
   /* color/grey/text02 */
 
   color: #98999c;
 
-  margin-top: 0px;
-  position: relative;
-  bottom: 100px;
+  margin-top: 5px;
 }
 
 .Login > section:nth-child(2) .button {
-  width: 595px;
-  height: 84px;
+  width: 446px;
+  height: 63px;
   background: #fdce52;
-  border-radius: 100px;
+  border-radius: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: center;
 }
+
+.Login > section:nth-child(2) .button:hover {
+  background: #ffdb7b;
+}
+
+.Login > section:nth-child(2) .button:active {
+  background: #f9c12e;
+}
+
 .Login > section:nth-child(2) .button a {
   text-decoration: none;
 }
@@ -150,97 +159,12 @@
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 15px;
   line-height: 174.2%;
-  /* identical to box height, or 35px */
+  /* identical to box height, or 26px */
 
   letter-spacing: 0.07em;
 
   color: #341a1f;
-  margin-left: 19px;
-}
-
-.pp {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 595px;
-  align-self: center;
-}
-
-.pp p {
-  margin: 20px 3px;
-}
-
-.pp > p:nth-child(1) {
-  font-family: Spoqa Han Sans Neo;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 21px;
-  line-height: 170%;
-  /* or 36px */
-
-  text-align: center;
-
-  /* color/grey/text02 */
-
-  color: #98999c;
-}
-
-.pp a {
-  text-decoration: none;
-}
-
-.pp p:nth-child(2) {
-  font-family: Spoqa Han Sans Neo;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 21px;
-  line-height: 170%;
-  /* or 36px */
-
-  text-align: center;
-
-  /* color/grey/text02 */
-
-  color: #000000;
-}
-
-@keyframes slide {
-  0% {
-    transform: translateX(0%);
-  }
-  20% {
-    transform: translateX(0%);
-  }
-  40% {
-    transform: translateX(-100%);
-  }
-  60% {
-    transform: translateX(-200%);
-  }
-  80% {
-    transform: translateX(-300%);
-  }
-  100% {
-    transform: translateX(-300%);
-  }
-}
-
-@keyframes aa {
-  0% {
-    transform: translateX(0%);
-  }
-  25% {
-    transform: translateX(0%);
-  }
-  50% {
-    transform: translateX(-100%);
-  }
-  75% {
-    transform: translateX(-200%);
-  }
-  100% {
-    transform: translateX(-300%);
-  }
+  margin-left: 14px;
 }

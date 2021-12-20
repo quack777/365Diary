@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import loginImage from "../styles/images/loginImage.png";
-import login01 from "../styles/images/loginpage01.png";
-import login02 from "../styles/images/loginpage02.png";
+import login02 from "../styles/images/loginpage01.png";
+import login01 from "../styles/images/loginpage02.png";
 import rigthArrow from "../styles/images/Vector 1.png";
 import kaka from "../styles/images/kakao.png";
 import { Link, useHistory } from "react-router-dom";
@@ -49,30 +49,6 @@ function Login() {
     return null;
   }
 
-  // function repeat() {
-  //   if(num === 0 ) {
-  //     setInterval(move, 2000);
-  //   }
-  // }
-
-  // function move() {
-  //   number_ref.current -= 100;
-  //   setNum(number_ref.current);
-  //   console.log(num)
-  //   console.log(box.current.style.transform)
-  //   box.current.style.transform = `translateX(${num}%)`;
-  // }
-
-  // useEffect(() => {
-  //   const move = setInterval(() => {
-  //     number_ref.current -= 100;
-  //     setNum(number_ref.current);
-  //     console.log(num)
-  //     console.log(box.current.style.transform)
-  //     box.current.style.transform = `translateX(${num}%)`;
-  //   }, 2000);
-  // }, [])
-
   function kakaoLogin() {
     axios({
       url: "/login/getKakaoAuthUrl",
@@ -112,16 +88,6 @@ function Login() {
   return (
     <div className="Login">
       <section>
-        {/* <img src={loginImage}></img>
-        <p>365개의 질문, 그리고 나와 나를 연결할 기록들.</p>
-        <div className="overflow">
-          <div className="box" ref={box}>
-            <p>매일 달라지는 질문에 답해 보세요. 사소하지만 큰 기록은 분명 당신과 당신을 이어주는 고리가 될거에요.</p>
-            <p>날짜마다 질문이 달라져요. 답변은 그날까지만 작성, 수정이 가능해요.</p>
-            <p>매일 달라지는 질문에 답해 보세요. 사소하지만 큰 기록은 분명 당신과 당신을 이어주는 고리가 될거에요.</p>
-            <p>날짜마다 질문이 달라져요. 답변은 그날까지만 작성, 수정이 가능해요.</p>
-          </div>
-        </div> */}
         {slideData.map((slide, index) => {
           return (
             <div
@@ -134,9 +100,9 @@ function Login() {
             </div>
           );
         })}
-        <div className="changeBtns">
-          <img onClick={prevSlide} src={rigthArrow}></img>
-          <img onClick={nextSlide} src={rigthArrow}></img>
+        <div className="practice">
+            <button onClick={prevSlide}></button>
+            <button onClick={nextSlide}></button>
         </div>
       </section>
       <section>
@@ -147,10 +113,6 @@ function Login() {
           <a href={KAKAO_AUTH_URL}>
             <p>카카오톡으로 계속</p>
           </a>
-        </div>
-        <div className="pp">
-          <p>신규사용자이신가요?</p>
-          <p>카카오 회원가입하기</p>
         </div>
       </section>
     </div>
