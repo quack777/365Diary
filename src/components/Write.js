@@ -71,14 +71,15 @@ function Write() {
     } else {
       e.preventDefault();
       axios({
-          url: `/answers/pages/${loca.state.data.answer_num}/${member}`, // /answers/pages/{answer_num}/{member_num}
+          url: `/answers/pages/${loca.state.data.answer_num}/1`,
+          // /answers/pages/{answer_num}/{member_num}
           method: "patch",
           baseURL: "http://61.72.99.219:9130/",
           data: {
-            answer : loca.state.data.answer,
+            answer : answer,
             public_answer : loca.state.data.public_answer,
             answer_num: loca.state.data.answer_num,
-            member_num: loca.state.data.member
+            member_num: loca.state.data.member_num
           }
         })
         .then(function (response) {
