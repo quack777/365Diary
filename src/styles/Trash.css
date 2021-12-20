@@ -49,8 +49,14 @@
 
   position: relative;
   left: 70px;
+}
 
-  display: none;
+.Trash > div > p:nth-child(2):hover {
+  background: #9fd3b6;
+}
+
+.Trash > div > p:nth-child(2):active {
+  background: #78aa8e;
 }
 
 .Trash > p {

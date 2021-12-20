@@ -99,8 +99,14 @@ function Trash() {
       url: `/trashes/${answer_num}`, // /trashes/{answer_num}
       method: "delete",
       baseURL: "http://61.72.99.219:9130",
+      data: {
+        member_num : member
+      }
     })
       .then(function (response) {
+        setTrashAlldata(
+          trashAllData.filter((data) => data.answer_num !== answer_num)
+        )
         console.log(response);
       })
       .catch(function (error) {
@@ -108,17 +114,21 @@ function Trash() {
       });
   }
 
-  function revert(answer_num) {
-    setTrashAlldata(
-      trashAllData.filter((data) => data.answer_num !== answer_num)
-    ); // 실제에서는 api 성공하면이니까 .then안에
+  function revert(answer_num, answer_delete, delete_date) {
     axios({
       url: `/trashes/settings/${answer_num}/${member}`, // /trashes/settings/{answer_num}/{member_num}
       method: "patch",
       baseURL: "http://61.72.99.219:9130",
+      data: {
+        answer_delete: answer_delete, // N or Y
+        delete_date: delete_date, //date타입
+      }
     })
-      .then(function (response) {
-        console.log(response);
+    .then(function (response) {
+      console.log(response);
+      setTrashAlldata(
+        trashAllData.filter((data) => data.answer_num !== answer_num)
+      ); // 실제에서는 api 성공하면이니까 .then안에
       })
       .catch(function (error) {
         console.log(error);
@@ -147,22 +157,6 @@ function Trash() {
       </div>
       <p>휴지통에 있는 일기는 7일이 지나면 완전히 삭제됩니다</p>
       <section>
-        {/* <div>
-          <hr></hr>
-          <div className="question">
-            <p>11월 20일</p>
-            <p>나의 삶의 목적은 무엇인가요?</p>
-          </div>
-          <div className="answers">
-            <p>2021년의 나:</p>
-            <p>나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 200자 일 때 모습입니다</p>
-          </div>
-          <div className="btns">
-            <img onClick={revert} src={restore_normal}></img>
-            <img src={Line}></img>
-            <img onClick={oneRemove} src={delete_normal}></img>
-          </div>
-        </div> */}
         {/* 실제로는 trashAllData */}
         {trashAllData.map((data, index) => {
           return (
@@ -181,12 +175,14 @@ function Trash() {
               </div>
               <div className="btns">
                 <img
-                  onClick={() => revert(data.answer_num)}
+                  onClick={() => revert(data.answer_num, data.answer_delete, data.delete_date)}
+                  alt="복원"
                   src={restore_normal}
                 ></img>
                 <img src={Line}></img>
                 <img
                   onClick={() => oneRemove(data.answer_num)}
+                  alt="삭제"
                   src={delete_normal}
                 ></img>
               </div>
