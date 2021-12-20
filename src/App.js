@@ -11,6 +11,7 @@ import Modify from "./components/Modify";
 import OAuth2RedirectHandler from "./components/OAuth2RedirectHandeler";
 import { HashRouter, Route, BrowserRouter } from "react-router-dom";
 import Introduce from "./components/Introduce";
+import WriteUpdate from "./components/WriteUpdate";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
       <BrowserRouter>
         <Nav />
         <Route path="/365" exact={true} component={Home} />
-        <Route path="/write" exact={true} component={Write} />
+        <Route exact path="/write" component={Write} />
+        <Route path="/write/:id" component={WriteUpdate} />
         <Route path="/list" component={List} />
         <Route path="/trash" component={Trash} />
         <Route path="/login" component={Login} />
@@ -28,7 +30,6 @@ function App() {
           path="/365/login/oauth_kakao"
           component={OAuth2RedirectHandler}
         ></Route>
-        <Route exact path="/write/:question_num" component={Write} />
       </BrowserRouter>
     </div>
   );
