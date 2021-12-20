@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useRef, useEffect, useCallback } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, useHistory, useLocation } from "react-router-dom";
 import "../styles/List.css";
 import modify_normal from "../styles/images/modify_normal.png";
 import Line from "../styles/images/Line45.png";
@@ -17,9 +17,20 @@ import Calender from "./util/Calender";
 import ListAnswerComponent from "./ListAnswerComponent";
 
 function List() {
+  const location = useLocation();
+  const history = useHistory();
+
   const NewDate = new Date();
-  const month = NewDate.getMonth() + 1;
-  const date = NewDate.getDate();
+  const [month, setMonth] = useState(
+    location.state === undefined
+      ? new Date().getMonth() + 1
+      : location.state.targetMonth
+  );
+  const [date, setDate] = useState(
+    location.state === undefined
+      ? new Date().getDate()
+      : location.state.targetDate
+  );
 
   const [deletes, setDeletes] = useState(false);
   const [calender, setCalender] = useState(false);
@@ -38,8 +49,18 @@ function List() {
   const [deleteIndex, setDelteIndex] = useState();
   const [answerNum, setAnswerNum] = useState();
   const [answerAllData, setAnswerAllData] = useState(["0"]);
-
   const deleteModalContainer = useRef();
+
+  let now = new Date();
+  let start = new Date(now.getFullYear(), 0, 0);
+  let diff = now - start;
+  let oneDay = 1000 * 60 * 60 * 24;
+  let day = Math.floor(diff / oneDay) + 1;
+  const [dayNum] = useState(
+    location.state === undefined ? day : Number(location.state.id)
+  );
+
+  console.log("location: ", location);
   function showDelete(index) {
     setDeletes(true);
     setDelteIndex(index);
@@ -53,19 +74,13 @@ function List() {
     setCalender(true);
   }
 
-  let now = new Date();
-  let start = new Date(now.getFullYear(), 0, 0);
-  let diff = now - start;
-  let oneDay = 1000 * 60 * 60 * 24;
-  let day = Math.floor(diff / oneDay) + 1;
-
   const getAns = useCallback(async () => {
     const member_num = localStorage.getItem("member_num");
     setMember(Number(member_num));
     await axios
-      .get(`/answers/${day}/1`, { baseURL: "http://61.72.99.219:9130" })
+      .get(`/answers/${dayNum}/1`, { baseURL: "http://61.72.99.219:9130" })
       .then(function (response) {
-        console.log(response.data)
+        console.log(response.data);
         setDataYear(response.data.map((item) => item.answer_year));
         setDataAnswer(response.data.map((item) => item.answer));
         setAnswerNum(response.data.map((item) => item.answer_num));
@@ -74,25 +89,26 @@ function List() {
       .catch(function (error) {
         console.log(error);
       });
-  }, [setDataYear, setDataAnswer, setAnswerNum, day]);
+  }, [setDataYear, setDataAnswer, setAnswerNum, dayNum]);
 
   const getQuestion = useCallback(async () => {
     await axios
-      .get(`/question/${day}`, {
+      .get(`/question/calendars/${dayNum}`, {
         baseURL: "http://61.72.99.219:9130",
       })
       .then(function (response) {
-        console.log(response.data)
+        console.log(response.data);
+
         setQuestion(response.data.question);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, [setQuestion, day]);
+  }, [setQuestion, dayNum]);
 
   useEffect(() => {
-    getAns();
     getQuestion();
+    getAns();
   }, [getAns, getQuestion]);
 
   function goTrash() {
@@ -100,17 +116,21 @@ function List() {
     const aN = answerNum[deleteIndex];
 
     axios({
-        url : `/answers/trashes/${aN}/1`,
-        method: "patch",
-        baseURL: "http://61.72.99.219:9130",
-        data: {
-          answer_delete: "Y", //삭제이기때문에 항상 y로
-          delete_date : "2021-12-21", //오늘날짜로, date타입
-        }
-      })
+      url: `/answers/trashes/${aN}/1`,
+      method: "patch",
+      baseURL: "http://61.72.99.219:9130",
+      data: {
+        answer_delete: "Y", //삭제이기때문에 항상 y로
+        delete_date: new Date(+new Date() + 3240 * 10000)
+          .toISOString()
+          .split("T")[0], //오늘날짜로, date타입
+      },
+    })
       .then((response) => {
-        console.log(response);
+        if (response.status === 200) alert("삭제 성공!");
+        setDeletes(false);
         setAnswerNum(answerNum.filter((an, index) => index !== deleteIndex));
+        getAns();
       })
       .catch((error) => {
         console.log(error);
@@ -134,6 +154,8 @@ function List() {
         dataAnswer={dataAnswer}
         dataYear={dataYear}
         answerAllData={answerAllData}
+        question={question}
+        answerNum={answerNum}
       />
 
       {deletes ? (
@@ -155,6 +177,8 @@ function List() {
           setQuestion={setQuestion}
           setCalender={setCalender}
           setAnswerAllData={setAnswerAllData}
+          setMonth={setMonth}
+          setDate={setDate}
         />
       ) : null}
     </div>
