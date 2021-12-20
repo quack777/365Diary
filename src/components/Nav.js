@@ -1,9 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/Nav.css";
 
 function Nav() {
   const location = useLocation();
+  const [isLogin, setIsLogin] = useState(false);
+  const [nickname, setNickname] = useState("");
+  useEffect(() => {
+    setNickname(sessionStorage.getItem("nickname") || "");
+    return () => {};
+  }, []);
 
   return (
     <div className="Nav">
@@ -26,11 +32,17 @@ function Nav() {
             휴지통
           </p>
         </Link>
-        <Link to="/login">
-          <p className={location.pathname === "/login" ? "bctive" : ""}>
-            로그인/회원가입
-          </p>
-        </Link>
+        {nickname ? (
+          <Link to="/logout">
+            <p>로그아웃</p>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <p className={location.pathname === "/login" ? "bctive" : ""}>
+              로그인/회원가입
+            </p>
+          </Link>
+        )}
       </div>
     </div>
   );
