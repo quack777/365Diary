@@ -17,7 +17,7 @@ function App() {
       <BrowserRouter>
         <Nav />
         <Route path="/365" exact={true} component={Home} />
-        <Route path="/write" component={Write} />
+        <Route path="/write" exact={true} component={Write} />
         <Route path="/list" component={List} />
         <Route path="/trash" component={Trash} />
         <Route path="/login" component={Login} />
@@ -26,6 +26,7 @@ function App() {
           path="/365/login/oauth_kakao"
           component={OAuth2RedirectHandler}
         ></Route>
+        <Route exact path="/write/:question_num" component={Write} />
       </BrowserRouter>
     </div>
   );

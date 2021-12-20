@@ -21,7 +21,7 @@ export default function List_answer({ dataAnswer, dataYear, showDelete, answerAl
                 <p>전체공개</p>
                 <Link
                   to={{
-                    pathname: "/write",
+                    pathname: `/write/${data.question_num}`,
                     state: { data },
                   }}
                 >
