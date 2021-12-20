@@ -177,3 +177,13 @@
   background: #d8e8d6;
   border-radius: 11.71px;
 }
+
+#backTrash {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #f9f8f9;
+  z-index: -10;
+}

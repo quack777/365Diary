@@ -194,6 +194,8 @@ function Trash() {
           );
         })}
       </section>
+      <div className="backColor"></div>
+      <div id="backTrash"></div>
     </div>
   );
 }

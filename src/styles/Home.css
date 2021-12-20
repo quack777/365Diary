@@ -280,7 +280,7 @@
   align-self: flex-end;
 }
 
-.Home .backColor {
+.backColor {
   width: 100%;
   height: 143px;
   z-index: -10;
