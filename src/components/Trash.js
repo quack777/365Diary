@@ -70,7 +70,7 @@ function Trash() {
     console.log(member_num);
     setMember(Number(member_num));
     axios({
-      url: "/trashes/6", // 실제 => `/trashes/${member_num}`
+      url: "/trashes/1", // 실제 => `/trashes/${member_num}`
       method: "get",
       baseURL: "http://61.72.99.219:9130",
     })
@@ -121,8 +121,11 @@ function Trash() {
   }
 
   function revert(answer_num, answer_delete, delete_date) {
+    console.log(answer_num)
+    console.log(answer_delete)
+    console.log(delete_date)
     axios({
-      url: `/trashes/settings/${answer_num}/${member}`, // /trashes/settings/{answer_num}/{member_num}
+      url: `/trashes/settings/${answer_num}/1`, // /trashes/settings/{answer_num}/{member_num}
       method: "patch",
       baseURL: "http://61.72.99.219:9130",
       data: {
@@ -148,7 +151,6 @@ function Trash() {
       baseURL: "http://61.72.99.219:9130",
     })
       .then(function (response) {
-        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -226,7 +228,7 @@ function DeleteModal(props) {
       method: "delete",
       baseURL: "http://61.72.99.219:9130",
       data: {
-        member_num : props.member
+        member_num : 1 //props.member
       }
     })
       .then(function (response) {
