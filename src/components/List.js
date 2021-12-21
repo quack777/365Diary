@@ -15,6 +15,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import Calender from "./util/Calender";
 import ListAnswerComponent from "./ListAnswerComponent";
+import girl from "../styles/images/Mask Group.png"
 
 function List() {
   const location = useLocation();
@@ -184,6 +185,9 @@ function List() {
         </div>
         <img src={monthBTN} alt="seeCalenderBtn" onClick={seeCalender} />
       </div>
+      
+      {/* 이것은 당일에 해당하는 답변이 없을 떄만 보여주어야 합니다 */}
+      <TodayWrite />
 
       <ListAnswerComponent
         showDelete={showDelete}
@@ -223,6 +227,20 @@ function List() {
       ) : null}
     </div>
   );
+}
+
+function TodayWrite() {
+  return(
+    <div className="TodayWrite">
+      <div>
+        <img src={girl} alt="ㅎㅇ"></img>
+        <p>오늘의 질문입니다. 지금은 나의 생각을 남겨보세요!</p>
+      </div>
+      <Link to="/write">
+        <p>답변작성하기</p>
+      </Link>
+    </div>
+  )
 }
 
 export default List;

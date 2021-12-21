@@ -280,3 +280,67 @@
   width: 10.82px;
   height: 10.82px;
 }
+
+.TodayWrite {
+  width: 70%;
+  height: 83px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(126, 180, 150, 0.2);
+  border-radius: 12px;
+  padding: 0 25px;
+  box-sizing: border-box;
+}
+
+.TodayWrite > div {
+  display: flex;
+}
+
+.TodayWrite > div > img {
+}
+
+.TodayWrite > div > p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18.75px;
+  line-height: 174.2%;
+  /* identical to box height, or 33px */
+
+  /* color/sub/blue */
+
+  color: #084861;
+}
+
+.TodayWrite a {
+  text-decoration: none;
+}
+
+.TodayWrite a > p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 174.2%;
+  /* identical to box height, or 30px */
+
+  color: #ffffff;
+
+  /* color/main/green */
+
+  background: #7eb496;
+  border-radius: 12px;
+  width: 173px;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.TodayWrite a > p:hover {
+  background: #9fd3b6;
+}
+
+.TodayWrite a > p:active {
+  background: #78aa8e;
+}
