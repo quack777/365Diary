@@ -12,6 +12,7 @@ function Trash() {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openTrashAllDeleteModal, setOpenTrashAllDeleteModal] = useState(false);
   const [clickAN , setClickAN] = useState();
+  const [gotrashdata, setGotrashdata] = useState();
   const setData = [
     {
       question_num: "344",
@@ -85,39 +86,11 @@ function Trash() {
 
   function allClear() {
     setOpenTrashAllDeleteModal(true);
-    axios({
-      url: "/trashes/all",
-      method: "delete",
-      baseURL: "http://61.72.99.219:9130",
-    })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   function oneRemove(answer_num) {
     setOpenDeleteModal(true);
     setClickAN(answer_num);
-    // axios({
-    //   url: `/trashes/${answer_num}`, // /trashes/{answer_num}
-    //   method: "delete",
-    //   baseURL: "http://61.72.99.219:9130",
-    //   data: {
-    //     member_num : member
-    //   }
-    // })
-    //   .then(function (response) {
-    //     setTrashAlldata(
-    //       trashAllData.filter((data) => data.answer_num !== answer_num)
-    //     )
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
   }
 
   function revert(answer_num, answer_delete, delete_date) {
@@ -212,6 +185,8 @@ function Trash() {
         setOpenTrashAllDeleteModal={setOpenTrashAllDeleteModal}
         trashAllData={trashAllData}
         setTrashAlldata={setTrashAlldata}
+        gotrashdata={gotrashdata}
+        setGotrashdata={setGotrashdata}
       />
       :null}
       </section>
@@ -259,15 +234,28 @@ function DeleteModal(props) {
 }
 
 function TrashAllDeleteModal(props) {
-  const sendData = props.trashAllData;
-
+  let sendData = props.trashAllData;
+  console.log(sendData);
   function goTrash() {
+    let a = sendData.map(data => {
+      delete data.answer
+      delete data.answer_date
+      delete data.answer_year
+      delete data.delete_date
+      delete data.public_answer
+      return(
+        data
+      )
+    })
+    props.setGotrashdata(a)
+    console.log(props.gotrashdata)
+    const setdata = props.gotrashdata;
     axios({
       url: "/trashes/all",
       method: "delete",
       baseURL: "http://61.72.99.219:9130",
       data: {
-        sendData
+        setdata
       }
     })
       .then((response) => {
