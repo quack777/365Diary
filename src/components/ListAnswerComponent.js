@@ -17,12 +17,14 @@ export default function List_answer({
   answerNum,
   open,
   stateOpen,
-  stateClose
+  stateClose,
+  public_answer
 }) {
   return (
     <div className="List">
       {answerAllData.length > 0 ? (
         answerAllData.map((data, index) => {
+          console.log(public_answer[index])
           return (
             <div className="list">
               <hr></hr>
@@ -31,11 +33,16 @@ export default function List_answer({
                 <p>{data.answer}</p>
               </div>
               <div className="buttons">
-                {open ? (
+                {public_answer[index] === "Y" ? (
+                  <img src={toggle_selected} alt="public" onClick={() => stateOpen(index)}></img>
+                ) : (
+                  <img src={toggle_unselected} alt="private" onClick={() => stateClose(index)}></img>
+                )}
+                {/* {open ? (
                   <img src={toggle_selected} onClick={stateOpen}></img>
                 ) : (
                   <img src={toggle_unselected} onClick={stateClose}></img>
-                )}
+                )} */}
                 <Link
                   to={{
                     pathname: `/write/${data.question_num}`,
