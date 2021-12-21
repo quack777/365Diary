@@ -9,6 +9,9 @@ import xxxxx from "../styles/images/xxxxx.png";
 function Trash() {
   const [member, setMember] = useState();
   const [trashAllData, setTrashAlldata] = useState(["answer"]);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openTrashAllDeleteModal, setOpenTrashAllDeleteModal] = useState(false);
+  const [clickAN , setClickAN] = useState();
   const setData = [
     {
       question_num: "344",
@@ -81,6 +84,7 @@ function Trash() {
   }, []);
 
   function allClear() {
+    setOpenTrashAllDeleteModal(true);
     axios({
       url: "/trashes/all",
       method: "delete",
@@ -95,23 +99,25 @@ function Trash() {
   }
 
   function oneRemove(answer_num) {
-    axios({
-      url: `/trashes/${answer_num}`, // /trashes/{answer_num}
-      method: "delete",
-      baseURL: "http://61.72.99.219:9130",
-      data: {
-        member_num : member
-      }
-    })
-      .then(function (response) {
-        setTrashAlldata(
-          trashAllData.filter((data) => data.answer_num !== answer_num)
-        )
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    setOpenDeleteModal(true);
+    setClickAN(answer_num);
+    // axios({
+    //   url: `/trashes/${answer_num}`, // /trashes/{answer_num}
+    //   method: "delete",
+    //   baseURL: "http://61.72.99.219:9130",
+    //   data: {
+    //     member_num : member
+    //   }
+    // })
+    //   .then(function (response) {
+    //     setTrashAlldata(
+    //       trashAllData.filter((data) => data.answer_num !== answer_num)
+    //     )
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   }
 
   function revert(answer_num, answer_delete, delete_date) {
@@ -189,6 +195,23 @@ function Trash() {
             </div>
           );
         })}
+      {openDeleteModal?
+      <DeleteModal 
+        setOpenDeleteModal={setOpenDeleteModal}
+        oneRemove={oneRemove}
+        clickAN={clickAN} 
+        member={member}
+        trashAllData={trashAllData}
+        setTrashAlldata={setTrashAlldata}
+      />
+      :null}
+      {openTrashAllDeleteModal?
+      <TrashAllDeleteModal 
+        setOpenTrashAllDeleteModal={setOpenTrashAllDeleteModal}
+        trashAllData={trashAllData}
+        setTrashAlldata={setTrashAlldata}
+      />
+      :null}
       </section>
       <div className="backColor"></div>
       <div id="backTrash"></div>
@@ -196,28 +219,71 @@ function Trash() {
   );
 }
 
-function DeleteModal() {
+function DeleteModal(props) {
   function goTrash() {
     axios({
-      url: `/answers/trashes/{answer_num}/{}`, // /answers/trashes/{answer_num}/{member_num}
-      method: "patch",
+      url: `/trashes/${props.clickAN}`, // /answers/trashes/{answer_num}/{member_num}
+      method: "delete",
       baseURL: "http://61.72.99.219:9130",
+      data: {
+        member_num : props.member
+      }
+    })
+      .then(function (response) {
+        props.setTrashAlldata(
+          props.trashAllData.filter((data) => data.answer_num !== props.clickAN)
+        )
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  function xDelete() {
+    props.setOpenDeleteModal(false);
+  }
+  return (
+    <div className="deleteModal">
+      <img onClick={xDelete} src={xxxxx}></img>
+      <p>답변을 정말 삭제하시겠어요?</p>
+      <p>휴지통에서 삭제하면 답변을 복구할 수 없습니다</p>
+      <section>
+        <p onClick={goTrash}>삭제하기</p>
+        <p onClick={xDelete}>취소하기</p>
+      </section>
+    </div>
+  );
+}
+
+function TrashAllDeleteModal(props) {
+  const sendData = props.trashAllData;
+
+  function goTrash() {
+    axios({
+      url: "/trashes/all",
+      method: "delete",
+      baseURL: "http://61.72.99.219:9130",
+      data: {
+        sendData
+      }
     })
       .then((response) => {
         console.log(response);
+        props.setTrashAlldata(["answer"]);
       })
       .catch((error) => {
         console.log(error);
       });
   }
   function xDelete() {
-    // setDeletes(false);
+    props.setOpenTrashAllDeleteModal(false);
   }
   return (
     <div className="deleteModal">
       <img onClick={xDelete} src={xxxxx}></img>
-      <p>답변을 정말 삭제하시겠어요?</p>
-      <p>삭제된 답변은 휴지통에 일주일 동안 보관됩니다</p>
+      <p>휴지통을 정말 비우시겠어요?</p>
+      <p>휴지통에서 삭제하면 답변을 복구할 수 없습니다</p>
       <section>
         <p onClick={goTrash}>삭제하기</p>
         <p onClick={xDelete}>취소하기</p>
