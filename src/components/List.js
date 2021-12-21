@@ -152,7 +152,7 @@ function List() {
       .then((response) => {
         console.log(response);
       })
-      .error((error) => {
+      .catch((error) => {
         console.log(error);
       });
   }
