@@ -37,6 +37,7 @@ function List() {
   const [value, onChange] = useState(new Date());
   const [question, setQuestion] = useState("나의 삶의 목적은 무엇인가요?");
   const [open, setOpen] = useState(false);
+  const [publica, setPublica] = useState("N");
   const [answer, setAnswer] = useState(
     "나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 200자 일 때 모습입니다"
   );
@@ -137,6 +138,16 @@ function List() {
       });
   }
 
+  function stateClose() {
+    setOpen(true);
+    setPublica("N");
+  }
+
+  function stateOpen() {
+    setOpen(false);
+    setPublica("Y");
+  }
+
   return (
     <div className="List">
       <div className="questions">
@@ -156,6 +167,9 @@ function List() {
         answerAllData={answerAllData}
         question={question}
         answerNum={answerNum}
+        open={open}
+        stateOpen={stateOpen}
+        stateClose={stateClose}
       />
 
       {deletes ? (

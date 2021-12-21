@@ -107,38 +107,19 @@
   align-items: center;
 }
 
-.List > .list .buttons > p {
-  font-family: Spoqa Han Sans Neo;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 174.2%;
-  /* identical to box height, or 35px */
-
-  text-align: right;
-
-  /* color/main/green */
-
-  color: #7eb496;
-
-  margin-right: 43px;
-}
-
-/* .List > .list > .buttons > img {
-  object-fit: contain;
-  background: #f1faf0;
-  border-radius: 16px;
-  padding: 0px 15px;
-  margin-right: 43px;
-} */
-
 .List > .list .buttons > img {
   object-fit: contain;
   margin: 0 10px;
 }
 
+.List > .list .buttons > a > div {
+  position: relative;
+  top: 2px;
+}
+
 .List > .list .buttons > div {
-  align-self: center;
+  position: relative;
+  top: 1px;
 }
 
 .List > .list .buttons div > img {

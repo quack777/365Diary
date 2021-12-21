@@ -4,6 +4,8 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import modify_normal from "../styles/images/modify_normal.png";
 import Line from "../styles/images/Line45.png";
 import delete_normal from "../styles/images/delete_normal.png";
+import toggle_unselected from "../styles/images/list_private.png";
+import toggle_selected from "../styles/images/list_public.png";
 import "../styles/List.css";
 
 export default function List_answer({
@@ -13,6 +15,9 @@ export default function List_answer({
   showDelete,
   answerAllData,
   answerNum,
+  open,
+  stateOpen,
+  stateClose
 }) {
   return (
     <div className="List">
@@ -26,7 +31,11 @@ export default function List_answer({
                 <p>{data.answer}</p>
               </div>
               <div className="buttons">
-                <p>전체공개</p>
+                {open ? (
+                  <img src={toggle_selected} onClick={stateOpen}></img>
+                ) : (
+                  <img src={toggle_unselected} onClick={stateClose}></img>
+                )}
                 <Link
                   to={{
                     pathname: `/write/${data.question_num}`,
