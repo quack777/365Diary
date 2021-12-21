@@ -54,18 +54,14 @@ function WriteUpdate() {
     setCount(inputValue.length);
   }
 
-  function stateClose() {
-    setOpen(true);
-    setPublica("N");
-  }
-
   function stateOpen() {
-    setOpen(false);
+    setOpen(true);
     setPublica("Y");
   }
 
-  function sendData() {
-    // console.log(answer);
+  function stateClose() {
+    setOpen(false);
+    setPublica("N");
   }
 
   function back() {
@@ -92,12 +88,12 @@ function WriteUpdate() {
         <div>
           <div className="private">
             {open ? (
-              <img src={toggle_selected} alt="public" onClick={stateOpen}></img>
+              <img src={toggle_selected} alt="public" onClick={stateClose}></img>
             ) : (
               <img
                 src={toggle_unselected}
                 alt="private"
-                onClick={stateClose}
+                onClick={stateOpen}
               ></img>
             )}
           </div>
