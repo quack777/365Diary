@@ -21,19 +21,19 @@ function WriteUpdate() {
   const [question] = useState(location.state.question);
   const [count, setCount] = useState(0);
   const [open, setOpen] = useState(false);
-  const [publica, setPublica] = useState("N");
+  const [publica, setPublica] = useState(location.state.data.public_answer);
   console.log("location.state.data.answer_num: ", location.state.data);
 
   function writeSubmit(e) {
     e.preventDefault();
     axios({
-      url: `/answers/pages/${location.state.data.answer_num}/1`,
+      url: `/answers/pages/${location.state.data.answer_num}/1`, // 임시 member => 1
       // /answers/pages/{answer_num}/{member_num}
       method: "patch",
       baseURL: "http://61.72.99.219:9130/",
       data: {
         answer: initialValue,
-        public_answer: location.state.data.public_answer,
+        public_answer: publica,
         answer_num: location.state.data.answer_num,
         member_num: location.state.data.member_num,
       },
@@ -54,15 +54,35 @@ function WriteUpdate() {
     setCount(inputValue.length);
   }
 
-  function stateOpen() {
-    setOpen(true);
-    setPublica("Y");
+  function patchPublic() {
+    axios({
+      url: `/settings/${location.state.data.answer_num}/1`,
+      method: "patch",
+      baseURL: "http://61.72.99.219:9130/",
+      data: {
+        public_answer: publica
+      }
+    })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   function stateClose() {
     setOpen(false);
     setPublica("N");
+    patchPublic()
   }
+
+  function stateOpen() {
+    setOpen(true);
+    setPublica("Y");
+    patchPublic()
+  }
+
 
   function back() {
     history.replace("/list", { id, targetDate, targetMonth });
@@ -87,8 +107,12 @@ function WriteUpdate() {
         <p>{count}/200</p>
         <div>
           <div className="private">
-            {open ? (
-              <img src={toggle_selected} alt="public" onClick={stateClose}></img>
+            {publica === "Y" ? (
+              <img 
+                src={toggle_selected}
+                alt="public" 
+                onClick={stateClose}>
+              </img>
             ) : (
               <img
                 src={toggle_unselected}

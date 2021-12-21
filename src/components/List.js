@@ -153,7 +153,7 @@ function List() {
     .then((response) => {
       console.log(response)
     })
-    .error((error) => {
+    .catch((error) => {
       console.log(error)
     })
   }
@@ -185,7 +185,7 @@ function List() {
         </div>
         <img src={monthBTN} alt="seeCalenderBtn" onClick={seeCalender} />
       </div>
-      
+
       {/* 이것은 당일에 해당하는 답변이 없을 떄만 보여주어야 합니다 */}
       <TodayWrite />
 
