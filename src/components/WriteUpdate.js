@@ -111,6 +111,8 @@ function WriteUpdate() {
           </div>
         </div>
       </form>
+      <div className="backColor"></div>
+      <div id="WriteBack"></div>
     </div>
   );
 }

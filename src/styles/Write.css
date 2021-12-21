@@ -7,6 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #f9f8f9;
 }
 
 .Write > .questions {
@@ -70,7 +71,7 @@
 .Write > .writeBox textarea {
   width: 826px;
   height: 252px;
-  background: #f9f8f9;
+  background: #ffffff;
   border-radius: 16px;
   border-style: none;
   resize: none;
@@ -170,4 +171,14 @@
 
 .Write > .writeBox > div > .twoBtn #second:active {
   background: #78aa8e;
+}
+
+#WriteBack {
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+  background-color: #f9f8f9;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
