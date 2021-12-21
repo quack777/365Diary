@@ -6,6 +6,7 @@ import Line from "../styles/images/Line45.png";
 import delete_normal from "../styles/images/delete_normal.png";
 import toggle_unselected from "../styles/images/list_private.png";
 import toggle_selected from "../styles/images/list_public.png";
+import girl from "../styles/images/Mask Group.png";
 import "../styles/List.css";
 
 export default function List_answer({
@@ -18,13 +19,26 @@ export default function List_answer({
   open,
   stateOpen,
   stateClose,
-  public_answer
+  public_answer,
 }) {
+  function TodayWrite() {
+    return (
+      <div className="TodayWrite">
+        <div>
+          <img src={girl} alt="ㅎㅇ"></img>
+          <p>오늘의 질문입니다. 지금은 나의 생각을 남겨보세요!</p>
+        </div>
+        <Link to="/write">
+          <p>답변작성하기</p>
+        </Link>
+      </div>
+    );
+  }
   return (
     <div className="List">
       {answerAllData.length > 0 ? (
         answerAllData.map((data, index) => {
-          console.log(public_answer[index])
+          console.log(public_answer[index]);
           return (
             <div className="list">
               <hr></hr>
@@ -34,9 +48,17 @@ export default function List_answer({
               </div>
               <div className="buttons">
                 {public_answer[index] === "Y" ? (
-                  <img src={toggle_selected} alt="public" onClick={() => stateOpen(index)}></img>
+                  <img
+                    src={toggle_selected}
+                    alt="public"
+                    onClick={() => stateOpen(index)}
+                  ></img>
                 ) : (
-                  <img src={toggle_unselected} alt="private" onClick={() => stateClose(index)}></img>
+                  <img
+                    src={toggle_unselected}
+                    alt="private"
+                    onClick={() => stateClose(index)}
+                  ></img>
                 )}
                 {/* {open ? (
                   <img src={toggle_selected} onClick={stateOpen}></img>
@@ -62,7 +84,7 @@ export default function List_answer({
           );
         })
       ) : (
-        <div>없어여</div>
+        <TodayWrite />
       )}
     </div>
   );
