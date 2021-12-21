@@ -18,6 +18,7 @@ export default function Calender(props) {
     getAnswer(day);
     props.setMonth(now.getMonth() + 1);
     props.setDate(now.getDate());
+    props.setCalender(false);
   };
 
   function getQuestion(day) {
