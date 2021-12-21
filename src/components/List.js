@@ -15,7 +15,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import Calender from "./util/Calender";
 import ListAnswerComponent from "./ListAnswerComponent";
-import girl from "../styles/images/Mask Group.png"
 
 function List() {
   const location = useLocation();
@@ -63,7 +62,7 @@ function List() {
     location.state === undefined ? day : Number(location.state.id)
   );
 
-  console.log("location: ", location);
+  console.log("dataAnswer: ", dataAnswer);
   function showDelete(index) {
     setDeletes(true);
     setDelteIndex(index);
@@ -147,15 +146,15 @@ function List() {
       method: "patch",
       baseURL: "http://61.72.99.219:9130/",
       data: {
-        public_answer: pa
-      }
+        public_answer: pa,
+      },
     })
-    .then((response) => {
-      console.log(response)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      .then((response) => {
+        console.log(response);
+      })
+      .error((error) => {
+        console.log(error);
+      });
   }
 
   function stateClose(index) {
@@ -163,7 +162,7 @@ function List() {
     setPublica("N");
     public_answer[index] = "Y";
     setPublic_answer(public_answer);
-    patchPublic(public_answer[index], index)
+    patchPublic(public_answer[index], index);
   }
 
   function stateOpen(index) {
@@ -171,7 +170,7 @@ function List() {
     setPublica("Y");
     public_answer[index] = "N";
     setPublic_answer(public_answer);
-    patchPublic(public_answer[index], index)
+    patchPublic(public_answer[index], index);
   }
 
   return (
@@ -187,7 +186,6 @@ function List() {
       </div>
 
       {/* 이것은 당일에 해당하는 답변이 없을 떄만 보여주어야 합니다 */}
-      <TodayWrite />
 
       <ListAnswerComponent
         showDelete={showDelete}
@@ -227,20 +225,6 @@ function List() {
       ) : null}
     </div>
   );
-}
-
-function TodayWrite() {
-  return(
-    <div className="TodayWrite">
-      <div>
-        <img src={girl} alt="ㅎㅇ"></img>
-        <p>오늘의 질문입니다. 지금은 나의 생각을 남겨보세요!</p>
-      </div>
-      <Link to="/write">
-        <p>답변작성하기</p>
-      </Link>
-    </div>
-  )
 }
 
 export default List;
