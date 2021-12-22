@@ -12,6 +12,7 @@ import OAuth2RedirectHandler from "./components/OAuth2RedirectHandeler";
 import { HashRouter, Route, BrowserRouter } from "react-router-dom";
 import Introduce from "./components/Introduce";
 import WriteUpdate from "./components/WriteUpdate";
+import Error from "./components/error/Error";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           path="/365/login/oauth_kakao"
           component={OAuth2RedirectHandler}
         ></Route>
+        <Route path="/error" component={Error}/>
       </BrowserRouter>
     </div>
   );

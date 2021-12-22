@@ -146,10 +146,13 @@ function Trash() {
       />
       :null}
       </section>
-      
+
       <p>밑에 테스트 테스트 페이징 테스트</p>
       <Posts posts={currentPosts(posts)}></Posts>
+      {posts.length > 5 
+      ? 
       <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={setCurrentPage}></Pagination>
+      : null}
       
       <div className="backColor"></div>
       <div id="backTrash"></div>
