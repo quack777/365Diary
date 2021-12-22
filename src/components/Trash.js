@@ -5,6 +5,8 @@ import restore_normal from "../styles/images/restore_normal.png";
 import Line from "../styles/images/Line45.png";
 import axios from "axios";
 import xxxxx from "../styles/images/xxxxx.png";
+import Pagination from "./Pagination";
+import Posts from "./Posts";
 
 function Trash() {
   const [member, setMember] = useState();
@@ -14,8 +16,13 @@ function Trash() {
   const [clickAN , setClickAN] = useState(); // deleteModal로 trashAllData의 answer_num 넘기기 위해 필요한 것
   const [gotrashdata, setGotrashdata] = useState([]); // TrashAllDeleteModal에서 휴지통 전체 비우기 api에 보내줄 Data
   
+  //페이징 처리
+  const [posts, setPosts] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(5);
+
   // 가상 데이터
-  const setData = [
+  let setData = [
     {
       question_num: "344",
       answer_date: "1209",
@@ -66,7 +73,25 @@ function Trash() {
         "나는 엄마....... 왜냐하면 엄마는 크게 뭔가를 해주는 티를 내지는 않지만 매번 알게 모르게 날 챙겨주니까. 어릴땐 엄마 잔소리가 마냥 싫었는데, 이젠 그 잔소리에서 사랑이 뚝뚝 떨어진다는 사실을 나는 알아버렸으니까. 아빠 미안해 ^^ 조만간 부모님을 뵈러 본가에 가야겠다. 부모님이 좋아하는 떡이랑 과일 사들고 가야지.",
       answer_num: 7,
     },
+    {
+      qustion_num: "342",
+      answer_date: "1207",
+      answer_year: "2022",
+      anwer:
+        "나는 엄마....... 왜냐하면 엄마는 크게 뭔가를 해주는 티를 내지는 않지만 매번 알게 모르게 날 챙겨주니까. 어릴땐 엄마 잔소리가 마냥 싫었는데, 이젠 그 잔소리에서 사랑이 뚝뚝 떨어진다는 사실을 나는 알아버렸으니까. 아빠 미안해 ^^ 조만간 부모님을 뵈러 본가에 가야겠다. 부모님이 좋아하는 떡이랑 과일 사들고 가야지.",
+      answer_num: 7,
+    },
+    {
+      qustion_num: "342",
+      answer_date: "1207",
+      answer_year: "2022",
+      anwer:
+        "나는 엄마....... 왜냐하면 엄마는 크게 뭔가를 해주는 티를 내지는 않지만 매번 알게 모르게 날 챙겨주니까. 어릴땐 엄마 잔소리가 마냥 싫었는데, 이젠 그 잔소리에서 사랑이 뚝뚝 떨어진다는 사실을 나는 알아버렸으니까. 아빠 미안해 ^^ 조만간 부모님을 뵈러 본가에 가야겠다. 부모님이 좋아하는 떡이랑 과일 사들고 가야지.",
+      answer_num: 7,
+    },
   ];
+
+  console.log(setData.length)
 
   useEffect(() => {
     // 첫 렌더링 때 usestate => member에 값 저장해서 Trash 컴포넌트 전체에서 member_num이 필요할 때 사용할 수 있게함
@@ -121,6 +146,17 @@ function Trash() {
         console.log(error);
       });
   }
+
+
+    /* 새로 추가한 부분 */
+    const indexOfLast = currentPage * postsPerPage;
+    const indexOfFirst = indexOfLast - postsPerPage;
+    function currentPosts(tmp) {
+      let currentPosts = 0;
+      currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+      return currentPosts;
+    }
+    /*                 */
 
   return (
     <div className="Trash">
@@ -181,6 +217,10 @@ function Trash() {
       />
       :null}
       </section>
+
+      <Posts setData={currentPosts(setData)}></Posts>
+      <Pagination postsPerPage={postsPerPage} totalPosts={setData.length} paginate={setCurrentPage}></Pagination>
+      
       <div className="backColor"></div>
       <div id="backTrash"></div>
     </div>
