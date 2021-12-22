@@ -104,7 +104,7 @@ function Trash() {
                   {data.answer_date && data.answer_date.substring(0, 2)}월{" "}
                   {data.answer_date && data.answer_date.substring(2, 4)}일
                 </p>
-                <p>{data.question_num}api호출</p> {/* 백에서 question데이터 담아주기로 함 => data.question */}
+                <p>{data.question}</p> {/* 백에서 question데이터 담아주기로 함 => data.question */}
               </div>
               <div className="answers">
                 <p>{data.answer_year}년의 나:</p>
@@ -199,43 +199,45 @@ function DeleteModal(props) {
 }
 
 function TrashAllDeleteModal(props) {
-  let sendData = props.trashAllData;
+  props.setGotrashdata(props.trashAllData);
+  let sendData = props.gotrashdata.slice(); // 사본 만들기 deep copy
   console.log(sendData);
+
   function goTrash() {
-    let a = sendData.map(data => { // axios api 호출 할 때 넘길 데이터 정리
+    sendData.map(data => { // axios api 호출 할 때 넘길 데이터 정리
       delete data.answer
       delete data.answer_date
       delete data.answer_year
       delete data.delete_date
       delete data.public_answer
+      delete data.question
       return(
         data
       )
     })
-    props.setGotrashdata(a)
-    console.log(props.gotrashdata)
-    const setdata = props.gotrashdata;
+    console.log(sendData)
+    console.log(props.trashAllData);
+    console.log(props.gotrashdata);
     axios({
       url: "/trashes/all",
       method: "delete",
       baseURL: "http://61.72.99.219:9130",
-      data: {
-        setdata
-      }
+      data: sendData
     })
       .then((response) => {
         console.log(response);
-        props.setTrashAlldata(["answer"]); // trashAllData모두 삭제
-        props.setGotrashdata([]); 
+        props.setTrashAlldata([]); // trashAllData모두 삭제
         props.setOpenTrashAllDeleteModal(false);
       })
       .catch((error) => {
         console.log(error);
       });
   }
+
   function xDelete() {
     props.setOpenTrashAllDeleteModal(false);
   }
+
   return (
     <div className="deleteModal">
       <img onClick={xDelete} src={xxxxx}></img>
