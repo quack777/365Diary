@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import Nav from "./components/Nav";
 import Home from "./components/Home";
@@ -7,7 +8,6 @@ import Trash from "./components/Trash";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Signup from "./components/Sign";
-import Modify from "./components/Modify";
 import OAuth2RedirectHandler from "./components/OAuth2RedirectHandeler";
 import { HashRouter, Route, BrowserRouter } from "react-router-dom";
 import Introduce from "./components/Introduce";
@@ -19,6 +19,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Nav />
+        <Route exact path="/" component={Home} />
         <Route path="/365" exact={true} component={Home} />
         <Route exact path="/write" component={Write} />
         <Route path="/write/:id" component={WriteUpdate} />
@@ -26,12 +27,12 @@ function App() {
         <Route path="/trash" component={Trash} />
         <Route path="/login" component={Login} />
         <Route path="/introduce" component={Introduce} />
-        <Route path="/logout" component={Logout} />
+        <Route exact path="/logoutRoute" component={Logout} />
         <Route
           path="/365/login/oauth_kakao"
           component={OAuth2RedirectHandler}
         ></Route>
-        <Route path="/error" component={Error}/>
+        <Route path="/error" component={Error} />
       </BrowserRouter>
     </div>
   );

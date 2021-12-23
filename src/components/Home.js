@@ -44,7 +44,7 @@ function Home() {
       setNum(num - 30);
       answersBox.current.style.transform = `translateX(${num}%)`;
     }
-    console.dir(a.target.src)
+    console.dir(a.target.src);
   }
   //데이터 세팅
   const [showdata, setShowdata] = useState();
