@@ -3,7 +3,7 @@ import delete_normal from "../styles/images/delete_normal.png";
 import restore_normal from "../styles/images/restore_normal.png";
 import Line from "../styles/images/Line45.png";
 
-const Posts = ({ posts, revert }) => {
+const Posts = ({ posts, revert, oneRemove }) => {
   return (
     <section>
     {posts.map((data, index) => {
@@ -29,7 +29,7 @@ const Posts = ({ posts, revert }) => {
                 ></img>
                 <img src={Line}></img>
                 <img
-                  // onClick={() => oneRemove(data.answer_num)}
+                  onClick={() => oneRemove(data.answer_num)}
                   alt="삭제"
                   src={delete_normal}
                 ></img>

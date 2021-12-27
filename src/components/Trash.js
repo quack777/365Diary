@@ -17,7 +17,7 @@ function Trash() {
   const [gotrashdata, setGotrashdata] = useState([]); // TrashAllDeleteModal에서 휴지통 전체 비우기 api에 보내줄 Data
   
   //페이징 처리
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(["answer"]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(5);
 
@@ -36,7 +36,7 @@ function Trash() {
       .then(function (response) {
         console.log(response.data);
         setTrashAlldata(response.data); // 휴지통 전체 데이터 trashAllData에 저장
-        setPosts(response.data)
+        setPosts(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -50,6 +50,7 @@ function Trash() {
   function oneRemove(answer_num) {
     setOpenDeleteModal(true); // 모달 창 열어주기
     setClickAN(answer_num); // 모달 창에서 answer_num사용할 수 있게 clickAN에 값 저장
+    console.log(posts)
   }
 
   function revert(answer_num, answer_delete, delete_date) {
@@ -98,7 +99,7 @@ function Trash() {
       </div>
       <p>휴지통에 있는 일기는 7일이 지나면 완전히 삭제됩니다</p>
       <section>
-        {trashAllData.map((data, index) => {
+        {/* {trashAllData.map((data, index) => {
           return (
             <div>
               <hr></hr>
@@ -107,7 +108,7 @@ function Trash() {
                   {data.answer_date && data.answer_date.substring(0, 2)}월{" "}
                   {data.answer_date && data.answer_date.substring(2, 4)}일
                 </p>
-                <p>{data.question}</p> {/* 백에서 question데이터 담아주기로 함 => data.question */}
+                <p>{data.question}</p>
               </div>
               <div className="answers">
                 <p>{data.answer_year}년의 나:</p>
@@ -128,7 +129,7 @@ function Trash() {
               </div>
             </div>
           );
-        })}
+        })} */}
       {openDeleteModal?
       <DeleteModal 
         setOpenDeleteModal={setOpenDeleteModal}
@@ -137,6 +138,8 @@ function Trash() {
         member={member}
         trashAllData={trashAllData}
         setTrashAlldata={setTrashAlldata}
+        posts={posts}
+        setPosts={setPosts}
       />
       :null}
       {openTrashAllDeleteModal?
@@ -146,12 +149,13 @@ function Trash() {
         setTrashAlldata={setTrashAlldata}
         gotrashdata={gotrashdata}
         setGotrashdata={setGotrashdata}
+        posts={posts}
+        setPosts={setPosts}
       />
       :null}
       </section>
-
-      <p>밑에 테스트 테스트 페이징 테스트</p>
-      <Posts posts={currentPosts(posts)} revert={revert}></Posts>
+      
+      <Posts posts={currentPosts(posts)} revert={revert} oneRemove={oneRemove}></Posts>
       {posts.length > 5 
       ? 
       <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={setCurrentPage}></Pagination>
@@ -164,6 +168,7 @@ function Trash() {
 }
 
 function DeleteModal(props) {
+  console.log(props.posts)
   function goTrash() {
     axios({
       url: `/trashes/${props.clickAN}`, // /answers/trashes/{answer_num}/{member_num}
@@ -174,9 +179,12 @@ function DeleteModal(props) {
       }
     })
       .then(function (response) {
-        props.setTrashAlldata(
-          props.trashAllData.filter((data) => data.answer_num !== props.clickAN)
-        ) // trashAllData가 디비에서 하나 빠졌으니까 자체에서도 값을 빼줘야 화면에서도 빠지기 떄문에 거르기
+        // props.setTrashAlldata(
+        // props.trashAllData.filter((data) => data.answer_num !== props.clickAN)
+        // ) // trashAllData가 디비에서 하나 빠졌으니까 자체에서도 값을 빼줘야 화면에서도 빠지기 떄문에 거르기
+        props.setPosts(
+          props.posts.filter((data)=> data.answer_num !== props.clickAN)
+        )
         console.log(response);
         props.setOpenDeleteModal(false); // 성공했으니까 모달 창 다시 닫기
       })
@@ -202,7 +210,8 @@ function DeleteModal(props) {
 }
 
 function TrashAllDeleteModal(props) {
-  props.setGotrashdata(props.trashAllData);
+  console.log(props.posts)
+  props.setGotrashdata(props.posts);
   let sendData = props.gotrashdata.slice(); // 사본 만들기 deep copy
   console.log(sendData);
 
@@ -218,9 +227,6 @@ function TrashAllDeleteModal(props) {
         data
       )
     })
-    console.log(sendData)
-    console.log(props.trashAllData);
-    console.log(props.gotrashdata);
     axios({
       url: "/trashes/all",
       method: "delete",
@@ -229,7 +235,8 @@ function TrashAllDeleteModal(props) {
     })
       .then((response) => {
         console.log(response);
-        props.setTrashAlldata([]); // trashAllData모두 삭제
+        // props.setTrashAlldata([]); // trashAllData모두 삭제
+        props.setPosts([]);
         props.setOpenTrashAllDeleteModal(false);
       })
       .catch((error) => {
