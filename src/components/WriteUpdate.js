@@ -22,19 +22,19 @@ function WriteUpdate() {
   const [count, setCount] = useState(0);
   const [open, setOpen] = useState(false);
   const [publica, setPublica] = useState(location.state.data.public_answer);
-  console.log("location.state.data.answer_num: ", location.state.data);
+  console.log("location.state.data: ", location.state.data);
 
   function writeSubmit(e) {
     e.preventDefault();
     axios({
-      url: `/answers/pages/${location.state.data.answer_num}/1`, // 임시 member => 1
+      url: `/answers/pages`, // 임시 member => 1
       // /answers/pages/{answer_num}/{member_num}
       method: "patch",
       baseURL: "http://61.72.99.219:9130/",
       data: {
+        answer_num: location.state.data.answer_num,
         answer: initialValue,
         public_answer: publica,
-        answer_num: location.state.data.answer_num,
         member_num: location.state.data.member_num,
       },
     })
@@ -74,13 +74,11 @@ function WriteUpdate() {
   function stateClose() {
     setOpen(false);
     setPublica("N");
-    patchPublic()
   }
 
   function stateOpen() {
     setOpen(true);
     setPublica("Y");
-    patchPublic()
   }
 
 
