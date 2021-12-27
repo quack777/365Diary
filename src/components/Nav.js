@@ -4,8 +4,10 @@ import "../styles/Nav.css";
 
 function Nav() {
   const location = useLocation();
+  location.isLogged = (sessionStorage.getItem("nickname") && true) || false;
+  location.onClicked = false;
 
-  const nicknameFromSession = sessionStorage.getItem("nickname") || null;
+  const handleClick = () => (location.onClicked = true);
 
   return (
     <div className="Nav">
@@ -18,17 +20,37 @@ function Nav() {
             소개
           </p>
         </Link>
-        <Link to="/list">
+        <Link
+          to={(location) => {
+            if (!location.isLogged && location.onClicked) {
+              alert("로그인이 필요합니다!");
+              return { pathname: "/365" };
+            } else {
+              return { pathname: "/list" };
+            }
+          }}
+          onClick={handleClick}
+        >
           <p className={location.pathname === "/list" ? "bctive" : ""}>
             내 일기장
           </p>
         </Link>
-        <Link to="/trash">
+        <Link
+          to={(location) => {
+            if (!location.isLogged && location.onClicked) {
+              alert("로그인이 필요합니다!");
+              return { pathname: "/365" };
+            } else {
+              return { pathname: "/trash" };
+            }
+          }}
+          onClick={handleClick}
+        >
           <p className={location.pathname === "/trash" ? "bctive" : ""}>
             휴지통
           </p>
         </Link>
-        {nicknameFromSession === null ? (
+        {!location.isLogged ? (
           <Link to="/login">
             <p className={location.pathname === "/login" ? "bctive" : ""}>
               로그인/회원가입
