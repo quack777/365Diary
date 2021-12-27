@@ -107,12 +107,21 @@ function Home() {
     })
       .then(function (response) {
         console.log(response.data);
-        setAnswer8(response.data);
+        setAnswerData(response.data); // 답변 8게로 맞추기
       })
       .catch(function (error) {
         console.log(error);
       });
   }, []);
+
+  function setAnswerData(data) {
+    const dataArray = data;
+    const pushCout = 8 - data.length
+    for (let index = 0; index < pushCout; index++) {
+      dataArray.push("당신의 답변을 공개해서 다른 사람들에게 공유해주세요~!!!");
+    }
+    setAnswer8(dataArray)
+  }
 
   var now = new Date();
   var start = new Date(now.getFullYear(), 0, 0);
