@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Link, Route, useHistory, useLocation } from "react-router-dom";
 import "../styles/List.css";
@@ -15,12 +15,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import Calender from "./util/Calender";
 import ListAnswerComponent from "./ListAnswerComponent";
+import { unstable_batchedUpdates } from "react-dom";
 
 function List() {
   const location = useLocation();
-  const history = useHistory();
+  console.log("location: ", location);
 
-  const NewDate = new Date();
   const [month, setMonth] = useState(
     location.state === undefined
       ? new Date().getMonth() + 1
@@ -34,14 +34,9 @@ function List() {
 
   const [deletes, setDeletes] = useState(false);
   const [calender, setCalender] = useState(false);
-  const [value, onChange] = useState(new Date());
   const [question, setQuestion] = useState("나의 삶의 목적은 무엇인가요?");
   const [open, setOpen] = useState(false);
   const [publica, setPublica] = useState("N");
-  const [answer, setAnswer] = useState(
-    "나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 200자 일 때 모습입니다"
-  );
-  const [startDate, setStartDate] = useState(new Date());
   const [dataAnswer, setDataAnswer] = useState([
     "나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 200자 일 때 모습입니다",
   ]);
@@ -52,6 +47,7 @@ function List() {
   const [answerAllData, setAnswerAllData] = useState(["0"]);
   const [public_answer, setPublic_answer] = useState(["N"]);
   const deleteModalContainer = useRef();
+  const history = useHistory();
 
   let now = new Date();
   let start = new Date(now.getFullYear(), 0, 0);
@@ -62,7 +58,6 @@ function List() {
     location.state === undefined ? day : Number(location.state.id)
   );
 
-  console.log("dataAnswer: ", dataAnswer);
   function showDelete(index) {
     setDeletes(true);
     setDelteIndex(index);
@@ -75,33 +70,30 @@ function List() {
   function seeCalender() {
     setCalender(true);
   }
-
   const getAns = useCallback(async () => {
     const member_num = localStorage.getItem("member_num");
     setMember(Number(member_num));
+
     await axios
-      .get(`/answers/${dayNum}/1`, { baseURL: "http://61.72.99.219:9130" })
+      .get(`/answers/${dayNum}/1`)
       .then(function (response) {
-        console.log(response.data);
-        setDataYear(response.data.map((item) => item.answer_year));
-        setDataAnswer(response.data.map((item) => item.answer));
-        setAnswerNum(response.data.map((item) => item.answer_num));
-        setPublic_answer(response.data.map((item) => item.public_answer));
-        setAnswerAllData(response.data);
+        unstable_batchedUpdates(() => {
+          setDataYear(response.data.map((item) => item.answer_year));
+          setDataAnswer(response.data.map((item) => item.answer));
+          setAnswerNum(response.data.map((item) => item.answer_num));
+          setPublic_answer(response.data.map((item) => item.public_answer));
+          setAnswerAllData(response.data);
+        });
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, [setDataYear, setDataAnswer, setAnswerNum, setAnswerAllData, dayNum]);
+  }, [dayNum]);
 
   const getQuestion = useCallback(async () => {
     await axios
-      .get(`/question/calendars/${dayNum}`, {
-        baseURL: "http://61.72.99.219:9130",
-      })
+      .get(`/question/calendars/${dayNum}`)
       .then(function (response) {
-        console.log(response.data);
-
         setQuestion(response.data.question);
       })
       .catch(function (error) {
@@ -198,6 +190,7 @@ function List() {
         stateOpen={stateOpen}
         stateClose={stateClose}
         public_answer={public_answer}
+        day={day}
       />
 
       {deletes ? (
