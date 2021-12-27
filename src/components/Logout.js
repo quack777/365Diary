@@ -1,44 +1,25 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "../styles/Login.css";
 import axios from "axios";
 
-const token = sessionStorage.getItem("token");
-console.log("token: ", token);
-
 function Logout() {
-  console.log("####");
+  const history = useHistory();
   useEffect(() => {
-    const serverData = axios.post("http://61.72.99.219:9130/logout", { token });
-    console.log("serverData: ", serverData);
-    // axios
-    //   .post("http://61.72.99.219:9130/logout")
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    // axios({
-    //   url: `/logout`, // `/trashes/settings/${answer_num}/${member_num}`
-    //   method: "post",
-    //   baseURL: "http://61.72.99.219:9130",
-    //   data: {
-    //     // answer_delete: answer_delete, // N or Y
-    //     // delete_date: delete_date, //date타입
-    //   },
-    // });
-    // axios
-    //   .post(`/logout`, {
-    //     baseURL: "http://61.72.99.219:9130/",
-    //     // Authorization: `Bearer+${token}`,
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-  }, []);
+    const token = sessionStorage.getItem("token") || null;
+    axios
+      .get(`/logout?token=${token}`)
+      .then(function (res) {
+        if (res.status === 200 && res.data.msg) {
+          sessionStorage.clear();
+          history.push("/");
+        }
+      })
+      .catch(function (err) {
+        console.error(err);
+        alert("로그아웃에 실패하였습니다.");
+      });
+  }, [history]);
 
   return <div>logout</div>;
 }
