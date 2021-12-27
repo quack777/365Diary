@@ -3,7 +3,7 @@ import delete_normal from "../styles/images/delete_normal.png";
 import restore_normal from "../styles/images/restore_normal.png";
 import Line from "../styles/images/Line45.png";
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, revert }) => {
   return (
     <section>
     {posts.map((data, index) => {
@@ -15,7 +15,7 @@ const Posts = ({ posts }) => {
                   {data.answer_date && data.answer_date.substring(0, 2)}월{" "}
                   {data.answer_date && data.answer_date.substring(2, 4)}일
                 </p>
-                <p>{data.question_num}api호출</p> {/* 백에서 question데이터 담아주기로 함 => data.question */}
+                <p>{data.question}</p>
               </div>
               <div className="answers">
                 <p>{data.answer_year}년의 나:</p>
@@ -23,7 +23,7 @@ const Posts = ({ posts }) => {
               </div>
               <div className="btns">
                 <img
-                  // onClick={() => revert(data.answer_num, data.answer_delete, data.delete_date)}
+                  onClick={() => revert(data.answer_num, data.answer_delete, data.delete_date)}
                   alt="복원"
                   src={restore_normal}
                 ></img>

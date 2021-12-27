@@ -67,9 +67,12 @@ function Trash() {
     })
       .then(function (response) {
         console.log(response);
-        setTrashAlldata(
-          trashAllData.filter((data) => data.answer_num !== answer_num)
-        );
+        // setTrashAlldata(
+        //   trashAllData.filter((data) => data.answer_num !== answer_num)
+        // );
+        setPosts(
+          posts.filter((data) => data.answer_num !== answer_num)
+        )
       })
       .catch(function (error) {
         console.log(error);
@@ -148,7 +151,7 @@ function Trash() {
       </section>
 
       <p>밑에 테스트 테스트 페이징 테스트</p>
-      <Posts posts={currentPosts(posts)}></Posts>
+      <Posts posts={currentPosts(posts)} revert={revert}></Posts>
       {posts.length > 5 
       ? 
       <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={setCurrentPage}></Pagination>
