@@ -7,12 +7,13 @@ import Vector from "../styles/images/Vector 1.png";
 import arrow from "../styles/images/arrow01_normal.png";
 import main from "../styles/images/mainpage.png";
 import "../styles/Home.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Home() {
   const NewDate = new Date();
   const month = NewDate.getMonth() + 1;
   const date = NewDate.getDate();
+  const location = useLocation();
 
   const [answer8, setAnswer8] = useState([
     "우짤",
@@ -36,6 +37,7 @@ function Home() {
   ]);
   const [question, setQuestion] = useState("나의 삶의 목적은 무엇인가요?");
   const [num, setNum] = useState(0);
+  const handleClick = () => (location.onClicked = true);
 
   const answersBox = useRef();
   function leftMove(a) {
@@ -116,11 +118,11 @@ function Home() {
 
   function setAnswerData(data) {
     const dataArray = data;
-    const pushCout = 8 - data.length
+    const pushCout = 8 - data.length;
     for (let index = 0; index < pushCout; index++) {
       dataArray.push("당신의 답변을 공개해서 다른 사람들에게 공유해주세요~!!!");
     }
-    setAnswer8(dataArray)
+    setAnswer8(dataArray);
   }
 
   var now = new Date();
@@ -161,7 +163,17 @@ function Home() {
           <button onClick={rightMove}></button>
         </div>
       </div>
-      <Link to="/write">
+      <Link
+        to={(location) => {
+          if (!location.isLogged && location.onClicked) {
+            alert("로그인이 필요합니다!");
+            return { pathname: "/365" };
+          } else {
+            return { pathname: "/write" };
+          }
+        }}
+        onClick={handleClick}
+      >
         <button id="goWriteBtn">
           <p>오늘 나의 생각 남기기</p>
           <img src={Vector} alt="vector"></img>
