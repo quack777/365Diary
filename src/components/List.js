@@ -19,7 +19,6 @@ import { unstable_batchedUpdates } from "react-dom";
 
 function List() {
   const location = useLocation();
-  console.log("location: ", location);
 
   const [month, setMonth] = useState(
     location.state === undefined
@@ -47,13 +46,12 @@ function List() {
   const [answerAllData, setAnswerAllData] = useState(["0"]);
   const [public_answer, setPublic_answer] = useState(["N"]);
   const deleteModalContainer = useRef();
-  const history = useHistory();
 
   let now = new Date();
   let start = new Date(now.getFullYear(), 0, 0);
   let diff = now - start;
   let oneDay = 1000 * 60 * 60 * 24;
-  let day = Math.floor(diff / oneDay);
+  let day = Math.floor(diff / oneDay) + 1;
   const [dayNum] = useState(
     location.state === undefined ? day : Number(location.state.id)
   );
@@ -83,7 +81,6 @@ function List() {
           setAnswerNum(response.data.map((item) => item.answer_num));
           setPublic_answer(response.data.map((item) => item.public_answer));
           setAnswerAllData(response.data);
-          console.log(response.data);
         });
       })
       .catch(function (error) {
@@ -108,23 +105,22 @@ function List() {
   }, [getAns, getQuestion]);
 
   function goTrash() {
+    setDataAnswer(dataAnswer.filter((answer, index) => index !== deleteIndex)); //실제에서는 .then안에
+    const aN = answerNum[deleteIndex];
+
     axios({
-      url: `/answers/trashes`, // `/answers/trashes/${aN}/1`
+      url: `/answers/trashes/${aN}/1`,
       method: "patch",
       baseURL: "http://61.72.99.219:9130",
       data: {
-        answer_num: answerAllData[deleteIndex].answer_num,
-        answer_delete: "N",
+        answer_delete: "Y", //삭제이기때문에 항상 y로
         delete_date: new Date(+new Date() + 3240 * 10000)
-        .toISOString()
-        .split("T")[0], //오늘날짜로, date타입
-        member_num: 1,
-        question_num: answerAllData[deleteIndex].question_num
+          .toISOString()
+          .split("T")[0], //오늘날짜로, date타입
       },
     })
-    .then((response) => {
-      if (response.status === 200) alert("삭제 성공!");
-        setAnswerAllData(answerAllData.filter((answer, index) => index !== deleteIndex)); //실제에서는 .then안에
+      .then((response) => {
+        if (response.status === 200) alert("삭제 성공!");
         setDeletes(false);
         setAnswerNum(answerNum.filter((an, index) => index !== deleteIndex));
         getAns();
@@ -136,13 +132,11 @@ function List() {
 
   function patchPublic(pa, index) {
     axios({
-      url: `/settings`, // `/settings/${answerAllData[index].answer_num}/1`
+      url: `/settings/${answerAllData[index].answer_num}/1`,
       method: "patch",
       baseURL: "http://61.72.99.219:9130/",
       data: {
-        answer_num: answerAllData[index].answer_num,
         public_answer: pa,
-        member_num: 1
       },
     })
       .then((response) => {
@@ -157,7 +151,6 @@ function List() {
     setOpen(true);
     setPublica("N");
     public_answer[index] = "Y";
-    console.log(public_answer)
     setPublic_answer(public_answer);
     patchPublic(public_answer[index], index);
   }
@@ -166,7 +159,6 @@ function List() {
     setOpen(false);
     setPublica("Y");
     public_answer[index] = "N";
-    console.log(public_answer)
     setPublic_answer(public_answer);
     patchPublic(public_answer[index], index);
   }

@@ -35,7 +35,7 @@ function Write() {
   const start = new Date(now.getFullYear(), 0, 0);
   const diff = now - start;
   const oneDay = 1000 * 60 * 60 * 24;
-  const day = Math.floor(diff / oneDay);
+  const day = Math.floor(diff / oneDay) + 1;
 
   function writeSubmit(e) {
     e.preventDefault();
@@ -44,8 +44,7 @@ function Write() {
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const date = String(now.getDate()).padStart(2, "0");
     const answerDate = `${month}${date}`;
-    
-    console.log(publica)
+
     axios
       .post("http://61.72.99.219:9130/answers/new", {
         answer_year: year,
@@ -119,9 +118,17 @@ function Write() {
         <div>
           <div className="private">
             {open ? (
-              <img src={toggle_selected} alt="public" onClick={stateClose}></img>
+              <img
+                src={toggle_selected}
+                alt="public"
+                onClick={stateClose}
+              ></img>
             ) : (
-              <img src={toggle_unselected} alt="private" onClick={stateOpen}></img>
+              <img
+                src={toggle_unselected}
+                alt="private"
+                onClick={stateOpen}
+              ></img>
             )}
           </div>
           <div className="twoBtn">
