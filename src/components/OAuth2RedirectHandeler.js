@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
+import PulseLoader from "react-spinners/PulseLoader";
 
 function OAuth2RedirectHandler() {
   // 인가코드
@@ -30,8 +31,16 @@ function OAuth2RedirectHandler() {
   }, []);
 
   return (
-    <div className="OAuth2RedirectHandler">
-      <p>aaaaaaaaaaaaaaaa</p>
+    <div
+      className="OAuth2RedirectHandler"
+      style={{
+        height: "800px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <PulseLoader height="160" width="32" color="#36D7B7" radius="8" />
     </div>
   );
 }
