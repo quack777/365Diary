@@ -53,7 +53,7 @@ function List() {
   let start = new Date(now.getFullYear(), 0, 0);
   let diff = now - start;
   let oneDay = 1000 * 60 * 60 * 24;
-  let day = Math.floor(diff / oneDay) + 1;
+  let day = Math.floor(diff / oneDay);
   const [dayNum] = useState(
     location.state === undefined ? day : Number(location.state.id)
   );

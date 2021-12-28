@@ -36,25 +36,29 @@ function Home() {
     8,
   ]);
   const [question, setQuestion] = useState("나의 삶의 목적은 무엇인가요?");
-  const [num, setNum] = useState(0);
+  // const [num, setNum] = useState(0);
+
+  let num = 0;
   const handleClick = () => (location.onClicked = true);
 
   const answersBox = useRef();
   function leftMove(a) {
+    console.log(answersBox.current.style.transform);
     if (num >= -300) {
-      console.log(answersBox.current.style.transition);
-      setNum(num - 30);
+      num= num-30
       answersBox.current.style.transform = `translateX(${num}%)`;
+      console.log(answersBox.current.style.transform);
+      console.log(num);
     }
-    console.dir(a.target.src);
   }
   //데이터 세팅
   const [showdata, setShowdata] = useState();
   //데이터 세팅
   function rightMove() {
     if (num <= 30) {
-      setNum(num + 30);
+      num =num +30;
       answersBox.current.style.transform = `translateX(${num}%)`;
+      console.log(answersBox.current.style.transform);
     }
   }
 
@@ -63,7 +67,7 @@ function Home() {
     var start = new Date(now.getFullYear(), 0, 0);
     var diff = now - start;
     var oneDay = 1000 * 60 * 60 * 24;
-    var day = Math.floor(diff / oneDay) + 1;
+    var day = Math.floor(diff / oneDay);
     axios({
       url: `/question/${day}`,
       method: "get",
@@ -100,7 +104,7 @@ function Home() {
     var start = new Date(now.getFullYear(), 0, 0);
     var diff = now - start;
     var oneDay = 1000 * 60 * 60 * 24;
-    var day = Math.floor(diff / oneDay) + 1;
+    var day = Math.floor(diff / oneDay);
     axios({
       url: `/random/${day}`, // /random/{question_num}
       method: "get",
@@ -120,7 +124,7 @@ function Home() {
     const dataArray = data;
     const pushCout = 8 - data.length;
     for (let index = 0; index < pushCout; index++) {
-      dataArray.push("당신의 답변을 공개해서 다른 사람들에게 공유해주세요~!!!");
+      dataArray.push("당신의 답변을 다른 사람들에게 공유해주세요");
     }
     setAnswer8(dataArray);
   }
@@ -129,7 +133,7 @@ function Home() {
   var start = new Date(now.getFullYear(), 0, 0);
   var diff = now - start;
   var oneDay = 1000 * 60 * 60 * 24;
-  var day = Math.floor(diff / oneDay) + 1;
+  var day = Math.floor(diff / oneDay);
 
   return (
     <div className="Home">
