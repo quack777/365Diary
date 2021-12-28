@@ -45,7 +45,7 @@ function Home() {
   function leftMove(a) {
     console.log(answersBox.current.style.transform);
     if (num >= -300) {
-      num= num-30
+      num = num - 30;
       answersBox.current.style.transform = `translateX(${num}%)`;
       console.log(answersBox.current.style.transform);
       console.log(num);
@@ -56,7 +56,7 @@ function Home() {
   //데이터 세팅
   function rightMove() {
     if (num <= 30) {
-      num =num +30;
+      num = num + 30;
       answersBox.current.style.transform = `translateX(${num}%)`;
       console.log(answersBox.current.style.transform);
     }
@@ -68,6 +68,7 @@ function Home() {
     var diff = now - start;
     var oneDay = 1000 * 60 * 60 * 24;
     var day = Math.floor(diff / oneDay);
+
     axios({
       url: `/question/${day}`,
       method: "get",
