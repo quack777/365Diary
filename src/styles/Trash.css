@@ -201,3 +201,7 @@
   background-color: #f9f8f9;
   z-index: -10;
 }
+
+#navDiv {
+  margin: 0 auto;
+}

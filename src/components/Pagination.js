@@ -6,11 +6,8 @@ const PageUl = styled.ul`
   list-style: none;
   text-align: center;
   border-radius: 3px;
-  color: white;
+  color: #777777;
   padding: 1px;
-  border-top: 3px solid #186ead;
-  border-bottom: 3px solid #186ead;
-  background-color: rgba(0, 0, 0, 0.4);
 `;
 
 const PageLi = styled.li`
@@ -20,10 +17,12 @@ const PageLi = styled.li`
   padding: 5px;
   border-radius: 5px;
   width: 25px;
+  margin: 0 4.5px;
+  background: #E3E3E3;
   &:hover {
     cursor: pointer;
-    color: white;
-    background-color: #263a6c;
+    color: #FFFFFF;
+    background: #7EB496;
   }
   &:focus::after {
     color: white;
@@ -46,12 +45,12 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
     pageNumbers.push(i);
   }
   return (
-    <div>
+    <div id="navDiv">
       <nav>
         <PageUl className="pagination">
           {pageNumbers.map((number) => (
-            <PageLi key={number} className="page-item">
-              <PageSpan onClick={() => paginate(number)} className="page-link">
+            <PageLi key={number} className="page-item" onClick={() => paginate(number)}>
+              <PageSpan className="page-link">
                 {number}
               </PageSpan>
             </PageLi>
