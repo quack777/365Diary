@@ -23,7 +23,7 @@ const Posts = ({ posts, revert, oneRemove }) => {
               </div>
               <div className="btns">
                 <img
-                  onClick={() => revert(data.answer_num, data.answer_delete, data.delete_date)}
+                  onClick={() => revert(data.answer_num, data.answer_delete, data.delete_date, data.question_num)}
                   alt="복원"
                   src={restore_normal}
                 ></img>

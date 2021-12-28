@@ -53,7 +53,7 @@ function Trash() {
     console.log(posts)
   }
 
-  function revert(answer_num, answer_delete, delete_date) {
+  function revert(answer_num, answer_delete, delete_date, question_num) {
     console.log(answer_num)
     console.log(answer_delete)
     console.log(delete_date)
@@ -64,6 +64,7 @@ function Trash() {
       data: {
         answer_delete: answer_delete, // N or Y
         delete_date: delete_date, //date타입
+        question_num: question_num
       }
     })
       .then(function (response) {
@@ -99,37 +100,6 @@ function Trash() {
       </div>
       <p>휴지통에 있는 일기는 7일이 지나면 완전히 삭제됩니다</p>
       <section>
-        {/* {trashAllData.map((data, index) => {
-          return (
-            <div>
-              <hr></hr>
-              <div className="question">
-                <p>
-                  {data.answer_date && data.answer_date.substring(0, 2)}월{" "}
-                  {data.answer_date && data.answer_date.substring(2, 4)}일
-                </p>
-                <p>{data.question}</p>
-              </div>
-              <div className="answers">
-                <p>{data.answer_year}년의 나:</p>
-                <p>{data.answer}</p>
-              </div>
-              <div className="btns">
-                <img
-                  onClick={() => revert(data.answer_num, data.answer_delete, data.delete_date)}
-                  alt="복원"
-                  src={restore_normal}
-                ></img>
-                <img src={Line}></img>
-                <img
-                  onClick={() => oneRemove(data.answer_num)}
-                  alt="삭제"
-                  src={delete_normal}
-                ></img>
-              </div>
-            </div>
-          );
-        })} */}
       {openDeleteModal?
       <DeleteModal 
         setOpenDeleteModal={setOpenDeleteModal}
