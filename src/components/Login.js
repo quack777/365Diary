@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import loginImage from "../styles/images/loginImage.png";
-import login02 from "../styles/images/loginpage01.png";
-import login01 from "../styles/images/loginpage02.png";
+import login01 from "../styles/images/loginpage01.png";
+import login02 from "../styles/images/loginpage02.png";
 import rigthArrow from "../styles/images/Vector 1.png";
 import kaka from "../styles/images/kakao.png";
 import { Link, useHistory } from "react-router-dom";
@@ -17,14 +17,14 @@ function Login() {
     {
       img: login01,
       title: "365개의 질문, 그리고 나와 나를 연결할 기록들.",
-      pp: "매일 달라지는 질문에 답해 보세요. 사소하지만 큰 기록은",
-      ppTwo: "분명 당신과 당신을 이어주는 고리가 될거에요.",
+      pp: "매일 달라지는 질문에 답해 보세요. 사소하지만 큰 기록은 분명",
+      ppTwo: "당신과 당신을 이어주는 고리가 될거에요.",
     },
     {
       img: login02,
       title: "소중한 오늘의 질문을 놓치지 마세요!",
-      pp: "날짜마다 질문이 달라져요.",
-      ppTwo: "답변은 그날까지만 작성, 수정이 가능해요.",
+      pp: "날짜마다 질문이 달라져요. 답변은 그날까지만 작성, 수정이 가능해요.",
+      ppTwo: "때를 놓치지 말고 나의 생각을 남겨보세요!",
     },
   ];
 
