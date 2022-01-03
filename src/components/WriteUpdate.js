@@ -30,7 +30,7 @@ function WriteUpdate() {
       url: `/answers/pages`, // 임시 member => 1
       // /answers/pages/{answer_num}/{member_num}
       method: "patch",
-      baseURL: "http://61.72.99.219:9130/",
+      // baseURL: "http://61.72.99.219:9130/",
       data: {
         answer_num: location.state.data.answer_num,
         answer: initialValue,
@@ -60,15 +60,15 @@ function WriteUpdate() {
       method: "patch",
       baseURL: "http://61.72.99.219:9130/",
       data: {
-        public_answer: publica
-      }
+        public_answer: publica,
+      },
     })
-    .then((response) => {
-      console.log(response)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   function stateClose() {
@@ -80,7 +80,6 @@ function WriteUpdate() {
     setOpen(true);
     setPublica("Y");
   }
-
 
   function back() {
     history.replace("/list", { id, targetDate, targetMonth });
@@ -106,11 +105,11 @@ function WriteUpdate() {
         <div>
           <div className="private">
             {publica === "Y" ? (
-              <img 
+              <img
                 src={toggle_selected}
-                alt="public" 
-                onClick={stateClose}>
-              </img>
+                alt="public"
+                onClick={stateClose}
+              ></img>
             ) : (
               <img
                 src={toggle_unselected}

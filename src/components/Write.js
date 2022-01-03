@@ -46,7 +46,7 @@ function Write() {
     const answerDate = `${month}${date}`;
 
     axios
-      .post("http://61.72.99.219:9130/answers/new", {
+      .post("/answers/new", {
         answer_year: year,
         answer_date: answerDate,
         answer: content,
@@ -86,9 +86,7 @@ function Write() {
     setMember(Number(member_num));
 
     axios
-      .get(`/question/calendars/${day}`, {
-        baseURL: "http://61.72.99.219:9130",
-      })
+      .get(`/question/calendars/${day}`)
       .then(function (response) {
         setQuestion(response.data.question);
         setQuestionN(response.data.question_num);
