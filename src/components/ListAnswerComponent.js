@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState, useRef, useEffect, useCallback } from "react";
 import modify_normal from "../styles/images/modify_normal.png";
 import Line from "../styles/images/Line45.png";
 import delete_normal from "../styles/images/delete_normal.png";
@@ -10,13 +9,9 @@ import girl from "../styles/images/Mask Group.png";
 import "../styles/List.css";
 
 export default function List_answer({
-  dataAnswer,
   question,
-  dataYear,
   showDelete,
   answerAllData,
-  answerNum,
-  open,
   stateOpen,
   stateClose,
   public_answer,
@@ -60,11 +55,6 @@ export default function List_answer({
                     onClick={() => stateClose(index)}
                   ></img>
                 )}
-                {/* {open ? (
-                  <img src={toggle_selected} onClick={stateOpen}></img>
-                ) : (
-                  <img src={toggle_unselected} onClick={stateClose}></img>
-                )} */}
                 <Link
                   to={{
                     pathname: `/write/${data.question_num}`,

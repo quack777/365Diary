@@ -1,7 +1,7 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 import xxxxx from "../../styles/images/xxxxx.png";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 export default function Calender(props) {
@@ -23,9 +23,7 @@ export default function Calender(props) {
 
   function getQuestion(day) {
     axios
-      .get(`/question/calendars/${day}`, {
-        // baseURL: "http://61.72.99.219:9130",
-      })
+      .get(`/question/calendars/${day}`)
       .then(function (response) {
         props.setQuestion(response.data.question);
       })
