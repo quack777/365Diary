@@ -72,7 +72,6 @@ function Home() {
     axios({
       url: `/question/${day}`,
       method: "get",
-      baseURL: "http://61.72.99.219:9130",
       //withCredentials: true,
     })
       .then(function (response) {
@@ -88,7 +87,6 @@ function Home() {
     axios({
       url: "/random",
       method: "get",
-      baseURL: "http://61.72.99.219:9130",
       //withCredentials: true,
     })
       .then(function (response) {
@@ -109,7 +107,6 @@ function Home() {
     axios({
       url: `/random/${day}`, // /random/{question_num}
       method: "get",
-      baseURL: "http://61.72.99.219:9130",
       //withCredentials: true,
     })
       .then(function (response) {

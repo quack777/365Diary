@@ -20,7 +20,7 @@ function OAuth2RedirectHandler() {
 
     axios({
       method: "GET",
-      url: `http://61.72.99.219:9130/login/oauth_kakao?code=${code}`,
+      url: `/login/oauth_kakao?code=${code}`,
     })
       .then((res) => {
         const { id, nickname, token } = res.data;
