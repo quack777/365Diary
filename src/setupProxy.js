@@ -19,8 +19,8 @@ const createProxyMiddleware = require("http-proxy-middleware");
 
 module.exports = function (app) {
   app.use(
-    createProxyMiddleware("/", {
-      target: "http://3.36.74.148:8080/project365-back_2",
+    createProxyMiddleware("/http://3.36.74.148:8080/project365-back_2", {
+      target: "http://localhost:3000",
       changeOrigin: true,
     })
   );
