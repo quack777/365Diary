@@ -1,5 +1,5 @@
 {
-  "name": "365",
+  "name": "365front",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -48,6 +48,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://54.180.114.189:8080/365Project/",
-  "homepage": "https://quack777.github.io/365/"
+  "proxy": "http://54.180.114.189:8080/365Project/"
 }
