@@ -27,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "gh-pages -d build",
+    "deploy": "aws s3 sync ./build s3://front365 --profile=project365",
     "predeploy": "npm run build"
   },
   "eslintConfig": {

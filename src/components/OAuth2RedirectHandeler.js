@@ -21,6 +21,7 @@ function OAuth2RedirectHandler() {
     axios({
       method: "GET",
       url: `/login/oauth_kakao?code=${code}`,
+      baseURL: "http://54.180.114.189:8080/365Project",
     })
       .then((res) => {
         const { id, nickname, token } = res.data;

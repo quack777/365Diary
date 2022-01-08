@@ -20,7 +20,7 @@ const createProxyMiddleware = require("http-proxy-middleware");
 module.exports = function (app) {
   app.use(
     createProxyMiddleware("http://54.180.114.189:8080/365Project", {
-      target: "http://localhost:3000",
+      target: "http://front365.s3-website.ap-northeast-2.amazonaws.com/",
       changeOrigin: true,
     })
   );

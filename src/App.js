@@ -29,7 +29,7 @@ function App() {
         <Route path="/introduce" component={Introduce} />
         <Route exact path="/logoutRoute" component={Logout} />
         <Route
-          path="/365/login/oauth_kakao"
+          path="/365Project/login/oauth_kakao"
           component={OAuth2RedirectHandler}
         ></Route>
         <Route path="/error" component={Error} />
