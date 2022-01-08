@@ -15,7 +15,7 @@ function OAuth2RedirectHandler() {
     if (loading) {
       setTimeout(() => {
         history.push("/365");
-      }, 2000);
+      }, 1000);
     }
 
     axios({

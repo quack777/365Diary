@@ -70,6 +70,7 @@ function Home() {
       url: "/random",
       method: "get",
       //withCredentials: true,
+      baseURL: "http://54.180.114.189:8080/365Project/",
     })
       .then(function (response) {
         console.log(response);
@@ -84,6 +85,7 @@ function Home() {
       url: `/random/${day}`, // /random/{question_num}
       method: "get",
       //withCredentials: true,
+      baseURL: "http://54.180.114.189:8080/365Project/",
     })
       .then(function (response) {
         if (response.status === 200) {
@@ -115,11 +117,13 @@ function Home() {
   //   }
   //   setAnswer8(dataArray);
   // }
+
   const getQuestion = useCallback(() => {
     axios({
       url: `/question/${day}`,
       method: "get",
       //withCredentials: true,
+      baseURL: "http://54.180.114.189:8080/365Project/",
     })
       .then(function (response) {
         console.log(response.data);

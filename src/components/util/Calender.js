@@ -23,7 +23,7 @@ export default function Calender(props) {
 
   function getQuestion(day) {
     axios
-      .get(`/question/calendars/${day}`)
+      .get(`http://54.180.114.189:8080/365Project/question/calendars/${day}`)
       .then(function (response) {
         props.setQuestion(response.data.question);
       })
@@ -34,7 +34,7 @@ export default function Calender(props) {
 
   function getAnswer(day) {
     axios
-      .get(`/answers/${day}/1`)
+      .get(`http://54.180.114.189:8080/365Project/answers/${day}/1`)
       .then(function (response) {
         const answer = response.data.map((item) => item.answer);
         const answer_year = response.data.map((item) => item.answer_year);
