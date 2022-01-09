@@ -52,7 +52,7 @@ function Write() {
         answer: content,
         public_answer: publica,
         question_num: questionN,
-        member_num: 1, //임시
+        member_num: member, //임시
       })
       .then(function (response) {
         if (response.status === 200) alert("글 등록 완료");

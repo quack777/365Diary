@@ -15,26 +15,8 @@ function Home() {
   const date = NewDate.getDate();
   const location = useLocation();
 
-  const [answer8, setAnswer8] = useState([
-    "우짤",
-    "나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 이게 200자일 때 모습입니다~",
-    "대답3",
-    "대답4",
-    "대답5",
-    "대답6",
-    "대답7",
-    "대답8",
-  ]);
-  const [ranname, setRanname] = useState([
-    "뽀로로",
-    "라치카",
-    "시미즈",
-    "리안",
-    "리헤이",
-    "허니제이",
-    "스우파",
-    8,
-  ]);
+  const [answer8, setAnswer8] = useState([]);
+  const [ranname, setRanname] = useState([]);
   const [question, setQuestion] = useState("나의 삶의 목적은 무엇인가요?");
   // const [num, setNum] = useState(0);
   var now = new Date();

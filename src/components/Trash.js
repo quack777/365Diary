@@ -10,14 +10,14 @@ import Posts from "./Posts";
 
 function Trash() {
   const [member, setMember] = useState();
-  const [trashAllData, setTrashAlldata] = useState(["answer"]); // "answer" => [] 변경
+  const [trashAllData, setTrashAlldata] = useState([]); // "answer" => [] 변경
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openTrashAllDeleteModal, setOpenTrashAllDeleteModal] = useState(false);
   const [clickAN , setClickAN] = useState(); // deleteModal로 trashAllData의 answer_num 넘기기 위해 필요한 것
   const [gotrashdata, setGotrashdata] = useState([]); // TrashAllDeleteModal에서 휴지통 전체 비우기 api에 보내줄 Data
   
   //페이징 처리
-  const [posts, setPosts] = useState(["answer"]);
+  const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(5);
 
@@ -29,7 +29,7 @@ function Trash() {
 
     // 휴지통 전체 조회 api
     axios({
-      url: "/trashes/1", //임시 1, `/trashes/${member_num}`
+      url: `/trashes/${member_num}`, //임시 1, `/trashes/${member_num}`
       method: "get",
       baseURL: "http://61.72.99.219:9130",
     })
@@ -58,7 +58,7 @@ function Trash() {
     console.log(answer_delete)
     console.log(delete_date)
     axios({
-      url: `/trashes/settings/${answer_num}/1`, // `/trashes/settings/${answer_num}/${member_num}`
+      url: `/trashes/settings/${answer_num}/${member}`, // `/trashes/settings/${answer_num}/${member_num}`
       method: "patch",
       baseURL: "http://61.72.99.219:9130",
       data: {
@@ -145,7 +145,7 @@ function DeleteModal(props) {
       method: "delete",
       baseURL: "http://61.72.99.219:9130",
       data: {
-        member_num : 1 //props.member
+        member_num : props.member //props.member
       }
     })
       .then(function (response) {

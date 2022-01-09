@@ -32,11 +32,11 @@ function List() {
   const [dataAnswer, setDataAnswer] = useState([
     "나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 200자 일 때 모습입니다",
   ]);
-  const [dataYear, setDataYear] = useState(["2020"]);
+  const [dataYear, setDataYear] = useState(["2022"]);
   const [member, setMember] = useState();
   const [deleteIndex, setDelteIndex] = useState();
   const [answerNum, setAnswerNum] = useState();
-  const [answerAllData, setAnswerAllData] = useState(["0"]);
+  const [answerAllData, setAnswerAllData] = useState([]);
   const [public_answer, setPublic_answer] = useState(["N"]);
   const deleteModalContainer = useRef();
 
@@ -65,7 +65,7 @@ function List() {
     setMember(Number(member_num));
 
     await axios
-      .get(`http://54.180.114.189:8080/365Project/answers/${dayNum}/1`)
+      .get(`http://54.180.114.189:8080/365Project/answers/${dayNum}/${member_num}`)
       .then(function (response) {
         unstable_batchedUpdates(() => {
           setDataYear(response.data.map((item) => item.answer_year));
@@ -101,7 +101,7 @@ function List() {
     const aN = answerNum[deleteIndex];
 
     axios({
-      url: `/answers/trashes/${aN}/1`,
+      url: `/answers/trashes/${aN}/${member}`,
       method: "PATCH",
       baseURL: "http://54.180.114.189:8080/365Project/",
       data: {
@@ -124,7 +124,7 @@ function List() {
 
   function patchPublic(pa, index) {
     axios({
-      url: `/settings/${answerAllData[index].answer_num}/1`,
+      url: `/settings/${answerAllData[index].answer_num}/${member}`,
       method: "patch",
       baseURL: "http://54.180.114.189:8080/365Project/",
       data: {
