@@ -10,7 +10,7 @@ function Nav() {
   const handleClick = () => (location.onClicked = true);
 
   return (
-    <div className="Nav">
+    <div className="Nav" id="Nav">
       <Link to="/365">
         <p id="logo">365</p>
       </Link>

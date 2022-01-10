@@ -9,6 +9,17 @@
   width: 100%;
 }
 
+#Nav {
+  height: 143px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 86px;
+  padding-right: 119px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
 .Nav a {
   text-decoration: none;
 }
