@@ -13,7 +13,7 @@ export default function Calender(props) {
     const start = new Date(now.getFullYear(), 0, 0);
     const diff = now - start;
     const oneDay = 1000 * 60 * 60 * 24;
-    const day = Math.floor(diff / oneDay) + 1;
+    const day = Math.floor(diff / oneDay);
     getQuestion(day);
     getAnswer(day);
     props.setMonth(now.getMonth() + 1);
