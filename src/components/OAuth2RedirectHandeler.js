@@ -24,11 +24,12 @@ function OAuth2RedirectHandler() {
       baseURL: "http://54.180.114.189:8080/365Project",
     })
       .then((res) => {
-        const { id, nickname, token } = res.data;
+        const { id, nickname, token, member_num } = res.data;
 
         sessionStorage.setItem("id", id);
         sessionStorage.setItem("nickname", nickname);
         sessionStorage.setItem("token", token);
+        sessionStorage.setItem("member_num", member_num);
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
