@@ -61,11 +61,13 @@ function List() {
     setCalender(true);
   }
   const getAns = useCallback(async () => {
-    const member_num = localStorage.getItem("member_num");
+    const member_num = sessionStorage.getItem("member_num");
     setMember(Number(member_num));
 
     await axios
-      .get(`http://54.180.114.189:8080/365Project/answers/${dayNum}/${member_num}`)
+      .get(
+        `http://54.180.114.189:8080/365Project/answers/${dayNum}/${member_num}`
+      )
       .then(function (response) {
         unstable_batchedUpdates(() => {
           setDataYear(response.data.map((item) => item.answer_year));
@@ -94,16 +96,18 @@ function List() {
   useEffect(() => {
     getQuestion();
     getAns();
-  }, [getAns, getQuestion]);
+  }, [getAns, getQuestion, dayNum]);
 
   function goTrash() {
     setDataAnswer(dataAnswer.filter((answer, index) => index !== deleteIndex)); //실제에서는 .then안에
-    const aN = answerNum[deleteIndex];
+    const aN = answerAllData[deleteIndex].answer_num;
 
     axios({
       url: `/answers/trashes/${aN}/${member}`,
-      method: "PATCH",
-      baseURL: "http://54.180.114.189:8080/365Project/",
+      // url: REACT_APP_SERVER_IP + `/answers/trashes/${aN}/${member}`,
+      method: "PUT",
+      // baseURL: "http://54.180.114.189:8080/365Project/",
+      baseURL: process.env.REACT_APP_SERVER_IP,
       data: {
         answer_delete: "Y", //삭제이기때문에 항상 y로
         delete_date: new Date(+new Date() + 3240 * 10000)
@@ -126,7 +130,7 @@ function List() {
     axios({
       url: `/settings/${answerAllData[index].answer_num}/${member}`,
       method: "patch",
-      baseURL: "http://54.180.114.189:8080/365Project/",
+      // baseURL: "http://54.180.114.189:8080/365Project/",
       data: {
         public_answer: pa,
       },
