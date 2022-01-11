@@ -82,7 +82,7 @@ function Write() {
   }
 
   useEffect(() => {
-    const member_num = localStorage.getItem("member_num");
+    const member_num = sessionStorage.getItem("member_num");
     setMember(Number(member_num));
 
     axios
