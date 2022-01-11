@@ -70,18 +70,19 @@ function Home() {
       baseURL: "http://54.180.114.189:8080/365Project/",
     })
       .then(function (response) {
-        if (response.status === 200) {
-          // 실제 데이터가 들어올 경우
-          // setAnswer8(Array.from({ length: 8 }, (v, i) => response.data[i]));
+        setAnswerData(response.data); // 답변 8게로 맞추기
+        // if (response.status === 200) {
+        //   // 실제 데이터가 들어올 경우
+        //   // setAnswer8(Array.from({ length: 8 }, (v, i) => response.data[i]));
 
-          // =======DUMMY=======
-          setAnswer8(
-            Array.from(
-              { length: 8 },
-              (v, i) => "당신의 답변을 다른 사람들에게 공유해주세요"
-            )
-          );
-        }
+        //   // =======DUMMY=======
+        //   setAnswer8(
+        //     Array.from(
+        //       { length: 8 },
+        //       (v, i) => "당신의 답변을 다른 사람들에게 공유해주세요"
+        //     ) 
+        //   );
+        // }
 
         // console.log("arr: ", arr);
         // setAnswer8(arr);
@@ -91,14 +92,14 @@ function Home() {
       });
   }, [day]);
 
-  // function setAnswerData(data) {
-  //   const dataArray = data;
-  //   const pushCout = 8 - data.length;
-  //   for (let index = 0; index < pushCout; index++) {
-  //     dataArray.push("당신의 답변을 다른 사람들에게 공유해주세요");
-  //   }
-  //   setAnswer8(dataArray);
-  // }
+  function setAnswerData(data) {
+    const dataArray = data;
+    const pushCout = 8 - data.length;
+    for (let index = 0; index < pushCout; index++) {
+      dataArray.push("당신의 답변을 다른 사람들에게 공유해주세요");
+    }
+    setAnswer8(dataArray);
+  }
 
   const getQuestion = useCallback(() => {
     axios({
