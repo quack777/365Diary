@@ -105,7 +105,7 @@ function List() {
     axios({
       url: `/answers/trashes/${aN}/${member}`,
       // url: REACT_APP_SERVER_IP + `/answers/trashes/${aN}/${member}`,
-      method: "PUT",
+      method: "PATCH",
       // baseURL: "http://54.180.114.189:8080/365Project/",
       baseURL: process.env.REACT_APP_SERVER_IP,
       data: {
@@ -129,8 +129,9 @@ function List() {
   function patchPublic(pa, index) {
     axios({
       url: `/settings/${answerAllData[index].answer_num}/${member}`,
-      method: "patch",
+      method: "put",
       // baseURL: "http://54.180.114.189:8080/365Project/",
+      baseURL: process.env.REACT_APP_SERVER_IP,
       data: {
         public_answer: pa,
       },
@@ -168,7 +169,12 @@ function List() {
           </p>
           <p>{question}</p>
         </div>
-        <img src={monthBTN} alt="seeCalenderBtn" onClick={seeCalender} />
+        <img
+          src={monthBTN}
+          alt="seeCalenderBtn"
+          style={{ cursor: "pointer" }}
+          onClick={seeCalender}
+        />
       </div>
 
       {/* 이것은 당일에 해당하는 답변이 없을 떄만 보여주어야 합니다 */}

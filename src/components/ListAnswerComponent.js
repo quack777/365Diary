@@ -33,7 +33,6 @@ export default function List_answer({
     <div className="List">
       {answerAllData.length > 0 ? (
         answerAllData.map((data, index) => {
-          console.log(public_answer);
           return (
             <div className="list">
               <hr></hr>
@@ -66,7 +65,10 @@ export default function List_answer({
                   </div>
                 </Link>
                 <img src={Line}></img>
-                <div onClick={() => showDelete(index)}>
+                <div
+                  style={{ cursor: "pointer" }}
+                  onClick={() => showDelete(index)}
+                >
                   <img src={delete_normal}></img>
                 </div>
               </div>
