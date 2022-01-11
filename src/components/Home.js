@@ -17,7 +17,7 @@ function Home() {
 
   const [answer8, setAnswer8] = useState([]);
   const [ranname, setRanname] = useState([]);
-  const [question, setQuestion] = useState("나의 삶의 목적은 무엇인가요?");
+  const [question, setQuestion] = useState();
   // const [num, setNum] = useState(0);
   var now = new Date();
   var start = new Date(now.getFullYear(), 0, 0);
