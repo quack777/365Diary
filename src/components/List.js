@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useRef, useEffect, useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import "../styles/List.css";
 import monthBTN from "../styles/images/monthBTN.png";
 import xxxxx from "../styles/images/xxxxx.png";
@@ -12,6 +12,11 @@ import { unstable_batchedUpdates } from "react-dom";
 
 function List() {
   const location = useLocation();
+  const history = useHistory();
+
+  // 다이렉트로 url 접근 시 뒤로가기
+  // const getId = sessionStorage.getItem("id");
+  // if (getId === null) history.goBack(-1);
 
   const [month, setMonth] = useState(
     location.state === undefined
@@ -65,9 +70,7 @@ function List() {
     setMember(Number(member_num));
 
     await axios
-      .get(
-        `http://54.180.114.189:8080/365Project/answers/${dayNum}/${member_num}`
-      )
+      .get(`http://13.125.34.8:8080/365Project/answers/${dayNum}/${member_num}`)
       .then(function (response) {
         unstable_batchedUpdates(() => {
           setDataYear(response.data.map((item) => item.answer_year));
@@ -84,7 +87,7 @@ function List() {
 
   const getQuestion = useCallback(async () => {
     await axios
-      .get(`http://54.180.114.189:8080/365Project/question/calendars/${dayNum}`)
+      .get(`http://13.125.34.8:8080/365Project/question/calendars/${dayNum}`)
       .then(function (response) {
         setQuestion(response.data.question);
       })
@@ -129,7 +132,7 @@ function List() {
   function patchPublic(pa, index) {
     axios({
       url: `/settings/${answerAllData[index].answer_num}/${member}`,
-      method: "put",
+      method: "patch",
       // baseURL: "http://54.180.114.189:8080/365Project/",
       baseURL: process.env.REACT_APP_SERVER_IP,
       data: {

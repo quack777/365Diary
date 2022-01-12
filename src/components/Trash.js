@@ -13,9 +13,9 @@ function Trash() {
   const [trashAllData, setTrashAlldata] = useState([]); // "answer" => [] 변경
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openTrashAllDeleteModal, setOpenTrashAllDeleteModal] = useState(false);
-  const [clickAN , setClickAN] = useState(); // deleteModal로 trashAllData의 answer_num 넘기기 위해 필요한 것
+  const [clickAN, setClickAN] = useState(); // deleteModal로 trashAllData의 answer_num 넘기기 위해 필요한 것
   const [gotrashdata, setGotrashdata] = useState([]); // TrashAllDeleteModal에서 휴지통 전체 비우기 api에 보내줄 Data
-  
+
   //페이징 처리
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,7 +23,7 @@ function Trash() {
 
   useEffect(() => {
     // 첫 렌더링 때 usestate => member에 값 저장해서 Trash 컴포넌트 전체에서 member_num이 필요할 때 사용할 수 있게함
-    const member_num = localStorage.getItem("member_num");
+    const member_num = sessionStorage.getItem("member_num");
     console.log(member_num);
     setMember(Number(member_num));
 
@@ -31,7 +31,7 @@ function Trash() {
     axios({
       url: `/trashes/${member_num}`, //임시 1, `/trashes/${member_num}`
       method: "get",
-      baseURL: "http://61.72.99.219:9130",
+      baseURL: "http://13.125.34.8:8080/365Project/",
     })
       .then(function (response) {
         console.log(response.data);
@@ -50,47 +50,44 @@ function Trash() {
   function oneRemove(answer_num) {
     setOpenDeleteModal(true); // 모달 창 열어주기
     setClickAN(answer_num); // 모달 창에서 answer_num사용할 수 있게 clickAN에 값 저장
-    console.log(posts)
+    console.log(posts);
   }
 
   function revert(answer_num, answer_delete, delete_date, question_num) {
-    console.log(answer_num)
-    console.log(answer_delete)
-    console.log(delete_date)
+    console.log(answer_num);
+    console.log(answer_delete);
+    console.log(delete_date);
     axios({
       url: `/trashes/settings/${answer_num}/${member}`, // `/trashes/settings/${answer_num}/${member_num}`
       method: "patch",
-      baseURL: "http://61.72.99.219:9130",
+      baseURL: "http://13.125.34.8:8080/365Project/",
       data: {
         answer_delete: answer_delete, // N or Y
         delete_date: delete_date, //date타입
-        question_num: question_num
-      }
+        question_num: question_num,
+      },
     })
       .then(function (response) {
         console.log(response);
         // setTrashAlldata(
         //   trashAllData.filter((data) => data.answer_num !== answer_num)
         // );
-        setPosts(
-          posts.filter((data) => data.answer_num !== answer_num)
-        )
+        setPosts(posts.filter((data) => data.answer_num !== answer_num));
       })
       .catch(function (error) {
         console.log(error);
       });
   }
 
-
-    /* 새로 추가한 부분 */
-    const indexOfLast = currentPage * postsPerPage;
-    const indexOfFirst = indexOfLast - postsPerPage;
-    function currentPosts(tmp) {
-      let currentPosts = 0;
-      currentPosts = tmp.slice(indexOfFirst, indexOfLast);
-      return currentPosts;
-    }
-    /*                 */
+  /* 새로 추가한 부분 */
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+  function currentPosts(tmp) {
+    let currentPosts = 0;
+    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  }
+  /*                 */
 
   return (
     <div className="Trash">
@@ -100,37 +97,44 @@ function Trash() {
       </div>
       <p>휴지통에 있는 일기는 7일이 지나면 완전히 삭제됩니다</p>
       <section>
-      {openDeleteModal?
-      <DeleteModal 
-        setOpenDeleteModal={setOpenDeleteModal}
-        oneRemove={oneRemove}
-        clickAN={clickAN} 
-        member={member}
-        trashAllData={trashAllData}
-        setTrashAlldata={setTrashAlldata}
-        posts={posts}
-        setPosts={setPosts}
-      />
-      :null}
-      {openTrashAllDeleteModal?
-      <TrashAllDeleteModal 
-        setOpenTrashAllDeleteModal={setOpenTrashAllDeleteModal}
-        trashAllData={trashAllData}
-        setTrashAlldata={setTrashAlldata}
-        gotrashdata={gotrashdata}
-        setGotrashdata={setGotrashdata}
-        posts={posts}
-        setPosts={setPosts}
-      />
-      :null}
+        {openDeleteModal ? (
+          <DeleteModal
+            setOpenDeleteModal={setOpenDeleteModal}
+            oneRemove={oneRemove}
+            clickAN={clickAN}
+            member={member}
+            trashAllData={trashAllData}
+            setTrashAlldata={setTrashAlldata}
+            posts={posts}
+            setPosts={setPosts}
+          />
+        ) : null}
+        {openTrashAllDeleteModal ? (
+          <TrashAllDeleteModal
+            setOpenTrashAllDeleteModal={setOpenTrashAllDeleteModal}
+            trashAllData={trashAllData}
+            setTrashAlldata={setTrashAlldata}
+            gotrashdata={gotrashdata}
+            setGotrashdata={setGotrashdata}
+            posts={posts}
+            setPosts={setPosts}
+          />
+        ) : null}
       </section>
-      
-      <Posts posts={currentPosts(posts)} revert={revert} oneRemove={oneRemove}></Posts>
-      {posts.length > 5 
-      ? 
-      <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={setCurrentPage}></Pagination>
-      : null}
-      
+
+      <Posts
+        posts={currentPosts(posts)}
+        revert={revert}
+        oneRemove={oneRemove}
+      ></Posts>
+      {posts.length > 5 ? (
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={posts.length}
+          paginate={setCurrentPage}
+        ></Pagination>
+      ) : null}
+
       <div className="backColor"></div>
       <div id="backTrash"></div>
     </div>
@@ -138,23 +142,23 @@ function Trash() {
 }
 
 function DeleteModal(props) {
-  console.log(props.posts)
+  console.log(props.posts);
   function goTrash() {
     axios({
       url: `/trashes/${props.clickAN}`, // /answers/trashes/{answer_num}/{member_num}
       method: "delete",
       baseURL: "http://61.72.99.219:9130",
       data: {
-        member_num : props.member //props.member
-      }
+        member_num: props.member, //props.member
+      },
     })
       .then(function (response) {
         // props.setTrashAlldata(
         // props.trashAllData.filter((data) => data.answer_num !== props.clickAN)
         // ) // trashAllData가 디비에서 하나 빠졌으니까 자체에서도 값을 빼줘야 화면에서도 빠지기 떄문에 거르기
         props.setPosts(
-          props.posts.filter((data)=> data.answer_num !== props.clickAN)
-        )
+          props.posts.filter((data) => data.answer_num !== props.clickAN)
+        );
         console.log(response);
         props.setOpenDeleteModal(false); // 성공했으니까 모달 창 다시 닫기
       })
@@ -180,28 +184,27 @@ function DeleteModal(props) {
 }
 
 function TrashAllDeleteModal(props) {
-  console.log(props.posts)
+  console.log(props.posts);
   props.setGotrashdata(props.posts);
   let sendData = props.gotrashdata.slice(); // 사본 만들기 deep copy
   console.log(sendData);
 
   function goTrash() {
-    sendData.map(data => { // axios api 호출 할 때 넘길 데이터 정리
-      delete data.answer
-      delete data.answer_date
-      delete data.answer_year
-      delete data.delete_date
-      delete data.public_answer
-      delete data.question
-      return(
-        data
-      )
-    })
+    sendData.map((data) => {
+      // axios api 호출 할 때 넘길 데이터 정리
+      delete data.answer;
+      delete data.answer_date;
+      delete data.answer_year;
+      delete data.delete_date;
+      delete data.public_answer;
+      delete data.question;
+      return data;
+    });
     axios({
       url: "/trashes/all",
       method: "delete",
       baseURL: "http://61.72.99.219:9130",
-      data: sendData
+      data: sendData,
     })
       .then((response) => {
         console.log(response);

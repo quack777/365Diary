@@ -49,10 +49,10 @@ function Home() {
 
   function getRandomNicknames() {
     axios({
-      url: "/random",
+      url: "http://13.125.34.8:8080/365Project/random",
       method: "get",
       //withCredentials: true,
-      baseURL: "http://54.180.114.189:8080/365Project/",
+      // baseURL: "",
     })
       .then(function (response) {
         console.log(response);
@@ -64,10 +64,10 @@ function Home() {
   }
   const getRandomAnswers = useCallback(() => {
     axios({
-      url: `/random/${day}`, // /random/{question_num}
+      url: `http://13.125.34.8:8080/365Project/random/${day}`, // /random/{question_num}
       method: "get",
       //withCredentials: true,
-      baseURL: "http://54.180.114.189:8080/365Project/",
+      // baseURL: "/",
     })
       .then(function (response) {
         setAnswerData(response.data); // 답변 8게로 맞추기
@@ -80,7 +80,7 @@ function Home() {
         //     Array.from(
         //       { length: 8 },
         //       (v, i) => "당신의 답변을 다른 사람들에게 공유해주세요"
-        //     ) 
+        //     )
         //   );
         // }
 
@@ -92,21 +92,12 @@ function Home() {
       });
   }, [day]);
 
-  function setAnswerData(data) {
-    const dataArray = data;
-    const pushCout = 8 - data.length;
-    for (let index = 0; index < pushCout; index++) {
-      dataArray.push("당신의 답변을 다른 사람들에게 공유해주세요");
-    }
-    setAnswer8(dataArray);
-  }
-
   const getQuestion = useCallback(() => {
     axios({
       url: `/question/${day}`,
       method: "get",
       //withCredentials: true,
-      baseURL: "http://54.180.114.189:8080/365Project/",
+      baseURL: "http://13.125.34.8:8080/365Project/",
     })
       .then(function (response) {
         console.log(response.data);
@@ -122,6 +113,15 @@ function Home() {
     getRandomAnswers();
     getRandomNicknames();
   }, [getQuestion, getRandomAnswers]);
+
+  function setAnswerData(data) {
+    const dataArray = data;
+    const pushCout = 8 - data.length;
+    for (let index = 0; index < pushCout; index++) {
+      dataArray.push("당신의 답변을 다른 사람들에게 공유해주세요");
+    }
+    setAnswer8(dataArray);
+  }
 
   return (
     <div className="Home">

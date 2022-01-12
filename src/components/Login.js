@@ -10,7 +10,11 @@ import queryString from "query-string";
 import "../styles/Login.css";
 import axios from "axios";
 
-const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL;
+// 배포환경
+const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL_PROD;
+
+// 개발환경
+// const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL;
 
 function Login() {
   const slideData = [

@@ -11,7 +11,6 @@ function OAuth2RedirectHandler() {
 
   useEffect(() => {
     let code = new URL(window.location.href).searchParams.get("code");
-
     if (loading) {
       setTimeout(() => {
         history.push("/365");
@@ -21,7 +20,7 @@ function OAuth2RedirectHandler() {
     axios({
       method: "GET",
       url: `/login/oauth_kakao?code=${code}`,
-      baseURL: "http://54.180.114.189:8080/365Project",
+      baseURL: "http://13.125.34.8:8080/365Project/",
     })
       .then((res) => {
         const { id, nickname, token, member_num } = res.data;

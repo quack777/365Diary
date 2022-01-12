@@ -29,7 +29,7 @@ function WriteUpdate() {
       url: `/answers/pages`, // 임시 member => 1
       // /answers/pages/{answer_num}/{member_num}
       method: "patch",
-      baseURL: "http://54.180.114.189:8080/365Project/",
+      baseURL: "http://13.125.34.8:8080/365Project/",
       data: {
         answer_num: location.state.data.answer_num,
         answer: initialValue,

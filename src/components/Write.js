@@ -46,7 +46,7 @@ function Write() {
     const answerDate = `${month}${date}`;
 
     axios
-      .post("http://54.180.114.189:8080/365Project/answers/new", {
+      .post("http://13.125.34.8:8080/365Project/answers/new", {
         answer_year: year,
         answer_date: answerDate,
         answer: content,

@@ -21,6 +21,7 @@
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "react-spinners": "^0.11.0",
+    "s3-proxy-middleware": "^1.1.4",
     "styled-components": "^5.3.3",
     "web-vitals": "^1.1.2"
   },
@@ -48,5 +49,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://54.180.114.189:8080/365Project/"
+  "proxy": "http://13.125.34.8:8080/365Project/"
 }
