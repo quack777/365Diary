@@ -86,7 +86,7 @@ function Write() {
     setMember(Number(member_num));
 
     axios
-      .get(`http://54.180.114.189:8080/365Project/question/calendars/${day}`)
+      .get(`http://13.125.34.8:8080/365Project/question/calendars/${day}`)
       .then(function (response) {
         setQuestion(response.data.question);
         setQuestionN(response.data.question_num);

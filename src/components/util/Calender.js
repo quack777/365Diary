@@ -6,7 +6,7 @@ import axios from "axios";
 
 export default function Calender(props) {
   const [startDate, setStartDate] = useState(new Date());
-
+  const member_num = sessionStorage.getItem("member_num");
   const handleChange = (date) => {
     setStartDate(date);
     const now = date;
@@ -23,7 +23,7 @@ export default function Calender(props) {
 
   function getQuestion(day) {
     axios
-      .get(`http://54.180.114.189:8080/365Project/question/calendars/${day}`)
+      .get(`http://13.125.34.8:8080/365Project/question/calendars/${day}`)
       .then(function (response) {
         props.setQuestion(response.data.question);
       })
@@ -34,7 +34,7 @@ export default function Calender(props) {
 
   function getAnswer(day) {
     axios
-      .get(`http://54.180.114.189:8080/365Project/answers/${day}/1`)
+      .get(`http://13.125.34.8:8080/365Project/answers/${day}/${member_num}`)
       .then(function (response) {
         const answer = response.data.map((item) => item.answer);
         const answer_year = response.data.map((item) => item.answer_year);

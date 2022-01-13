@@ -43,6 +43,7 @@ function List() {
   const [answerNum, setAnswerNum] = useState();
   const [answerAllData, setAnswerAllData] = useState([]);
   const [public_answer, setPublic_answer] = useState(["N"]);
+  const [questionNum, setQuestionNum] = useState(0);
   const deleteModalContainer = useRef();
 
   let now = new Date();
@@ -90,6 +91,7 @@ function List() {
       .get(`http://13.125.34.8:8080/365Project/question/calendars/${dayNum}`)
       .then(function (response) {
         setQuestion(response.data.question);
+        setQuestionNum(response.data.question_num);
       })
       .catch(function (error) {
         console.log(error);
@@ -106,19 +108,20 @@ function List() {
     const aN = answerAllData[deleteIndex].answer_num;
 
     axios({
-      url: `/answers/trashes/${aN}/${member}`,
-      // url: REACT_APP_SERVER_IP + `/answers/trashes/${aN}/${member}`,
+      url: `/answers/trashes`,
       method: "PATCH",
-      // baseURL: "http://54.180.114.189:8080/365Project/",
       baseURL: process.env.REACT_APP_SERVER_IP,
       data: {
         answer_delete: "Y", //삭제이기때문에 항상 y로
         delete_date: new Date(+new Date() + 3240 * 10000)
           .toISOString()
           .split("T")[0], //오늘날짜로, date타입
+        answer_num: aN,
+        member_num: member,
+        question_num: questionNum,
       },
     })
-      .then((response) => {
+      .then((response, request) => {
         if (response.status === 200) alert("삭제 성공!");
         setDeletes(false);
         setAnswerNum(answerNum.filter((an, index) => index !== deleteIndex));
@@ -130,13 +133,15 @@ function List() {
   }
 
   function patchPublic(pa, index) {
+    const aN = answerAllData[index].answer_num;
     axios({
-      url: `/settings/${answerAllData[index].answer_num}/${member}`,
+      url: `/settings`,
       method: "patch",
-      // baseURL: "http://54.180.114.189:8080/365Project/",
       baseURL: process.env.REACT_APP_SERVER_IP,
       data: {
         public_answer: pa,
+        answer_num: aN,
+        member_num: member,
       },
     })
       .then((response) => {
