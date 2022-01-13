@@ -51,9 +51,11 @@ function List() {
   let diff = now - start;
   let oneDay = 1000 * 60 * 60 * 24;
   let day = Math.floor(diff / oneDay);
-  const [dayNum] = useState(
-    location.state === undefined ? day : Number(location.state.id)
-  );
+
+  // const [dayNum] = useState(
+  //   location.state === undefined ? day : Number(location.state.id)
+  // );
+
   function showDelete(index) {
     setDeletes(true);
     setDelteIndex(index);
@@ -71,7 +73,7 @@ function List() {
     setMember(Number(member_num));
 
     await axios
-      .get(`http://13.125.34.8:8080/365Project/answers/${dayNum}/${member_num}`)
+      .get(`http://13.125.34.8:8080/365Project/answers/${day}/${member_num}`)
       .then(function (response) {
         unstable_batchedUpdates(() => {
           setDataYear(response.data.map((item) => item.answer_year));
@@ -84,11 +86,11 @@ function List() {
       .catch(function (error) {
         console.log(error);
       });
-  }, [dayNum]);
+  }, [day]);
 
   const getQuestion = useCallback(async () => {
     await axios
-      .get(`http://13.125.34.8:8080/365Project/question/calendars/${dayNum}`)
+      .get(`http://13.125.34.8:8080/365Project/question/calendars/${day}`)
       .then(function (response) {
         setQuestion(response.data.question);
         setQuestionNum(response.data.question_num);
@@ -96,12 +98,12 @@ function List() {
       .catch(function (error) {
         console.log(error);
       });
-  }, [setQuestion, dayNum]);
+  }, [setQuestion, day]);
 
   useEffect(() => {
     getQuestion();
     getAns();
-  }, [getAns, getQuestion, dayNum]);
+  }, [getAns, getQuestion]);
 
   function goTrash() {
     setDataAnswer(dataAnswer.filter((answer, index) => index !== deleteIndex)); //실제에서는 .then안에
@@ -199,6 +201,8 @@ function List() {
         stateClose={stateClose}
         public_answer={public_answer}
         day={day}
+        date={date}
+        month={month}
       />
 
       {deletes ? (
