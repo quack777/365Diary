@@ -107,7 +107,7 @@ function List() {
     axios({
       url: `/answers/trashes`,
       method: "PATCH",
-      baseURL: process.env.REACT_APP_SERVER_IP,
+      baseURL: "http://13.125.34.8:8080/365Project/",
       data: {
         answer_num: answerAllData[deleteIndex].answer_num,
         answer_delete: answerAllData[deleteIndex].answer_delete, //삭제이기때문에 항상 y로
@@ -134,7 +134,7 @@ function List() {
     axios({
       url: `/settings`,
       method: "patch",
-      baseURL: process.env.REACT_APP_SERVER_IP,
+      baseURL: "http://13.125.34.8:8080/365Project/",
       data: {
         public_answer: pa,
         answer_num: aN,
@@ -143,7 +143,7 @@ function List() {
     })
       .then((response) => {
         console.log(response);
-        pa = "Y" ? alert("답변이 전체공개 됐습니다") : alert("답변이 비공개 됐습니다")
+        pa = "Y" ? alert("답변이 비공개 됐습니다") : alert("답변이 전체공개 됐습니다")
       })
       .catch((error) => {
         console.log(error);
