@@ -31,12 +31,10 @@ function List() {
 
   const [deletes, setDeletes] = useState(false);
   const [calender, setCalender] = useState(false);
-  const [question, setQuestion] = useState("나의 삶의 목적은 무엇인가요?");
+  const [question, setQuestion] = useState();
   const [open, setOpen] = useState(false);
   const [publica, setPublica] = useState("N");
-  const [dataAnswer, setDataAnswer] = useState([
-    "나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 200자 일 때 모습입니다",
-  ]);
+  const [dataAnswer, setDataAnswer] = useState([]);
   const [dataYear, setDataYear] = useState(["2022"]);
   const [member, setMember] = useState();
   const [deleteIndex, setDelteIndex] = useState();
