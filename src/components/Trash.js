@@ -144,7 +144,7 @@ function DeleteModal(props) {
     axios({
       url: `/trashes/${props.clickAN[0]}`, // /answers/trashes/{answer_num}/{member_num}
       method: "delete",
-      baseURL: "http://61.72.99.219:9130",
+      baseURL: "http://13.125.34.8:8080/365Project/",
       data: {
         member_num: props.member, //props.member
         answer_delete: props.clickAN[1]
@@ -155,7 +155,7 @@ function DeleteModal(props) {
         // props.trashAllData.filter((data) => data.answer_num !== props.clickAN)
         // ) // trashAllData가 디비에서 하나 빠졌으니까 자체에서도 값을 빼줘야 화면에서도 빠지기 떄문에 거르기
         props.setPosts(
-          props.posts.filter((data) => data.answer_num !== props.clickAN)
+          props.posts.filter((data) => data.answer_num !== props.clickAN[0])
         );
         console.log(response);
         props.setOpenDeleteModal(false); // 성공했으니까 모달 창 다시 닫기
@@ -201,7 +201,7 @@ function TrashAllDeleteModal(props) {
     axios({
       url: "/trashes/all",
       method: "delete",
-      baseURL: "http://61.72.99.219:9130",
+      baseURL: "http://13.125.34.8:8080/365Project/",
       data: sendData,
     })
       .then((response) => {
