@@ -103,26 +103,25 @@ function List() {
 
   function goTrash() {
     setDataAnswer(dataAnswer.filter((answer, index) => index !== deleteIndex)); //실제에서는 .then안에
-    const aN = answerAllData[deleteIndex].answer_num;
 
     axios({
       url: `/answers/trashes`,
       method: "PATCH",
       baseURL: process.env.REACT_APP_SERVER_IP,
       data: {
-        answer_delete: "Y", //삭제이기때문에 항상 y로
+        answer_num: answerAllData[deleteIndex].answer_num,
+        answer_delete: answerAllData[deleteIndex].answer_delete, //삭제이기때문에 항상 y로
         delete_date: new Date(+new Date() + 3240 * 10000)
           .toISOString()
           .split("T")[0], //오늘날짜로, date타입
-        answer_num: aN,
         member_num: member,
-        question_num: questionNum,
+        question_num: answerAllData[deleteIndex].question_num,
       },
     })
       .then((response, request) => {
         if (response.status === 200) alert("삭제 성공!");
         setDeletes(false);
-        setAnswerNum(answerNum.filter((an, index) => index !== deleteIndex));
+        setAnswerAllData(answerAllData.filter((data, index) => index !== deleteIndex))
         getAns();
       })
       .catch((error) => {
@@ -144,6 +143,7 @@ function List() {
     })
       .then((response) => {
         console.log(response);
+        pa = "Y" ? alert("답변이 전체공개 됐습니다") : alert("답변이 비공개 됐습니다")
       })
       .catch((error) => {
         console.log(error);
