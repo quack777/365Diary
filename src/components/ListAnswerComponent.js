@@ -14,8 +14,18 @@ export default function List_answer({
   answerAllData,
   stateOpen,
   stateClose,
+  dataYear,
   public_answer,
+  date,
+  month,
 }) {
+  const selectedDate = dataYear + month + date;
+  const dt = new Date();
+  const nowDate =
+    dt.getFullYear().toString() +
+    (dt.getMonth() + 1).toString() +
+    dt.getDate().toString();
+
   function TodayWrite() {
     return (
       <div className="TodayWrite">
@@ -54,17 +64,22 @@ export default function List_answer({
                     onClick={() => stateClose(index)}
                   ></img>
                 )}
-                <Link
-                  to={{
-                    pathname: `/write/${data.question_num}`,
-                    state: { data, question },
-                  }}
-                >
-                  <div>
-                    <img src={modify_normal}></img>
-                  </div>
-                </Link>
-                <img src={Line}></img>
+                {selectedDate === nowDate ? (
+                  <>
+                    <Link
+                      to={{
+                        pathname: `/write/${data.question_num}`,
+                        state: { data, question },
+                      }}
+                    >
+                      <div>
+                        <img src={modify_normal}></img>
+                      </div>
+                    </Link>
+                    <img src={Line}></img>
+                  </>
+                ) : null}
+
                 <div
                   style={{ cursor: "pointer" }}
                   onClick={() => showDelete(index)}

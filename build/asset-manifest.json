@@ -1,17 +1,44 @@
 {
   "files": {
     "main.css": "/static/css/main.ba0d8b5f.chunk.css",
+<<<<<<< HEAD
     "main.js": "/static/js/main.c148a68e.chunk.js",
     "main.js.map": "/static/js/main.c148a68e.chunk.js.map",
+=======
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+    "main.js": "/static/js/main.3ffb0b5b.chunk.js",
+    "main.js.map": "/static/js/main.3ffb0b5b.chunk.js.map",
+=======
+    "main.js": "/static/js/main.1f980b54.chunk.js",
+    "main.js.map": "/static/js/main.1f980b54.chunk.js.map",
+>>>>>>> Stashed changes
+=======
+    "main.js": "/static/js/main.1f980b54.chunk.js",
+    "main.js.map": "/static/js/main.1f980b54.chunk.js.map",
+>>>>>>> Stashed changes
+>>>>>>> cfb57e76c0d23fc1cafdfd568ba88fff35d281ab
     "runtime-main.js": "/static/js/runtime-main.5d341008.js",
     "runtime-main.js.map": "/static/js/runtime-main.5d341008.js.map",
-    "static/css/2.ecb008ce.chunk.css": "/static/css/2.ecb008ce.chunk.css",
-    "static/js/2.ca69d062.chunk.js": "/static/js/2.ca69d062.chunk.js",
-    "static/js/2.ca69d062.chunk.js.map": "/static/js/2.ca69d062.chunk.js.map",
+    "static/css/2.f2c14c75.chunk.css": "/static/css/2.f2c14c75.chunk.css",
+    "static/js/2.60d5c494.chunk.js": "/static/js/2.60d5c494.chunk.js",
+    "static/js/2.60d5c494.chunk.js.map": "/static/js/2.60d5c494.chunk.js.map",
     "index.html": "/index.html",
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "static/css/2.ecb008ce.chunk.css.map": "/static/css/2.ecb008ce.chunk.css.map",
     "static/css/main.ba0d8b5f.chunk.css.map": "/static/css/main.ba0d8b5f.chunk.css.map",
     "static/js/2.ca69d062.chunk.js.LICENSE.txt": "/static/js/2.ca69d062.chunk.js.LICENSE.txt",
+=======
+    "static/css/2.f2c14c75.chunk.css.map": "/static/css/2.f2c14c75.chunk.css.map",
+    "static/css/main.ba0d8b5f.chunk.css.map": "/static/css/main.ba0d8b5f.chunk.css.map",
+    "static/js/2.60d5c494.chunk.js.LICENSE.txt": "/static/js/2.60d5c494.chunk.js.LICENSE.txt",
+>>>>>>> Stashed changes
+=======
+    "static/css/2.f2c14c75.chunk.css.map": "/static/css/2.f2c14c75.chunk.css.map",
+    "static/css/main.ba0d8b5f.chunk.css.map": "/static/css/main.ba0d8b5f.chunk.css.map",
+    "static/js/2.60d5c494.chunk.js.LICENSE.txt": "/static/js/2.60d5c494.chunk.js.LICENSE.txt",
+>>>>>>> Stashed changes
     "static/media/07.910d1248.png": "/static/media/07.910d1248.png",
     "static/media/Group 5582.6a4e6e60.png": "/static/media/Group 5582.6a4e6e60.png",
     "static/media/error.a875d3f7.png": "/static/media/error.a875d3f7.png",
@@ -29,9 +56,26 @@
   },
   "entrypoints": [
     "static/js/runtime-main.5d341008.js",
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "static/css/2.ecb008ce.chunk.css",
     "static/js/2.ca69d062.chunk.js",
     "static/css/main.ba0d8b5f.chunk.css",
+<<<<<<< HEAD
     "static/js/main.c148a68e.chunk.js"
+=======
+    "static/js/main.3ffb0b5b.chunk.js"
+=======
+=======
+>>>>>>> Stashed changes
+    "static/css/2.f2c14c75.chunk.css",
+    "static/js/2.60d5c494.chunk.js",
+    "static/css/main.ba0d8b5f.chunk.css",
+    "static/js/main.1f980b54.chunk.js"
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+>>>>>>> cfb57e76c0d23fc1cafdfd568ba88fff35d281ab
   ]
 }
