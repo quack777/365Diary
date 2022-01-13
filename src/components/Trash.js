@@ -47,10 +47,10 @@ function Trash() {
     setOpenTrashAllDeleteModal(true); // 모달 창 열어주기
   }
 
-  function oneRemove(answer_num) {
+  function oneRemove(answer_num, answer_delete) {
     setOpenDeleteModal(true); // 모달 창 열어주기
-    setClickAN(answer_num); // 모달 창에서 answer_num사용할 수 있게 clickAN에 값 저장
-    console.log(posts);
+    setClickAN([answer_num, answer_delete]); // 모달 창에서 answer_num사용할 수 있게 clickAN에 값 저장\
+    console.log(clickAN)
   }
 
   function revert(answer_num, answer_delete, delete_date, question_num) {
@@ -69,9 +69,6 @@ function Trash() {
     })
       .then(function (response) {
         console.log(response);
-        // setTrashAlldata(
-        //   trashAllData.filter((data) => data.answer_num !== answer_num)
-        // );
         setPosts(posts.filter((data) => data.answer_num !== answer_num));
       })
       .catch(function (error) {
@@ -145,11 +142,12 @@ function DeleteModal(props) {
   console.log(props.posts);
   function goTrash() {
     axios({
-      url: `/trashes/${props.clickAN}`, // /answers/trashes/{answer_num}/{member_num}
+      url: `/trashes/${props.clickAN[0]}`, // /answers/trashes/{answer_num}/{member_num}
       method: "delete",
-      baseURL: "http://61.72.99.219:9130",
+      baseURL: "http://13.125.34.8:8080/365Project/",
       data: {
         member_num: props.member, //props.member
+        answer_delete: props.clickAN[1]
       },
     })
       .then(function (response) {
@@ -157,7 +155,7 @@ function DeleteModal(props) {
         // props.trashAllData.filter((data) => data.answer_num !== props.clickAN)
         // ) // trashAllData가 디비에서 하나 빠졌으니까 자체에서도 값을 빼줘야 화면에서도 빠지기 떄문에 거르기
         props.setPosts(
-          props.posts.filter((data) => data.answer_num !== props.clickAN)
+          props.posts.filter((data) => data.answer_num !== props.clickAN[0])
         );
         console.log(response);
         props.setOpenDeleteModal(false); // 성공했으니까 모달 창 다시 닫기
@@ -203,7 +201,7 @@ function TrashAllDeleteModal(props) {
     axios({
       url: "/trashes/all",
       method: "delete",
-      baseURL: "http://61.72.99.219:9130",
+      baseURL: "http://13.125.34.8:8080/365Project/",
       data: sendData,
     })
       .then((response) => {

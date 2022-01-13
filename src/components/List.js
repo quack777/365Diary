@@ -31,12 +31,10 @@ function List() {
 
   const [deletes, setDeletes] = useState(false);
   const [calender, setCalender] = useState(false);
-  const [question, setQuestion] = useState("나의 삶의 목적은 무엇인가요?");
+  const [question, setQuestion] = useState();
   const [open, setOpen] = useState(false);
   const [publica, setPublica] = useState("N");
-  const [dataAnswer, setDataAnswer] = useState([
-    "나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 나의 답변은 이렇다 나는 이렇게 생각하고 저렇게 생각한다 나는 이러쿵 저러쿵 200자 일 때 모습입니다",
-  ]);
+  const [dataAnswer, setDataAnswer] = useState([]);
   const [dataYear, setDataYear] = useState(["2022"]);
   const [member, setMember] = useState();
   const [deleteIndex, setDelteIndex] = useState();
@@ -107,26 +105,25 @@ function List() {
 
   function goTrash() {
     setDataAnswer(dataAnswer.filter((answer, index) => index !== deleteIndex)); //실제에서는 .then안에
-    const aN = answerAllData[deleteIndex].answer_num;
 
     axios({
       url: `/answers/trashes`,
       method: "PATCH",
       baseURL: process.env.REACT_APP_SERVER_IP,
       data: {
-        answer_delete: "Y", //삭제이기때문에 항상 y로
+        answer_num: answerAllData[deleteIndex].answer_num,
+        answer_delete: answerAllData[deleteIndex].answer_delete, //삭제이기때문에 항상 y로
         delete_date: new Date(+new Date() + 3240 * 10000)
           .toISOString()
           .split("T")[0], //오늘날짜로, date타입
-        answer_num: aN,
         member_num: member,
-        question_num: questionNum,
+        question_num: answerAllData[deleteIndex].question_num,
       },
     })
       .then((response, request) => {
         if (response.status === 200) alert("삭제 성공!");
         setDeletes(false);
-        setAnswerNum(answerNum.filter((an, index) => index !== deleteIndex));
+        setAnswerAllData(answerAllData.filter((data, index) => index !== deleteIndex))
         getAns();
       })
       .catch((error) => {
@@ -148,6 +145,7 @@ function List() {
     })
       .then((response) => {
         console.log(response);
+        pa = "Y" ? alert("답변이 전체공개 됐습니다") : alert("답변이 비공개 됐습니다")
       })
       .catch((error) => {
         console.log(error);
