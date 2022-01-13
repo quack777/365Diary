@@ -29,7 +29,7 @@ const Posts = ({ posts, revert, oneRemove }) => {
                 ></img>
                 <img src={Line}></img>
                 <img
-                  onClick={() => oneRemove(data.answer_num)}
+                  onClick={() => oneRemove(data.answer_num, data.answer_delete)}
                   alt="삭제"
                   src={delete_normal}
                 ></img>
