@@ -115,21 +115,21 @@ function Home(props) {
     axios
       .get(`http://13.125.34.8:8080/365Project/answers/${day}/${member_num}`)
       .then(function (response) {
-        console.log(response.data)
-        if(response.data.length > 0) {
+        console.log(response.data);
+        if (response.data.length > 0) {
           setTodayMyA(true);
         }
       })
       .catch(function (error) {
         console.log(error);
       });
-  }
+  };
 
   useEffect(() => {
     getQuestion();
     getRandomAnswers();
     getRandomNicknames();
-    getTodayMyAnswer()
+    getTodayMyAnswer();
   }, [getQuestion, getRandomAnswers]);
 
   function setAnswerData(data) {
@@ -183,9 +183,9 @@ function Home(props) {
             alert("로그인이 필요합니다!");
             return { pathname: "/365" };
           } else {
-            if(todayMyA === true && location.onClicked) {
+            if (todayMyA === true && location.onClicked) {
               alert("오늘 답변이 이미 존재합니다!");
-              return {pathname: "/list"};
+              return { pathname: "/list" };
             } else {
               return { pathname: "/write" };
             }
@@ -215,6 +215,7 @@ function Home(props) {
           src={main}
         ></img>
       </div>
+      <div className="backColor"></div>
     </div>
   );
 }
