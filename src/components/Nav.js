@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/Nav.css";
 
-function Nav() {
+function Nav(props) {
   const location = useLocation();
   location.isLogged = (sessionStorage.getItem("nickname") && true) || false;
   location.onClicked = false;
@@ -10,7 +10,7 @@ function Nav() {
   const handleClick = () => (location.onClicked = true);
 
   return (
-    <div className="Nav" id="Nav">
+    <div className={props.isMobile ? "Nav_mobile" : "Nav"}>
       <Link to="/365">
         <p id="logo">365</p>
       </Link>

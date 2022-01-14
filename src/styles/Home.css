@@ -15,7 +15,8 @@
   margin-top: 65px;
 }
 
-.Home > .questions > p {
+.Home > .questions > p
+,.Home > .questions_mobile > p {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: bold;
@@ -27,6 +28,7 @@
 
   margin: 0 auto;
 }
+
 
 .Home > .questions > div {
   display: flex;
@@ -47,9 +49,31 @@
   align-self: center;
 }
 
+
+.Home > .questions_mobile > div > p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 57px;
+  text-align: center;
+  color: #084861;
+  margin: 0 25px;
+  max-width: 849px;
+  align-self: center;
+
+}
+
+
+
 .Home > .questions > div > img {
   align-self: flex-start;
   transform: translateY(10px);
+}
+
+.Home > .questions_mobile > div > .vectorRight {
+  align-self: flex-start;
+  transform: translateX(800%);
 }
 
 .Home > .answers {
@@ -280,12 +304,55 @@
   align-self: flex-end;
 }
 
-.backColor {
+
+
+
+
+.bgImg_mobile{
+
   width: 100%;
-  height: 143px;
-  z-index: -10;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #f9f8f9;
+  height: 275px;
+
 }
+
+#bottom_mobile{
+  display: inline-block;
+}
+
+#bottom_mobile .bottom_textBox_mobile{
+  padding-left:20px ;
+}
+
+#bottom_mobile p:nth-child(1) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 149.2%;
+  /* or 45px */
+
+  color: #084861;
+  margin: 0px;
+}
+#bottom_mobile p:nth-child(2) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 149.2%;
+  /* or 45px */
+
+  color: #084861;
+  margin: 0px;
+}
+
+#bottom_mobile p:nth-child(3) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 174.2%;
+  /* or 26px */
+
+  color: #084861;
+  width: 350px;}

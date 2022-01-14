@@ -13,14 +13,23 @@ import { HashRouter, Route, BrowserRouter } from "react-router-dom";
 import Introduce from "./components/Introduce";
 import WriteUpdate from "./components/WriteUpdate";
 import Error from "./components/error/Error";
+import { useMediaQuery } from "react-responsive";
 
 function App() {
+  const isMobile = useMediaQuery({
+    query: "(max-width:767px)",
+  });
+
   return (
     <div className="App">
       <BrowserRouter>
-        <Nav />
-        <Route exact path="/" component={Home} />
-        <Route path="/365" exact={true} component={Home} />
+        <Nav isMobile={isMobile} />
+        <Route exact path="/" render={() => <Home isMobile={isMobile} />} />
+        <Route
+          path="/365"
+          exact={true}
+          render={() => <Home isMobile={isMobile} />}
+        />
         <Route exact path="/write" component={Write} />
         <Route path="/write/:id" component={WriteUpdate} />
         <Route path="/list" component={List} />

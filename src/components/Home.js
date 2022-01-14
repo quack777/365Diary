@@ -9,7 +9,7 @@ import main from "../styles/images/mainpage.png";
 import "../styles/Home.css";
 import { Link, useLocation } from "react-router-dom";
 
-function Home() {
+function Home(props) {
   const NewDate = new Date();
   const month = NewDate.getMonth() + 1;
   const date = NewDate.getDate();
@@ -125,14 +125,18 @@ function Home() {
 
   return (
     <div className="Home">
-      <div className="questions">
+      <div className={props.isMobile ? "questions_mobile" : "questions"}>
         <p>
           {month}월 {date}일
         </p>
         <div>
           <img src={VectorLeft} alt="vectorLeft"></img>
           <p>{question}</p>
-          <img src={VectorRight} alt="vectorRight"></img>
+          <img
+            src={VectorRight}
+            alt="vectorRight"
+            className="vectorRight"
+          ></img>
         </div>
       </div>
       <div className="overflow">
@@ -171,8 +175,8 @@ function Home() {
           <img src={Vector} alt="vector"></img>
         </button>
       </Link>
-      <div id="bottom">
-        <div>
+      <div id={props.isMobile ? "bottom_mobile" : "bottom"}>
+        <div className={props.isMobile ? "bottom_textBox_mobile" : "bottom"}>
           <p>365개의 질문,</p>
           <p>그리고 나와 나를 연결할 기록들.</p>
           <p>
@@ -181,9 +185,12 @@ function Home() {
             찬찬히 나를 만나봐요.
           </p>
         </div>
-        <img src={main}></img>
+        <img
+          className={props.isMobile ? "bgImg_mobile" : "bgImg"}
+          alt="bgImg"
+          src={main}
+        ></img>
       </div>
-      <div className="backColor"></div>
     </div>
   );
 }
