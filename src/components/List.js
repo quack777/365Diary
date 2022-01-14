@@ -18,6 +18,32 @@ function List() {
   // const getId = sessionStorage.getItem("id");
   // if (getId === null) history.goBack(-1);
 
+  const [deletes, setDeletes] = useState(false);
+  const [calender, setCalender] = useState(false);
+  const [question, setQuestion] = useState();
+  const [open, setOpen] = useState(false);
+  const [publica, setPublica] = useState("N");
+  const [dataAnswer, setDataAnswer] = useState([]);
+  const [dataYear, setDataYear] = useState([]);
+  const [member, setMember] = useState();
+  const [deleteIndex, setDelteIndex] = useState();
+  const [answerNum, setAnswerNum] = useState();
+  const [answerAllData, setAnswerAllData] = useState([]);
+  const [public_answer, setPublic_answer] = useState(["N"]);
+  const [questionNum, setQuestionNum] = useState(0);
+
+  const deleteModalContainer = useRef();
+
+  let now = new Date();
+  let start = new Date(now.getFullYear(), 0, 0);
+  let diff = now - start;
+  let oneDay = 1000 * 60 * 60 * 24;
+  let day = Math.floor(diff / oneDay);
+
+  const [answerDate, setAnswerDate] = useState(
+    location.state === undefined ? day : Number(location.state.id)
+  );
+
   const [month, setMonth] = useState(
     location.state === undefined
       ? new Date().getMonth() + 1
@@ -28,31 +54,6 @@ function List() {
       ? new Date().getDate()
       : location.state.targetDate
   );
-
-  const [deletes, setDeletes] = useState(false);
-  const [calender, setCalender] = useState(false);
-  const [question, setQuestion] = useState();
-  const [open, setOpen] = useState(false);
-  const [publica, setPublica] = useState("N");
-  const [dataAnswer, setDataAnswer] = useState([]);
-  const [dataYear, setDataYear] = useState(["2022"]);
-  const [member, setMember] = useState();
-  const [deleteIndex, setDelteIndex] = useState();
-  const [answerNum, setAnswerNum] = useState();
-  const [answerAllData, setAnswerAllData] = useState([]);
-  const [public_answer, setPublic_answer] = useState(["N"]);
-  const [questionNum, setQuestionNum] = useState(0);
-  const deleteModalContainer = useRef();
-
-  let now = new Date();
-  let start = new Date(now.getFullYear(), 0, 0);
-  let diff = now - start;
-  let oneDay = 1000 * 60 * 60 * 24;
-  let day = Math.floor(diff / oneDay);
-
-  // const [dayNum] = useState(
-  //   location.state === undefined ? day : Number(location.state.id)
-  // );
 
   function showDelete(index) {
     setDeletes(true);
@@ -71,10 +72,11 @@ function List() {
     setMember(Number(member_num));
 
     await axios
-      .get(`http://13.125.34.8:8080/365Project/answers/${day}/${member_num}`)
+      .get(`http://13.125.34.8:8080/365Project/answers/${date}/${member_num}`)
       .then(function (response) {
         unstable_batchedUpdates(() => {
           setDataYear(response.data.map((item) => item.answer_year));
+          setAnswerDate(response.data.map((item) => item.answer_date));
           setDataAnswer(response.data.map((item) => item.answer));
           setAnswerNum(response.data.map((item) => item.answer_num));
           setPublic_answer(response.data.map((item) => item.public_answer));
@@ -84,7 +86,7 @@ function List() {
       .catch(function (error) {
         console.log(error);
       });
-  }, [day]);
+  }, [date]);
 
   const getQuestion = useCallback(async () => {
     await axios
@@ -123,7 +125,9 @@ function List() {
       .then((response, request) => {
         if (response.status === 200) alert("삭제 성공!");
         setDeletes(false);
-        setAnswerAllData(answerAllData.filter((data, index) => index !== deleteIndex))
+        setAnswerAllData(
+          answerAllData.filter((data, index) => index !== deleteIndex)
+        );
         getAns();
       })
       .catch((error) => {
@@ -145,7 +149,9 @@ function List() {
     })
       .then((response) => {
         console.log(response);
-        pa = "Y" ? alert("답변이 비공개 됐습니다") : alert("답변이 전체공개 됐습니다")
+        pa = "Y"
+          ? alert("답변이 비공개 됐습니다")
+          : alert("답변이 전체공개 됐습니다");
       })
       .catch((error) => {
         console.log(error);
@@ -167,6 +173,8 @@ function List() {
     setPublic_answer(public_answer);
     patchPublic(public_answer[index], index);
   }
+
+  const selectedDate = dataYear[0] + answerDate[0];
 
   return (
     <div className="List">
@@ -199,8 +207,7 @@ function List() {
         stateClose={stateClose}
         public_answer={public_answer}
         day={day}
-        date={date}
-        month={month}
+        selectedDate={selectedDate}
       />
 
       {deletes ? (

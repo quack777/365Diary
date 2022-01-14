@@ -14,28 +14,31 @@ export default function List_answer({
   answerAllData,
   stateOpen,
   stateClose,
-  dataYear,
   public_answer,
-  date,
-  month,
+  selectedDate,
 }) {
-  const selectedDate = dataYear + month + date;
   const dt = new Date();
-  const nowDate =
+  var format =
     dt.getFullYear().toString() +
-    (dt.getMonth() + 1).toString() +
-    dt.getDate().toString();
+    ("00" + (dt.getMonth() + 1).toString()).slice(-2) +
+    ("00" + dt.getDate().toString()).slice(-2);
 
   function TodayWrite() {
     return (
-      <div className="TodayWrite">
-        <div>
-          <img src={girl} alt="ㅎㅇ"></img>
-          <p>오늘의 질문입니다. 지금은 나의 생각을 남겨보세요!</p>
-        </div>
-        <Link to="/write">
-          <p>답변작성하기</p>
-        </Link>
+      <div>
+        {selectedDate === format ? (
+          <div className="TodayWrite">
+            <div>
+              <img src={girl} alt="ㅎㅇ"></img>
+              <p>오늘의 질문입니다. 지금은 나의 생각을 남겨보세요!</p>
+            </div>
+            <Link to="/write">
+              <p>답변작성하기</p>
+            </Link>
+          </div>
+        ) : (
+          <div>당일에만 작성 가능합니다 !</div>
+        )}
       </div>
     );
   }
@@ -64,7 +67,7 @@ export default function List_answer({
                     onClick={() => stateClose(index)}
                   ></img>
                 )}
-                {selectedDate === nowDate ? (
+                {selectedDate === format ? (
                   <>
                     <Link
                       to={{
