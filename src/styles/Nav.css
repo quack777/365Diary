@@ -1,3 +1,4 @@
+
 .Nav {
   height: 143px;
   display: flex;
@@ -8,6 +9,7 @@
   box-sizing: border-box;
   width: 100%;
   min-width: 375px;
+  background-color: #f9f8f9;
 }
 
 #Nav {
@@ -108,8 +110,11 @@
   border-bottom: 2px solid #084861;
 }
 
+.trash, .introduce, .list {
+  background-color: white;
+}
 
-
+/* 
 .Nav_mobile {
   height: 143px;
   display: flex;
@@ -135,4 +140,4 @@
   text-align: center;
   letter-spacing: 0.1em;
   color: #084861;
-}
+} */

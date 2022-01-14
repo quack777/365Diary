@@ -50,7 +50,7 @@ function Trash() {
   function oneRemove(answer_num, answer_delete) {
     setOpenDeleteModal(true); // 모달 창 열어주기
     setClickAN([answer_num, answer_delete]); // 모달 창에서 answer_num사용할 수 있게 clickAN에 값 저장\
-    console.log(clickAN)
+    console.log(clickAN);
   }
 
   function revert(answer_num, answer_delete, delete_date, question_num) {
@@ -133,7 +133,6 @@ function Trash() {
       ) : null}
 
       <div className="backColor"></div>
-      <div id="backTrash"></div>
     </div>
   );
 }
@@ -147,7 +146,7 @@ function DeleteModal(props) {
       baseURL: "http://13.125.34.8:8080/365Project/",
       data: {
         member_num: props.member, //props.member
-        answer_delete: props.clickAN[1]
+        answer_delete: props.clickAN[1],
       },
     })
       .then(function (response) {

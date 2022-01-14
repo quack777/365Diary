@@ -4,13 +4,16 @@ import "../styles/Nav.css";
 
 function Nav(props) {
   const location = useLocation();
+
   location.isLogged = (sessionStorage.getItem("nickname") && true) || false;
   location.onClicked = false;
+
+  const NavCssflag = location.pathname.slice(1);
 
   const handleClick = () => (location.onClicked = true);
 
   return (
-    <div className={props.isMobile ? "Nav_mobile" : "Nav"}>
+    <div className={props.isMobile ? "Nav_mobile" : `Nav ${NavCssflag}`}>
       <Link to="/365">
         <p id="logo">365</p>
       </Link>

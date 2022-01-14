@@ -30,7 +30,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "aws s3 sync ./build s3://front365 --profile=project365",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "postInstall" : "patch-package"
   },
   "eslintConfig": {
     "extends": [
