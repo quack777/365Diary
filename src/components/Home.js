@@ -18,6 +18,7 @@ function Home(props) {
   const [answer8, setAnswer8] = useState([]);
   const [ranname, setRanname] = useState([]);
   const [question, setQuestion] = useState();
+  const [todayMyA, setTodayMyA] = useState(false);
   // const [num, setNum] = useState(0);
   var now = new Date();
   var start = new Date(now.getFullYear(), 0, 0);
@@ -108,10 +109,27 @@ function Home(props) {
       });
   }, [day]);
 
+  const getTodayMyAnswer = () => {
+    const member_num = sessionStorage.getItem("member_num");
+
+    axios
+      .get(`http://13.125.34.8:8080/365Project/answers/${day}/${member_num}`)
+      .then(function (response) {
+        console.log(response.data)
+        if(response.data.length > 0) {
+          setTodayMyA(true);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   useEffect(() => {
     getQuestion();
     getRandomAnswers();
     getRandomNicknames();
+    getTodayMyAnswer()
   }, [getQuestion, getRandomAnswers]);
 
   function setAnswerData(data) {
@@ -165,7 +183,13 @@ function Home(props) {
             alert("로그인이 필요합니다!");
             return { pathname: "/365" };
           } else {
-            return { pathname: "/write" };
+            if(todayMyA === true && location.onClicked) {
+              alert("오늘 답변이 이미 존재합니다!");
+              return {pathname: "/list"};
+            } else {
+              return { pathname: "/write" };
+            }
+            // return { pathname: "/write" };
           }
         }}
         onClick={handleClick}
