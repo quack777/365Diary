@@ -22,26 +22,24 @@ export default function List_answer({
     dt.getFullYear().toString() +
     ("00" + (dt.getMonth() + 1).toString()).slice(-2) +
     ("00" + dt.getDate().toString()).slice(-2);
+  console.log(selectedDate, format, selectedDate === format);
 
   function TodayWrite() {
     return (
       <div>
-        {selectedDate === format ? (
-          <div className="TodayWrite">
-            <div>
-              <img src={girl} alt="ㅎㅇ"></img>
-              <p>오늘의 질문입니다. 지금은 나의 생각을 남겨보세요!</p>
-            </div>
-            <Link to="/write">
-              <p>답변작성하기</p>
-            </Link>
+        <div className="TodayWrite">
+          <div>
+            <img src={girl} alt="ㅎㅇ"></img>
+            <p>오늘의 질문입니다. 지금은 나의 생각을 남겨보세요!</p>
           </div>
-        ) : (
-          <div>당일에만 작성 가능합니다 !</div>
-        )}
+          <Link to="/write">
+            <p>답변작성하기</p>
+          </Link>
+        </div>
       </div>
     );
   }
+
   return (
     <div className="List">
       {answerAllData.length > 0 ? (
@@ -93,8 +91,11 @@ export default function List_answer({
             </div>
           );
         })
-      ) : (
+      ) : // <TodayWrite />
+      selectedDate === format ? (
         <TodayWrite />
+      ) : (
+        <div>당일만 작성 가능</div>
       )}
     </div>
   );

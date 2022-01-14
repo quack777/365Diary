@@ -54,7 +54,6 @@ function List() {
       ? new Date().getDate()
       : location.state.targetDate
   );
-
   function showDelete(index) {
     setDeletes(true);
     setDelteIndex(index);
@@ -90,7 +89,7 @@ function List() {
 
   const getQuestion = useCallback(async () => {
     await axios
-      .get(`http://13.125.34.8:8080/365Project/question/calendars/${day}`)
+      .get(`http://13.125.34.8:8080/365Project/question/calendars/${date}`)
       .then(function (response) {
         setQuestion(response.data.question);
         setQuestionNum(response.data.question_num);
@@ -98,7 +97,7 @@ function List() {
       .catch(function (error) {
         console.log(error);
       });
-  }, [setQuestion, day]);
+  }, [setQuestion, date]);
 
   useEffect(() => {
     getQuestion();
@@ -175,6 +174,8 @@ function List() {
   }
 
   const selectedDate = dataYear[0] + answerDate[0];
+  console.log("answerDate[0]: ", answerDate[0]);
+  console.log(" dataYear[0]: ", dataYear[0]);
 
   return (
     <div className="List">
