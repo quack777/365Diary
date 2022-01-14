@@ -29,7 +29,7 @@ function Home(props) {
   const handleClick = () => (location.onClicked = true);
 
   const answersBox = useRef();
-  function leftMove(a) {
+  function rightMove(a) {
     console.log(answersBox.current.style.transform);
     if (num >= -300) {
       num = num - 30;
@@ -39,7 +39,7 @@ function Home(props) {
     }
   }
   //데이터 세팅
-  function rightMove() {
+  function leftMove() {
     if (num <= 30) {
       num = num + 30;
       answersBox.current.style.transform = `translateX(${num}%)`;
