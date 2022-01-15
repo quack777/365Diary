@@ -15,14 +15,17 @@ export default function List_answer({
   stateOpen,
   stateClose,
   public_answer,
-  selectedDate,
+  date,
+  month,
 }) {
   const dt = new Date();
   var format =
-    dt.getFullYear().toString() +
+    // dt.getFullYear().toString() +
     ("00" + (dt.getMonth() + 1).toString()).slice(-2) +
     ("00" + dt.getDate().toString()).slice(-2);
-  console.log(selectedDate, format, selectedDate === format);
+
+  // 년도까지 추가 체크해야함
+  const targetDate = "0" + month + date;
 
   function TodayWrite() {
     return (
@@ -65,7 +68,7 @@ export default function List_answer({
                     onClick={() => stateClose(index)}
                   ></img>
                 )}
-                {selectedDate === format ? (
+                {targetDate === format ? (
                   <>
                     <Link
                       to={{
@@ -92,7 +95,7 @@ export default function List_answer({
           );
         })
       ) : // <TodayWrite />
-      selectedDate === format ? (
+      targetDate === format ? (
         <TodayWrite />
       ) : (
         <div>당일만 작성 가능</div>
