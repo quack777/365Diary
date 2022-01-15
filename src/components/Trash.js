@@ -31,7 +31,7 @@ function Trash() {
     axios({
       url: `/trashes/${member_num}`, //임시 1, `/trashes/${member_num}`
       method: "get",
-      baseURL: "http://13.125.34.8:8080/365Project/",
+      baseURL: process.env.REACT_APP_SERVER_IP,
     })
       .then(function (response) {
         console.log(response.data);
@@ -60,7 +60,7 @@ function Trash() {
     axios({
       url: `/trashes/settings/${answer_num}/${member}`, // `/trashes/settings/${answer_num}/${member_num}`
       method: "patch",
-      baseURL: "http://13.125.34.8:8080/365Project/",
+      baseURL: process.env.REACT_APP_SERVER_IP,
       data: {
         answer_delete: answer_delete, // N or Y
         delete_date: delete_date, //date타입

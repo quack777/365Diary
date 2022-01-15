@@ -16,7 +16,7 @@ function Logout() {
     }
 
     axios
-      .get(`http://13.125.34.8:8080/365Project/logout?token=${token}`)
+      .get(`${process.env.REACT_APP_SERVER_IP}/logout?token=${token}`)
       .then(function (res) {
         if (res.status === 200 && res.data.msg) {
           sessionStorage.clear();

@@ -71,7 +71,7 @@ function List() {
     setMember(Number(member_num));
 
     await axios
-      .get(`http://13.125.34.8:8080/365Project/answers/${date}/${member_num}`)
+      .get(`${process.env.REACT_APP_SERVER_IP}/answers/${date}/${member_num}`)
       .then(function (response) {
         unstable_batchedUpdates(() => {
           setDataYear(response.data.map((item) => item.answer_year));
@@ -89,7 +89,7 @@ function List() {
 
   const getQuestion = useCallback(async () => {
     await axios
-      .get(`http://13.125.34.8:8080/365Project/question/calendars/${date}`)
+      .get(`${process.env.REACT_APP_SERVER_IP}/question/calendars/${date}`)
       .then(function (response) {
         setQuestion(response.data.question);
         setQuestionNum(response.data.question_num);
@@ -110,7 +110,7 @@ function List() {
     axios({
       url: `/answers/trashes`,
       method: "PATCH",
-      baseURL: "http://13.125.34.8:8080/365Project/",
+      baseURL: process.env.REACT_APP_SERVER_IP,
       data: {
         answer_num: answerAllData[deleteIndex].answer_num,
         answer_delete: answerAllData[deleteIndex].answer_delete, //삭제이기때문에 항상 y로
@@ -139,7 +139,7 @@ function List() {
     axios({
       url: `/settings`,
       method: "patch",
-      baseURL: "http://13.125.34.8:8080/365Project/",
+      baseURL: process.env.REACT_APP_SERVER_IP,
       data: {
         public_answer: pa,
         answer_num: aN,
@@ -173,10 +173,6 @@ function List() {
     patchPublic(public_answer[index], index);
   }
 
-  const selectedDate = dataYear[0] + answerDate[0];
-  console.log("answerDate[0]: ", answerDate[0]);
-  console.log(" dataYear[0]: ", dataYear[0]);
-
   return (
     <div className="List">
       <div className="questions">
@@ -208,7 +204,8 @@ function List() {
         stateClose={stateClose}
         public_answer={public_answer}
         day={day}
-        selectedDate={selectedDate}
+        date={date}
+        month={month}
       />
 
       {deletes ? (

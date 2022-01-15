@@ -20,7 +20,7 @@ function OAuth2RedirectHandler() {
     axios({
       method: "GET",
       url: `/login/oauth_kakao?code=${code}`,
-      baseURL: "http://13.125.34.8:8080/365Project/",
+      baseURL: process.env.REACT_APP_SERVER_IP,
     })
       .then((res) => {
         const { id, nickname, token, member_num } = res.data;

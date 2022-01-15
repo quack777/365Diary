@@ -50,7 +50,7 @@ function Home(props) {
 
   function getRandomNicknames() {
     axios({
-      url: "http://13.125.34.8:8080/365Project/random",
+      url: `${process.env.REACT_APP_SERVER_IP}/random`,
       method: "get",
       //withCredentials: true,
       // baseURL: "",
@@ -65,7 +65,7 @@ function Home(props) {
   }
   const getRandomAnswers = useCallback(() => {
     axios({
-      url: `http://13.125.34.8:8080/365Project/random/${day}`, // /random/{question_num}
+      url: `${process.env.REACT_APP_SERVER_IP}/random/${day}`, // /random/{question_num}
       method: "get",
       //withCredentials: true,
       // baseURL: "/",
@@ -98,7 +98,7 @@ function Home(props) {
       url: `/question/${day}`,
       method: "get",
       //withCredentials: true,
-      baseURL: "http://13.125.34.8:8080/365Project/",
+      baseURL: process.env.REACT_APP_SERVER_IP,
     })
       .then(function (response) {
         console.log(response.data);
@@ -113,7 +113,7 @@ function Home(props) {
     const member_num = sessionStorage.getItem("member_num");
 
     axios
-      .get(`http://13.125.34.8:8080/365Project/answers/${day}/${member_num}`)
+      .get(`${process.env.REACT_APP_SERVER_IP}/answers/${day}/${member_num}`)
       .then(function (response) {
         console.log(response.data);
         if (response.data.length > 0) {

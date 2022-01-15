@@ -23,7 +23,7 @@ export default function Calender(props) {
 
   function getQuestion(day) {
     axios
-      .get(`http://13.125.34.8:8080/365Project/question/calendars/${day}`)
+      .get(`${process.env.REACT_APP_SERVER_IP}/question/calendars/${day}`)
       .then(function (response) {
         props.setQuestion(response.data.question);
       })
@@ -34,9 +34,10 @@ export default function Calender(props) {
 
   function getAnswer(day) {
     axios
-      .get(`http://13.125.34.8:8080/365Project/answers/${day}/${member_num}`)
+      .get(`${process.env.REACT_APP_SERVER_IP}/answers/${day}/${member_num}`)
       .then(function (response) {
         const answer = response.data.map((item) => item.answer);
+        if (answer.length === 0) return alert("@@@");
         const answer_year = response.data.map((item) => item.answer_year);
         props.setDataAnswer(answer);
         props.setDataYear(answer_year);
