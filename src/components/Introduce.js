@@ -102,6 +102,13 @@ function Introduce() {
             </div>
           );
         })}
+        <div className="introSlideNav">
+          {slideData.map((slide, index) => {
+            return(
+              <button className={(current === index) ? "introSlideNavActive" : null}></button>
+            )
+          })}
+        </div>
         {/* <div>
           <p>회원가입/로그인</p>
           <p>카카오로 간편하게 회원가입과 로그인을 할 수 있어요.</p>

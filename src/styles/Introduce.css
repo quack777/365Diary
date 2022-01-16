@@ -265,3 +265,21 @@
   opacity: 1;
   transition-duration: 1s;
 }
+
+.casual > .introSlideNav {
+  align-self: center;
+  margin-top: 50px;
+}
+
+.casual > .introSlideNav > .introSlideNavActive {
+  background: #7EB496;
+}
+
+.casual > .introSlideNav > button {
+  height: 12px;
+  width: 12px;
+  border-radius: 50px;
+  border-style: none;
+  margin: 0 7.5px;
+  background: #C4C4C4;
+}
