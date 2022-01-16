@@ -25,7 +25,7 @@ function Home(props) {
   var diff = now - start;
   var oneDay = 1000 * 60 * 60 * 24;
   var day = Math.floor(diff / oneDay);
-
+  const member_num = sessionStorage.getItem("member_num");
   let num = 0;
   const handleClick = () => (location.onClicked = true);
 
@@ -110,8 +110,6 @@ function Home(props) {
   }, [day]);
 
   const getTodayMyAnswer = () => {
-    const member_num = sessionStorage.getItem("member_num");
-
     axios
       .get(`${process.env.REACT_APP_SERVER_IP}/answers/${day}/${member_num}`)
       .then(function (response) {
@@ -198,6 +196,8 @@ function Home(props) {
                       public_answer: todayMyA[0].public_answer,
                       answer_date: todayMyA[0].answer_date,
                       answer_year: todayMyA[0].answer_year,
+                      member_num: member_num,
+                      answer_num: todayMyA[0].answer_num,
                     },
                   },
                 };
