@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "../styles/Introduce.css";
 import Introduce_top from "../styles/images/07.png";
 import ballon from "../styles/images/Group 5582.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import made_people from "../styles/images/made_people.png";
 import soga00 from "../styles/images/soga00.png";
 import soga01 from "../styles/images/soga01.png";
@@ -43,6 +43,10 @@ function Introduce() {
         "해당 날짜마다 질문이 달라져요. 답변은 그 날까지만 작성, 수정이 가능해요. 오늘의 질문을 놓치지 마세요!",
     },
   ];
+
+  const location = useLocation();
+
+  location.isLogged = (sessionStorage.getItem("nickname") && true) || false;
   const [current, setCurrent] = useState(0);
   const length = slideData.length;
 
@@ -105,9 +109,15 @@ function Introduce() {
       </section>
       <section className="goHome">
         <p>“나와 나를 연결할 준비, 되셨나요?”</p>
-        <Link to="/365">
-          <p>365 시작하기</p>
-        </Link>
+        {location.isLogged ? (
+          <Link to="/write">
+            <p>365 시작하기</p>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <p>365 시작하기</p>
+          </Link>
+        )}
       </section>
       <section className="bottom">
         <p>만든 사람들</p>
