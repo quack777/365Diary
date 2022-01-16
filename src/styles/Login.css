@@ -87,24 +87,28 @@
 }
 
 .Login > section:nth-child(1) .practice > button {
-  width: 40px;
-  height: 65px;
+  width: 29px;
+  height: 29px;
   border-style: none;
-  background-color: #ffffff;
-  background-image: url("../styles/images/arrow02_normal.png");
-  background-position: center center;
+  background: #E3E3E3;
+  border-radius: 8px;
+  margin: 0 7.5px;
+  
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 209.7%;
+
+  text-align: center;
+  letter-spacing: -0.05em;
+
+  color: #777777;
 }
 
-.Login > section:nth-child(1) .practice > button:nth-child(1) {
-  transform: rotateY(180deg);
-}
-
-.Login > section:nth-child(1) .practice > button:hover {
-  background-image: url("../styles/images/arrow02_focused.png");
-}
-
-.Login > section:nth-child(1) .practice > button:active {
-  background-image: url("../styles/images/arrow02_pressed.png");
+.Login > section:nth-child(1) .practice > .choice {
+  background: #7EB496;
+  color: #FFFFFF;
 }
 
 .Login > section:nth-child(2) {

@@ -35,13 +35,15 @@ function Login() {
   const [current, setCurrent] = useState(0);
   const length = slideData.length;
 
-  const nextSlide = () => {
+  /* const secondSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
-  };
+    setCurrent(1);
+  }; */
 
-  const prevSlide = () => {
+  /* const firstSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
-  };
+    setCurrent(0);
+  }; */
 
   if (!Array.isArray(slideData) || slideData.length <= 0) {
     return null;
@@ -64,8 +66,8 @@ function Login() {
           );
         })}
         <div className="practice">
-          <button onClick={prevSlide}></button>
-          <button onClick={nextSlide}></button>
+          <button className={current === 0 ? "choice" : null} id="firstChoice" onClick={() => setCurrent(0)}>1</button>
+          <button className={current === 1 ? "choice" : null} id="secondChoice" onClick={() => setCurrent(1)}>2</button>
         </div>
       </section>
       <section>
