@@ -18,7 +18,7 @@ function Home(props) {
   const [answer8, setAnswer8] = useState([]);
   const [ranname, setRanname] = useState([]);
   const [question, setQuestion] = useState();
-  const [todayMyA, setTodayMyA] = useState(false);
+  const [todayMyA, setTodayMyA] = useState([]);
   // const [num, setNum] = useState(0);
   var now = new Date();
   var start = new Date(now.getFullYear(), 0, 0);
@@ -117,7 +117,7 @@ function Home(props) {
       .then(function (response) {
         console.log(response.data);
         if (response.data.length > 0) {
-          setTodayMyA(true);
+          setTodayMyA(response.data);
         }
       })
       .catch(function (error) {
@@ -183,9 +183,27 @@ function Home(props) {
             alert("로그인이 필요합니다!");
             return { pathname: "/365" };
           } else {
-            if (todayMyA === true && location.onClicked) {
-              alert("오늘 답변이 이미 존재합니다!");
-              return { pathname: "/list" };
+            if (todayMyA.length > 0 && location.onClicked) {
+              if (
+                window.confirm(
+                  "오늘 답변이 이미 존재합니다! 수정하시겠습니까 ?"
+                )
+              ) {
+                return {
+                  pathname: `/write/${day}`,
+                  state: {
+                    question: question,
+                    data: {
+                      answer: todayMyA[0].answer,
+                      public_answer: todayMyA[0].public_answer,
+                      answer_date: todayMyA[0].answer_date,
+                      answer_year: todayMyA[0].answer_year,
+                    },
+                  },
+                };
+              } else {
+                return { pathname: `/365` };
+              }
             } else {
               return { pathname: "/write" };
             }
