@@ -117,7 +117,7 @@ function Introduce() {
       <section className="goHome">
         <p>“나와 나를 연결할 준비, 되셨나요?”</p>
         {location.isLogged ? (
-          <Link to="/write">
+          <Link to="/list">
             <p>365 시작하기</p>
           </Link>
         ) : (

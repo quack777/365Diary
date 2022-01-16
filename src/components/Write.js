@@ -130,9 +130,9 @@ function Write() {
             )}
           </div>
           <div className="twoBtn">
-            <Link to="/365">
+            <button style={{borderStyle: "none", backgroundColor: "transparent"}} onClick={() => history.goBack()}>
               <p id="first">작성취소</p>
-            </Link>
+            </button>
             <button id="second" type="submit">
               저장하기
             </button>
