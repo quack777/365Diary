@@ -31,6 +31,7 @@ function List() {
   const [answerAllData, setAnswerAllData] = useState([]);
   const [public_answer, setPublic_answer] = useState(["N"]);
   const [questionNum, setQuestionNum] = useState(0);
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
   const deleteModalContainer = useRef();
 
@@ -206,6 +207,7 @@ function List() {
         day={day}
         date={date}
         month={month}
+        selectedYear={selectedYear}
       />
 
       {deletes ? (
@@ -229,6 +231,8 @@ function List() {
           setAnswerAllData={setAnswerAllData}
           setMonth={setMonth}
           setDate={setDate}
+          date={date}
+          setSelectedYear={setSelectedYear}
         />
       ) : null}
     </div>

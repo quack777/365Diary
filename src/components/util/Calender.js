@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import xxxxx from "../../styles/images/xxxxx.png";
 import { useState } from "react";
@@ -7,46 +7,71 @@ import axios from "axios";
 export default function Calender(props) {
   const [startDate, setStartDate] = useState(new Date());
   const member_num = sessionStorage.getItem("member_num");
-  const handleChange = (date) => {
-    setStartDate(date);
+  const [answers, setAnswers] = useState([]);
+
+  const now = new Date();
+  const dateInit = new Date(now.getFullYear(), 0, 0);
+  const reqDay = Math.floor((now - dateInit) / (1000 * 60 * 60 * 24));
+
+  const [selectedDate, setSelectedDate] = useState(reqDay);
+
+  const [clickFag, setClickFag] = useState(false);
+
+  const handleChange = (date, e) => {
     const now = date;
     const start = new Date(now.getFullYear(), 0, 0);
     const diff = now - start;
     const oneDay = 1000 * 60 * 60 * 24;
     const day = Math.floor(diff / oneDay);
-    getQuestion(day);
-    getAnswer(day);
-    props.setMonth(now.getMonth() + 1);
-    props.setDate(now.getDate());
-    props.setCalender(false);
+    setSelectedDate(day);
+    setStartDate(date);
+    getAnswers(day);
+    setClickFag(true);
   };
 
-  function getQuestion(day) {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_IP}/question/calendars/${day}`)
-      .then(function (response) {
-        props.setQuestion(response.data.question);
-      })
-      .catch(function (error) {
+  const getAnswers = useCallback(
+    async (day) => {
+      try {
+        const responseAnswer = await axios.get(
+          `${process.env.REACT_APP_SERVER_IP}/answers/${day}/${member_num}`
+        );
+        setAnswers(responseAnswer.data);
+      } catch (error) {
         console.log(error);
-      });
-  }
+      }
+    },
+    [member_num, setAnswers]
+  );
 
-  function getAnswer(day) {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_IP}/answers/${day}/${member_num}`)
-      .then(function (response) {
-        const answer = response.data.map((item) => item.answer);
-        if (answer.length === 0) return alert("@@@");
-        const answer_year = response.data.map((item) => item.answer_year);
-        props.setDataAnswer(answer);
-        props.setDataYear(answer_year);
-        props.setAnswerAllData(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  const renderToList = (answers) => {
+    console.log("startDate: ", startDate);
+
+    //답변이 하나라도 있을 경우
+    if (answers.length > 0) {
+      props.setMonth(startDate.getMonth() + 1);
+      props.setDate(selectedDate);
+      props.setSelectedYear(startDate.getFullYear());
+      props.setCalender(false);
+      // 답변이 하나도 없을 경우
+    } else {
+      //  답변이 하나도 없고 다른날짜를 선택한 경우
+      if (selectedDate !== reqDay) {
+        alert("없음!");
+      } else {
+        // 답변이 하나도 없고 같은 날짜를 선택한 경우
+        if (clickFag) {
+          props.setMonth(startDate.getMonth() + 1);
+          props.setDate(selectedDate);
+          props.setSelectedYear(startDate.getFullYear());
+          props.setCalender(false);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    renderToList(answers);
+  }, [answers]);
 
   function closeCanlender() {
     props.setCalender(false);
@@ -60,8 +85,8 @@ export default function Calender(props) {
         <DatePicker
           selected={startDate}
           wrapperClassName="react-datepicker"
-          onChange={(date) => {
-            handleChange(date);
+          onChange={(date, e) => {
+            handleChange(date, e);
           }}
           renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
             <>
@@ -90,6 +115,12 @@ export default function Calender(props) {
           )}
           dateFormat="MM월 dd일"
           inline
+          popperModifiers={{
+            // 모바일 web 환경에서 화면을 벗어나지 않도록 하는 설정
+            preventOverflow: {
+              enabled: true,
+            },
+          }}
           formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 3).toUpperCase()}
         />
       </div>
