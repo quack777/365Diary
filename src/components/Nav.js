@@ -27,7 +27,7 @@ function Nav(props) {
           to={(location) => {
             if (!location.isLogged && location.onClicked) {
               alert("로그인이 필요합니다!");
-              return { pathname: "/365" };
+              return { pathname: "/login" };
             } else {
               return { pathname: "/list" };
             }
@@ -42,7 +42,7 @@ function Nav(props) {
           to={(location) => {
             if (!location.isLogged && location.onClicked) {
               alert("로그인이 필요합니다!");
-              return { pathname: "/365" };
+              return { pathname: "/login" };
             } else {
               return { pathname: "/trash" };
             }
