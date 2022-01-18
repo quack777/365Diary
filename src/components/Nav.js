@@ -8,12 +8,13 @@ function Nav(props) {
   location.isLogged = (sessionStorage.getItem("nickname") && true) || false;
   location.onClicked = false;
 
-  const NavCssflag = location.pathname.slice(1);
+  const NavCssflag = location.pathname.split("/");
+  const cssFlag = NavCssflag[NavCssflag.length - 1];
 
   const handleClick = () => (location.onClicked = true);
 
   return (
-    <div className={props.isMobile ? "Nav_mobile" : `Nav ${NavCssflag}`}>
+    <div className={props.isMobile ? "Nav_mobile" : `Nav ${cssFlag}`}>
       <Link to="/365">
         <p id="logo">365</p>
       </Link>
