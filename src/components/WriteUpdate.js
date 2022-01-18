@@ -115,10 +115,9 @@ function WriteUpdate() {
       </form>
       <div className="backColor"></div>
       <div id="WriteBack"></div>
-      { update ?
-        <Alert goAway={"/list"} content={"수정"}></Alert> 
-        : null
-      }
+      {update ? (
+        <Alert goAway={"/list"} isClose={setUpdate} content={"수정"}></Alert>
+      ) : null}
     </div>
   );
 }
