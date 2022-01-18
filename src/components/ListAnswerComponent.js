@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import modify_normal from "../styles/images/modify_normal.png";
 import Line from "../styles/images/Line45.png";
 import delete_normal from "../styles/images/delete_normal.png";
@@ -7,6 +7,7 @@ import toggle_unselected from "../styles/images/list_private.png";
 import toggle_selected from "../styles/images/list_public.png";
 import girl from "../styles/images/Mask Group.png";
 import "../styles/List.css";
+import axios from "axios";
 
 export default function List_answer({
   question,
@@ -19,6 +20,7 @@ export default function List_answer({
   month,
   dataYear,
   selectedYear,
+  member_num,
 }) {
   const dt = new Date();
   var nowDate =
@@ -30,7 +32,43 @@ export default function List_answer({
   const targetDate =
     selectedYear.toString() + monthToString.padStart(2, "0") + date;
 
+  const [answersFromTrash, setAnswersFromTrash] = useState([]);
+  const [isInTrash, setIsInTrash] = useState(false);
+
+  const getAnswersFromTrash = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_SERVER_IP}/trashes/${member_num}`
+      );
+
+      setAnswersFromTrash(res.data);
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
+  const filter = () => {
+    const res = answersFromTrash.filter((v) => {
+      if (v.answer_year + v.answer_date === nowDate) {
+        return v;
+      }
+    });
+    if (res.length > 0) setIsInTrash(true);
+  };
+
+  useEffect(() => {
+    getAnswersFromTrash();
+  }, []);
+
+  useEffect(() => {
+    filter();
+  }, [answersFromTrash]);
+
   function TodayWrite() {
+    const location = useLocation();
+    const handleClick = () => {
+      location.onClicked = true;
+    };
     return (
       <div>
         <div className="TodayWrite">
@@ -38,7 +76,19 @@ export default function List_answer({
             <img src={girl} alt="ㅎㅇ"></img>
             <p>오늘의 질문입니다. 지금은 나의 생각을 남겨보세요!</p>
           </div>
-          <Link to="/write">
+          <Link
+            onClick={handleClick}
+            to={(location) => {
+              if (location.onClicked && isInTrash) {
+                alert(
+                  "이미 등록된 답변이 존재합니다. 쓰레기통을 확인해 주세요."
+                );
+                return { pathname: "/list" };
+              } else {
+                return { pathname: "/write" };
+              }
+            }}
+          >
             <p>답변작성하기</p>
           </Link>
         </div>

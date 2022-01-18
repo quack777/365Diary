@@ -40,6 +40,7 @@ function List() {
   let diff = now - start;
   let oneDay = 1000 * 60 * 60 * 24;
   let day = Math.floor(diff / oneDay);
+  const member_num = sessionStorage.getItem("member_num");
 
   const [answerDate, setAnswerDate] = useState(
     location.state === undefined ? day : Number(location.state.id)
@@ -68,7 +69,6 @@ function List() {
     setCalender(true);
   }
   const getAns = useCallback(async () => {
-    const member_num = sessionStorage.getItem("member_num");
     setMember(Number(member_num));
 
     await axios
@@ -123,8 +123,9 @@ function List() {
       },
     })
       .then((response, request) => {
-        if (response.status === 200) // alert("삭제 성공!");
-        setDeletes(false);
+        if (response.status === 200)
+          // alert("삭제 성공!");
+          setDeletes(false);
         setAnswerAllData(
           answerAllData.filter((data, index) => index !== deleteIndex)
         );
@@ -208,6 +209,7 @@ function List() {
         date={date}
         month={month}
         selectedYear={selectedYear}
+        member_num={member_num}
       />
 
       {deletes ? (

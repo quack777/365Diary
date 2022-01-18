@@ -11,10 +11,10 @@ import "../styles/Login.css";
 import axios from "axios";
 
 // 배포환경
-// const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL_PROD;
+const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL_PROD;
 
 // 개발환경
-const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL;
+// const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL;
 
 function Login() {
   const slideData = [
@@ -66,8 +66,20 @@ function Login() {
           );
         })}
         <div className="practice">
-          <button className={current === 0 ? "choice" : null} id="firstChoice" onClick={() => setCurrent(0)}>1</button>
-          <button className={current === 1 ? "choice" : null} id="secondChoice" onClick={() => setCurrent(1)}>2</button>
+          <button
+            className={current === 0 ? "choice" : null}
+            id="firstChoice"
+            onClick={() => setCurrent(0)}
+          >
+            1
+          </button>
+          <button
+            className={current === 1 ? "choice" : null}
+            id="secondChoice"
+            onClick={() => setCurrent(1)}
+          >
+            2
+          </button>
         </div>
       </section>
       <section>
