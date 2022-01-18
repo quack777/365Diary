@@ -59,7 +59,7 @@ function Write() {
         member_num: member, //임시
       })
       .then(function (response) {
-       //  if (response.status === 200) alert("글 등록 완료");
+        //  if (response.status === 200) alert("글 등록 완료");
         setSucessWrite(true);
         // history.push("/list");
       })
@@ -135,7 +135,10 @@ function Write() {
             )}
           </div>
           <div className="twoBtn">
-            <button style={{borderStyle: "none", backgroundColor: "transparent"}} onClick={() => history.goBack()}>
+            <button
+              style={{ borderStyle: "none", backgroundColor: "transparent" }}
+              onClick={() => history.goBack()}
+            >
               <p id="first">작성취소</p>
             </button>
             <button id="second" type="submit">
@@ -146,9 +149,13 @@ function Write() {
       </form>
       <div className="backColor"></div>
       <div id="WriteBack"></div>
-      {sucessWrite ?
-        <Alert goAway={"/list"} content={"작성"}></Alert>
-        : null}
+      {sucessWrite ? (
+        <Alert
+          goAway={"/list"}
+          isClose={setSucessWrite}
+          content={"작성"}
+        ></Alert>
+      ) : null}
     </div>
   );
 }
