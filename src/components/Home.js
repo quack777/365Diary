@@ -26,7 +26,12 @@ function Home(props) {
   var diff = now - start;
   var oneDay = 1000 * 60 * 60 * 24;
   var day = Math.floor(diff / oneDay);
-  const member_num = sessionStorage.getItem("member_num");
+  // const member_num = sessionStorage.getItem("member_num");
+
+  const [todayNum, setTodayNum] = useState(day);
+  const [memberNum, setmemberNum] = useState(
+    sessionStorage.getItem("member_num") || null
+  );
   let num = 0;
   const handleClick = () => (location.onClicked = true);
 
@@ -35,7 +40,7 @@ function Home(props) {
   function rightMove(a) {
     if (num >= -150) {
       // num = num - 30;
-      (num === -150) ? (num = -160) : (num = num - 30)
+      num === -150 ? (num = -160) : (num = num - 30);
       answersBox.current.style.transform = `translateX(${num}%)`;
       console.log(num);
     }
@@ -50,107 +55,47 @@ function Home(props) {
     }
   }
 
-  function getRandomNicknames() {
-    axios({
-      url: `${process.env.REACT_APP_SERVER_IP}/random`,
-      method: "get",
-      //withCredentials: true,
-      // baseURL: "",
-    })
-      .then(function (response) {
-        console.log(response);
-        setRanname(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-  const getRandomAnswers = useCallback(() => {
-    axios({
-      url: `${process.env.REACT_APP_SERVER_IP}/random/${day}`, // /random/{question_num}
-      method: "get",
-      //withCredentials: true,
-      // baseURL: "/",
-    })
-      .then(function (response) {
-        setAnswerData(response.data); // 답변 8게로 맞추기
-        // if (response.status === 200) {
-        //   // 실제 데이터가 들어올 경우
-        //   // setAnswer8(Array.from({ length: 8 }, (v, i) => response.data[i]));
+  const getInformation = async () => {
+    try {
+      const res1 = await axios.get(`${process.env.REACT_APP_SERVER_IP}/random`);
+      setRanname(res1.data);
+      const res2 = await axios.get(
+        `${process.env.REACT_APP_SERVER_IP}/random/${todayNum}`
+      ); // /random/{question_num}
+      setAnswerData(res2.data);
+      const res3 = await axios.get(
+        `${process.env.REACT_APP_SERVER_IP}/question/${todayNum}`
+      );
+      setQuestion(res3.data.question);
 
-        //   // =======DUMMY=======
-        //   setAnswer8(
-        //     Array.from(
-        //       { length: 8 },
-        //       (v, i) => "당신의 답변을 다른 사람들에게 공유해주세요"
-        //     )
-        //   );
-        // }
-
-        // console.log("arr: ", arr);
-        // setAnswer8(arr);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [day]);
-
-  const getQuestion = useCallback(() => {
-    axios({
-      url: `/question/${day}`,
-      method: "get",
-      //withCredentials: true,
-      baseURL: process.env.REACT_APP_SERVER_IP,
-    })
-      .then(function (response) {
-        console.log(response.data);
-        setQuestion(response.data.question);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [day]);
-
-  const getTodayMyAnswer = () => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_IP}/answers/${day}/${member_num}`)
-      .then(function (response) {
-        console.log(response.data);
-        if (response.data.length > 0) {
-          setTodayMyA(response.data);
+      if (memberNum !== null) {
+        const res4 = await axios.get(
+          `${process.env.REACT_APP_SERVER_IP}/answers/${todayNum}/${memberNum}`
+        );
+        if (res4.data.length > 0) {
+          setTodayMyA(res4.data);
         }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  const getTodyaMyTrashAnswer = () => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_IP}/trashes/${member_num}`)
-      .then(function (response) {
-        console.log(response.data);
+        const res5 = await axios.get(
+          `${process.env.REACT_APP_SERVER_IP}/trashes/${memberNum}`
+        );
         const year = new Date().getFullYear();
-        response.data.filter((data) => {
-          if (data.question_num === day) {
-            if (data.answer_year == year) {
+        res5.data.filter((data) => {
+          if (data.question_num === todayNum) {
+            if (data.answer_year === year.toString()) {
               setTodayMYTrashA(true);
             }
           }
         });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    } catch (error) {
+      console.log("error: ", error);
+    }
   };
 
   useEffect(() => {
-    getQuestion();
-    getRandomAnswers();
-    getRandomNicknames();
-    getTodayMyAnswer();
-    getTodyaMyTrashAnswer();
-  }, [getQuestion, getRandomAnswers]);
+    setTodayNum(day);
+    getInformation();
+  }, []);
 
   function setAnswerData(data) {
     const dataArray = data;
@@ -188,10 +133,6 @@ function Home(props) {
             );
           })}
         </div>
-        {/* <div className="btnBox">
-          <img src={arrow} onClick={leftMove}></img>
-          <img src={arrow} onClick={rightMove}></img>
-        </div> */}
         <div className="btnBox">
           <button onClick={leftMove}></button>
           <button onClick={rightMove}></button>
@@ -218,7 +159,7 @@ function Home(props) {
                       public_answer: todayMyA[0].public_answer,
                       answer_date: todayMyA[0].answer_date,
                       answer_year: todayMyA[0].answer_year,
-                      member_num: member_num,
+                      member_num: memberNum,
                       answer_num: todayMyA[0].answer_num,
                     },
                   },
