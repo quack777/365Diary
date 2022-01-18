@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Calender from "./util/Calender";
 import ListAnswerComponent from "./ListAnswerComponent";
 import { unstable_batchedUpdates } from "react-dom";
+import { Alert } from "./alert";
 
 function List() {
   const location = useLocation();
@@ -32,6 +33,7 @@ function List() {
   const [public_answer, setPublic_answer] = useState(["N"]);
   const [questionNum, setQuestionNum] = useState(0);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [isDelete, setIsDelete] = useState(false);
 
   const deleteModalContainer = useRef();
 
@@ -125,7 +127,8 @@ function List() {
       .then((response, request) => {
         if (response.status === 200)
           // alert("삭제 성공!");
-          setDeletes(false);
+          setIsDelete(true);
+        setDeletes(false);
         setAnswerAllData(
           answerAllData.filter((data, index) => index !== deleteIndex)
         );
@@ -223,7 +226,9 @@ function List() {
           </section>
         </div>
       ) : null}
-
+      {isDelete ? (
+        <Alert goAway={"/list"} isClose={setIsDelete} content={"삭제"}></Alert>
+      ) : null}
       {calender ? (
         <Calender
           setDataYear={setDataYear}
