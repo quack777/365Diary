@@ -33,8 +33,9 @@ function Home(props) {
   const answersBox = useRef();
 
   function rightMove(a) {
-    if (num > -210) {
-      num = num - 30;
+    if (num >= -150) {
+      // num = num - 30;
+      (num === -150) ? (num = -160) : (num = num - 30)
       answersBox.current.style.transform = `translateX(${num}%)`;
       console.log(num);
     }
