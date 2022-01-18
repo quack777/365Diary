@@ -30,21 +30,21 @@ function Home(props) {
   const handleClick = () => (location.onClicked = true);
 
   const answersBox = useRef();
+
   function rightMove(a) {
-    console.log(answersBox.current.style.transform);
-    if (num >= -300) {
+    if (num > -210) {
       num = num - 30;
       answersBox.current.style.transform = `translateX(${num}%)`;
-      console.log(answersBox.current.style.transform);
       console.log(num);
     }
   }
   //데이터 세팅
   function leftMove() {
-    if (num <= 30) {
+    if (num < 0) {
       num = num + 30;
       answersBox.current.style.transform = `translateX(${num}%)`;
-      console.log(answersBox.current.style.transform);
+      console.log(num);
+      console.log(answersBox.current.style.transform)
     }
   }
 
