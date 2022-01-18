@@ -143,7 +143,7 @@ function DeleteModal(props) {
     axios({
       url: `/trashes/${props.clickAN[0]}`, // /answers/trashes/{answer_num}/{member_num}
       method: "delete",
-      baseURL: "http://13.125.34.8:8080/365Project/",
+      baseURL: `${process.env.REACT_APP_SERVER_IP}`,
       data: {
         member_num: props.member, //props.member
         answer_delete: props.clickAN[1],
