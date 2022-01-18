@@ -80,9 +80,7 @@ export default function List_answer({
             onClick={handleClick}
             to={(location) => {
               if (location.onClicked && isInTrash) {
-                alert(
-                  "이미 등록된 답변이 존재합니다. 쓰레기통을 확인해 주세요."
-                );
+                alert("이미 등록된 답변이 존재합니다. 휴지통을 확인해 주세요.");
                 return { pathname: "/list" };
               } else {
                 return { pathname: "/write" };
