@@ -45,7 +45,7 @@ function Home(props) {
       num = num + 30;
       answersBox.current.style.transform = `translateX(${num}%)`;
       console.log(num);
-      console.log(answersBox.current.style.transform)
+      console.log(answersBox.current.style.transform);
     }
   }
 
@@ -129,19 +129,19 @@ function Home(props) {
       .get(`${process.env.REACT_APP_SERVER_IP}/trashes/${member_num}`)
       .then(function (response) {
         console.log(response.data);
-        const year = new Date().getFullYear()
-        response.data.filter(data => {
+        const year = new Date().getFullYear();
+        response.data.filter((data) => {
           if (data.question_num === day) {
             if (data.answer_year == year) {
               setTodayMYTrashA(true);
             }
           }
-        })
+        });
       })
       .catch(function (error) {
         console.log(error);
       });
-    };
+  };
 
   useEffect(() => {
     getQuestion();
@@ -227,8 +227,8 @@ function Home(props) {
               }
             } else if (todayMyTrashA && location.onClicked) {
               alert("휴지통에 오늘 답변이 존재합니다");
-            } 
-            else {
+              return { pathname: "/365" };
+            } else {
               return { pathname: "/write" };
             }
           }
