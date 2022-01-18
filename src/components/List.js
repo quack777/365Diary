@@ -123,7 +123,7 @@ function List() {
       },
     })
       .then((response, request) => {
-        if (response.status === 200) alert("삭제 성공!");
+        if (response.status === 200) // alert("삭제 성공!");
         setDeletes(false);
         setAnswerAllData(
           answerAllData.filter((data, index) => index !== deleteIndex)
@@ -149,9 +149,9 @@ function List() {
     })
       .then((response) => {
         console.log(response);
-        pa = "Y"
+        /* pa = "Y"
           ? alert("답변이 비공개 됐습니다")
-          : alert("답변이 전체공개 됐습니다");
+          : alert("답변이 전체공개 됐습니다"); */
       })
       .catch((error) => {
         console.log(error);

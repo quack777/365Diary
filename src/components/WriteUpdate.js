@@ -6,6 +6,7 @@ import toggle_selected from "../styles/images/main_public.png";
 import axios from "axios";
 
 import "../styles/Write.css";
+import { Alert } from "./alert";
 
 function WriteUpdate() {
   const { id } = useParams();
@@ -22,6 +23,7 @@ function WriteUpdate() {
   const [count, setCount] = useState(0);
   const [open, setOpen] = useState(false);
   const [publica, setPublica] = useState(location?.state?.data?.public_answer);
+  const [update, setUpdate] = useState(false);
 
   function writeSubmit(e) {
     e.preventDefault();
@@ -38,8 +40,9 @@ function WriteUpdate() {
       },
     })
       .then(function (response) {
-        alert("수정 성공!");
-        history.replace("/list", { id, targetDate, targetMonth });
+        // alert("수정 성공!");
+        // history.replace("/list", { id, targetDate, targetMonth });
+        setUpdate(true);
       })
       .catch(function (error) {
         console.log(error);
@@ -112,6 +115,10 @@ function WriteUpdate() {
       </form>
       <div className="backColor"></div>
       <div id="WriteBack"></div>
+      { update ?
+        <Alert goAway={"/list"} content={"수정"}></Alert> 
+        : null
+      }
     </div>
   );
 }

@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
 import toggle_unselected from "../styles/images/main_private.png";
 import toggle_selected from "../styles/images/main_public.png";
+import alertCheck from "../styles/images/alertCheck.png";
+import alertX from "../styles/images/alertX.png";
+import { Alert } from "./alert";
 import axios, { Axios } from "axios";
 
 import "../styles/Write.css";
@@ -16,7 +19,7 @@ function Write() {
   const date = NewDate.getDate();
   const year = NewDate.getFullYear();
 
-  const [question, setQuestion] = useState("나의 삶의 목적은 무엇인가요?");
+  const [question, setQuestion] = useState();
   const [answer, setAnswer] = useState("");
   const [count, setCount] = useState(0);
   const [open, setOpen] = useState(false);
@@ -28,6 +31,7 @@ function Write() {
   const [cDate, setCDate] = useState();
   const [cYear, setCYear] = useState();
   const [content, setContent] = useState("");
+  const [sucessWrite, setSucessWrite] = useState(false);
 
   const loca = useLocation();
 
@@ -55,8 +59,9 @@ function Write() {
         member_num: member, //임시
       })
       .then(function (response) {
-        if (response.status === 200) alert("글 등록 완료");
-        history.push("/list");
+       //  if (response.status === 200) alert("글 등록 완료");
+        setSucessWrite(true);
+        // history.push("/list");
       })
       .catch(function (error) {
         console.log(error);
@@ -141,6 +146,9 @@ function Write() {
       </form>
       <div className="backColor"></div>
       <div id="WriteBack"></div>
+      {sucessWrite ?
+        <Alert goAway={"/list"} content={"작성"}></Alert>
+        : null}
     </div>
   );
 }

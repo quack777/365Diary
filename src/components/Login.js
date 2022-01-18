@@ -11,10 +11,10 @@ import "../styles/Login.css";
 import axios from "axios";
 
 // 배포환경
-const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL_PROD;
+// const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL_PROD;
 
 // 개발환경
-// const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL;
+const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL;
 
 function Login() {
   const slideData = [
