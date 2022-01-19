@@ -8,6 +8,7 @@ import arrow from "../styles/images/arrow01_normal.png";
 import main from "../styles/images/mainpage.png";
 import "../styles/Home.css";
 import { Link, useLocation } from "react-router-dom";
+import { LoginAlert } from "./loginAlert";
 
 function Home(props) {
   const NewDate = new Date();
@@ -20,6 +21,7 @@ function Home(props) {
   const [question, setQuestion] = useState();
   const [todayMyA, setTodayMyA] = useState([]);
   const [todayMyTrashA, setTodayMYTrashA] = useState(false);
+  const [loginAlert, setLoginAlert] = useState(false);
   // const [num, setNum] = useState(0);
   var now = new Date();
   var start = new Date(now.getFullYear(), 0, 0);
@@ -141,8 +143,9 @@ function Home(props) {
       <Link
         to={(location) => {
           if (!location.isLogged && location.onClicked) {
-            alert("로그인이 필요합니다!");
-            return { pathname: "/login" };
+            // alert("로그인이 필요합니다!");
+            // return { pathname: "/login" };
+            setLoginAlert(true);
           } else {
             if (todayMyA.length > 0 && location.onClicked) {
               if (
@@ -198,6 +201,9 @@ function Home(props) {
           src={main}
         ></img>
       </div>
+      {
+        loginAlert ? <LoginAlert setLoginAlert={setLoginAlert}></LoginAlert> : null
+      }
       <div className="backColor"></div>
     </div>
   );

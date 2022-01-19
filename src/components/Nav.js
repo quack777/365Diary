@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/Nav.css";
+import { LoginAlert } from "./loginAlert";
 
 function Nav(props) {
   const location = useLocation();
@@ -10,6 +11,7 @@ function Nav(props) {
 
   const NavCssflag = location.pathname.split("/");
   const cssFlag = NavCssflag[NavCssflag.length - 1];
+  const [loginAlert, setLoginAlert] = useState(false);
 
   const handleClick = () => (location.onClicked = true);
 
@@ -27,7 +29,8 @@ function Nav(props) {
         <Link
           to={(location) => {
             if (!location.isLogged && location.onClicked) {
-              alert("로그인이 필요합니다!");
+              // alert("로그인이 필요합니다!");
+              setLoginAlert(true);
               return { pathname: "/login" };
             } else {
               return { pathname: "/list" };
@@ -42,8 +45,9 @@ function Nav(props) {
         <Link
           to={(location) => {
             if (!location.isLogged && location.onClicked) {
-              alert("로그인이 필요합니다!");
-              return { pathname: "/login" };
+              //alert("로그인이 필요합니다!");
+              setLoginAlert(true);
+              // return { pathname: "/login" };
             } else {
               return { pathname: "/trash" };
             }
@@ -66,6 +70,9 @@ function Nav(props) {
           </Link>
         )}
       </div>
+      {
+        loginAlert ? <LoginAlert setLoginAlert={setLoginAlert}></LoginAlert> : null
+      }
     </div>
   );
 }
