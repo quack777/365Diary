@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useHistory, useParams } from "react-router-dom";
 import toggle_unselected from "../styles/images/main_private.png";
 import toggle_selected from "../styles/images/main_public.png";
@@ -19,7 +19,9 @@ function WriteUpdate() {
     location?.state?.data?.answer
   );
 
-  const [question] = useState(location.state.question);
+  const answer_num = location.answer_num;
+
+  const [question] = useState(location?.state?.question);
   const [count, setCount] = useState(0);
   const [open, setOpen] = useState(false);
   const [publica, setPublica] = useState(location?.state?.data?.public_answer);
@@ -48,6 +50,19 @@ function WriteUpdate() {
         console.log(error);
       });
   }
+
+  const getUpdate = async () => {
+    try {
+      const res = await axios.get(`/answers/pages/${answer_num}`);
+      console.log("res: ", res);
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+  console.log(location);
+  useEffect(() => {
+    getUpdate();
+  }, []);
 
   function inputCount(e) {
     const inputValue = e.target.value;

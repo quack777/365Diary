@@ -34,6 +34,7 @@ export default function List_answer({
 
   const [answersFromTrash, setAnswersFromTrash] = useState([]);
   const [isInTrash, setIsInTrash] = useState(false);
+  const [todayAnswersInTrash, setTodayAnswersInTrash] = useState([]);
 
   const getAnswersFromTrash = async () => {
     try {
@@ -53,7 +54,10 @@ export default function List_answer({
         return v;
       }
     });
-    if (res.length > 0) setIsInTrash(true);
+    if (res.length > 0) {
+      setTodayAnswersInTrash(res);
+      setIsInTrash(true);
+    }
   };
 
   useEffect(() => {
@@ -64,7 +68,8 @@ export default function List_answer({
     filter();
   }, [answersFromTrash]);
 
-  function TodayWrite() {
+  function TodayWrite({ todayAnswersInTrash }) {
+    console.log("todayAnswersInTrash: ", todayAnswersInTrash);
     const location = useLocation();
     const handleClick = () => {
       location.onClicked = true;
@@ -81,7 +86,11 @@ export default function List_answer({
             to={(location) => {
               if (location.onClicked && isInTrash) {
                 alert("이미 등록된 답변이 존재합니다. 휴지통을 확인해 주세요.");
-                return { pathname: "/list" };
+                return {
+                  // pathname: `/write/${todayAnswersInTrash[0].answer_num}`,
+                  // answer_num: todayAnswersInTrash[0].answer_num,
+                  pathname: "/list",
+                };
               } else {
                 return { pathname: "/write" };
               }
@@ -123,7 +132,7 @@ export default function List_answer({
                   <>
                     <Link
                       to={{
-                        pathname: `/write/${data.question_num}`,
+                        pathname: `/write/${data.answer_num}`,
                         state: { data, question },
                       }}
                     >
@@ -147,7 +156,7 @@ export default function List_answer({
         })
       ) : // <TodayWrite />
       targetDate === nowDate ? (
-        <TodayWrite />
+        <TodayWrite todayAnswersInTrash={todayAnswersInTrash} />
       ) : (
         <div>당일만 작성 가능</div>
       )}
