@@ -44,7 +44,6 @@ function Login() {
     setCurrent(current === 0 ? length - 1 : current - 1);
     setCurrent(0);
   }; */
-
   if (!Array.isArray(slideData) || slideData.length <= 0) {
     return null;
   }

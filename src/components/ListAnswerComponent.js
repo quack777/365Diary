@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import modify_normal from "../styles/images/modify_normal.png";
 import Line from "../styles/images/Line45.png";
 import delete_normal from "../styles/images/delete_normal.png";
@@ -8,6 +8,7 @@ import toggle_selected from "../styles/images/list_public.png";
 import girl from "../styles/images/Mask Group.png";
 import "../styles/List.css";
 import axios from "axios";
+import AlertTrash from "../components/util/AlertTrash";
 
 export default function List_answer({
   question,
@@ -28,6 +29,7 @@ export default function List_answer({
     (dt.getMonth() + 1).toString().padStart(2, "0") +
     dt.getDate().toString().padStart(2, "0");
 
+  const history = useHistory();
   const monthToString = month + "";
   const targetDate =
     selectedYear.toString() + monthToString.padStart(2, "0") + date;
@@ -35,6 +37,7 @@ export default function List_answer({
   const [answersFromTrash, setAnswersFromTrash] = useState([]);
   const [isInTrash, setIsInTrash] = useState(false);
   const [todayAnswersInTrash, setTodayAnswersInTrash] = useState([]);
+  const [alertTrash, setAlertTrash] = useState(false);
 
   const getAnswersFromTrash = async () => {
     try {
@@ -68,11 +71,15 @@ export default function List_answer({
     filter();
   }, [answersFromTrash]);
 
-  function TodayWrite({ todayAnswersInTrash }) {
-    console.log("todayAnswersInTrash: ", todayAnswersInTrash);
+  function TodayWrite() {
     const location = useLocation();
     const handleClick = () => {
       location.onClicked = true;
+      if (location.onClicked && isInTrash) {
+        setAlertTrash(true);
+      } else {
+        history.push("/write");
+      }
     };
     return (
       <div>
@@ -81,7 +88,7 @@ export default function List_answer({
             <img src={girl} alt="ㅎㅇ"></img>
             <p>오늘의 질문입니다. 지금은 나의 생각을 남겨보세요!</p>
           </div>
-          <Link
+          {/* <Link
             onClick={handleClick}
             to={(location) => {
               if (location.onClicked && isInTrash) {
@@ -95,9 +102,11 @@ export default function List_answer({
                 return { pathname: "/write" };
               }
             }}
-          >
-            <p>답변작성하기</p>
-          </Link>
+          > */}
+          <a>
+            <p onClick={handleClick}>답변작성하기</p>
+            {/* </Link> */}
+          </a>
         </div>
       </div>
     );
@@ -160,6 +169,8 @@ export default function List_answer({
       ) : (
         <div>당일만 작성 가능</div>
       )}
+
+      {alertTrash ? <AlertTrash isClose={setAlertTrash} /> : null}
     </div>
   );
 }

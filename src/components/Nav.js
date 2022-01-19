@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import "../styles/Nav.css";
 import { LoginAlert } from "./loginAlert";
 
@@ -12,8 +12,21 @@ function Nav(props) {
   const NavCssflag = location.pathname.split("/");
   const cssFlag = NavCssflag[NavCssflag.length - 1];
   const [loginAlert, setLoginAlert] = useState(false);
-
-  const handleClick = () => (location.onClicked = true);
+  const history = useHistory();
+  console.log("history: ", history);
+  const handleClick = (e) => {
+    console.log("e: ", e);
+    const route = e.target.className;
+    if (!location.isLogged && "/" + route !== location.pathname) {
+      setLoginAlert(true);
+    } else {
+      if (route === "list") {
+        history.push("/list");
+      } else if (route === "trash") {
+        history.push("/trash");
+      }
+    }
+  };
 
   return (
     <div className={props.isMobile ? "Nav_mobile" : `Nav ${cssFlag}`}>
@@ -26,38 +39,24 @@ function Nav(props) {
             소개
           </p>
         </Link>
-        <Link
-          to={(location) => {
-            if (!location.isLogged && location.onClicked) {
-              // alert("로그인이 필요합니다!");
-              setLoginAlert(true);
-              return { pathname: "/login" };
-            } else {
-              return { pathname: "/list" };
-            }
-          }}
-          onClick={handleClick}
-        >
-          <p className={location.pathname === "/list" ? "bctive" : ""}>
+        <a>
+          <p
+            onClick={(e) => handleClick(e)}
+            className={location.pathname === "/list" ? "bctive list" : "list"}
+          >
             내 일기장
           </p>
-        </Link>
-        <Link
-          to={(location) => {
-            if (!location.isLogged && location.onClicked) {
-              //alert("로그인이 필요합니다!");
-              setLoginAlert(true);
-              // return { pathname: "/login" };
-            } else {
-              return { pathname: "/trash" };
+        </a>
+        <a>
+          <p
+            onClick={(e) => handleClick(e)}
+            className={
+              location.pathname === "/trash" ? "bctive trash" : "trash"
             }
-          }}
-          onClick={handleClick}
-        >
-          <p className={location.pathname === "/trash" ? "bctive" : ""}>
+          >
             휴지통
           </p>
-        </Link>
+        </a>
         {!location.isLogged ? (
           <Link to="/login">
             <p className={location.pathname === "/login" ? "bctive" : ""}>
@@ -70,9 +69,9 @@ function Nav(props) {
           </Link>
         )}
       </div>
-      {
-        loginAlert ? <LoginAlert setLoginAlert={setLoginAlert}></LoginAlert> : null
-      }
+      {loginAlert ? (
+        <LoginAlert setLoginAlert={setLoginAlert}></LoginAlert>
+      ) : null}
     </div>
   );
 }

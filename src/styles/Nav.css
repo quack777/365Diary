@@ -25,6 +25,7 @@
 
 .Nav a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .Nav #logo {

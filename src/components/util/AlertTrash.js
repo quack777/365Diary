@@ -7,8 +7,8 @@ export default function AlertTrash({ goAway, content, isClose }) {
   console.log("goAway: ", goAway);
   const history = useHistory();
   return (
-    <div className="bigAlert">
-      <div className="alert">
+    <div className="alert">
+      <div className="alert_dup">
         <img src={alertCheck}></img>
         <span>휴지통에 오늘 답변이 존재합니다</span>
         <img

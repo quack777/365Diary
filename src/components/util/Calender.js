@@ -3,11 +3,13 @@ import DatePicker from "react-datepicker";
 import xxxxx from "../../styles/images/xxxxx.png";
 import { useState } from "react";
 import axios from "axios";
+import AlertCalender from "../util/AlertCalender";
 
 export default function Calender(props) {
   const [startDate, setStartDate] = useState(new Date());
   const member_num = sessionStorage.getItem("member_num");
   const [answers, setAnswers] = useState([]);
+  const [isModalOn, setIsModalOn] = useState(false);
 
   const now = new Date();
   const dateInit = new Date(now.getFullYear(), 0, 0);
@@ -56,7 +58,7 @@ export default function Calender(props) {
     } else {
       //  답변이 하나도 없고 다른날짜를 선택한 경우
       if (selectedDate !== reqDay) {
-        alert("없음!");
+        setIsModalOn(true);
       } else {
         // 답변이 하나도 없고 같은 날짜를 선택한 경우
         if (clickFag) {
@@ -123,6 +125,7 @@ export default function Calender(props) {
           }}
           formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 3).toUpperCase()}
         />
+        {isModalOn ? <AlertCalender isClose={setIsModalOn} /> : null}
       </div>
     </div>
   );
