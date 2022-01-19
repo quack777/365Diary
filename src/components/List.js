@@ -34,6 +34,7 @@ function List() {
   const [questionNum, setQuestionNum] = useState(0);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [isDelete, setIsDelete] = useState(false);
+  const [questionData, setQuestionData] = useState([]);
 
   const deleteModalContainer = useRef();
 
@@ -70,42 +71,39 @@ function List() {
   function seeCalender() {
     setCalender(true);
   }
-  const getAns = useCallback(async () => {
-    setMember(Number(member_num));
+  const getQnA = useCallback(async () => {
+    try {
+      setMember(Number(member_num));
+      const answers = await axios.get(
+        `${process.env.REACT_APP_SERVER_IP}/answers/${date}/${member_num}`
+      );
+      setAnswerAllData(answers.data);
+      const questions = await axios.get(
+        `${process.env.REACT_APP_SERVER_IP}/question/calendars/${date}`
+      );
+      setQuestionData(questions.data);
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  }, [member_num, date]);
 
-    await axios
-      .get(`${process.env.REACT_APP_SERVER_IP}/answers/${date}/${member_num}`)
-      .then(function (response) {
-        unstable_batchedUpdates(() => {
-          setDataYear(response.data.map((item) => item.answer_year));
-          setAnswerDate(response.data.map((item) => item.answer_date));
-          setDataAnswer(response.data.map((item) => item.answer));
-          setAnswerNum(response.data.map((item) => item.answer_num));
-          setPublic_answer(response.data.map((item) => item.public_answer));
-          setAnswerAllData(response.data);
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [date]);
-
-  const getQuestion = useCallback(async () => {
-    await axios
-      .get(`${process.env.REACT_APP_SERVER_IP}/question/calendars/${date}`)
-      .then(function (response) {
-        setQuestion(response.data.question);
-        setQuestionNum(response.data.question_num);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [setQuestion, date]);
+  const filterAnswer = (answerAllData, questionData) => {
+    setDataYear(answerAllData.map((item) => item.answer_year));
+    setAnswerDate(answerAllData.map((item) => item.answer_date));
+    setDataAnswer(answerAllData.map((item) => item.answer));
+    setAnswerNum(answerAllData.map((item) => item.answer_num));
+    setPublic_answer(answerAllData.map((item) => item.public_answer));
+    setQuestion(questionData.question);
+    setQuestionNum(questionData.question_num);
+  };
 
   useEffect(() => {
-    getQuestion();
-    getAns();
-  }, [getAns, getQuestion]);
+    getQnA();
+  }, [date, getQnA]);
+
+  useEffect(() => {
+    filterAnswer(answerAllData, questionData);
+  }, [answerAllData, questionData]);
 
   function goTrash() {
     setDataAnswer(dataAnswer.filter((answer, index) => index !== deleteIndex)); //실제에서는 .then안에
@@ -132,7 +130,7 @@ function List() {
         setAnswerAllData(
           answerAllData.filter((data, index) => index !== deleteIndex)
         );
-        getAns();
+        getQnA();
       })
       .catch((error) => {
         console.log(error);
