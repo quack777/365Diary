@@ -9,6 +9,8 @@ import main from "../styles/images/mainpage.png";
 import "../styles/Home.css";
 import { Link, useLocation } from "react-router-dom";
 import { LoginAlert } from "./loginAlert";
+import ConfirmModal from "../components/util/ConfirmModal";
+import AlertTrash from "../components/util/AlertTrash";
 
 function Home(props) {
   const NewDate = new Date();
@@ -22,6 +24,8 @@ function Home(props) {
   const [todayMyA, setTodayMyA] = useState([]);
   const [todayMyTrashA, setTodayMYTrashA] = useState(false);
   const [loginAlert, setLoginAlert] = useState(false);
+  const [confirmModalOn, setConfirmModalOn] = useState(false);
+  const [alertTrash, setAlertTrash] = useState(false);
   // const [num, setNum] = useState(0);
   var now = new Date();
   var start = new Date(now.getFullYear(), 0, 0);
@@ -35,7 +39,22 @@ function Home(props) {
     sessionStorage.getItem("member_num") || null
   );
   let num = 0;
-  const handleClick = () => (location.onClicked = true);
+
+  const handleClick = () => {
+    location.onClicked = true;
+    if (!location.isLogged && location.onClicked) {
+      // alert("로그인이 필요합니다!");
+      // return { pathname: "/login" };
+      setLoginAlert(true);
+    } else if (todayMyA.length > 0 && location.onClicked) {
+      setConfirmModalOn(true);
+    } else if (todayMyTrashA && location.onClicked) {
+      setAlertTrash(true);
+      // return { pathname: "/365" };
+    } else {
+      // return { pathname: "/write" };
+    }
+  };
 
   const answersBox = useRef();
 
@@ -140,51 +159,10 @@ function Home(props) {
           <button onClick={rightMove}></button>
         </div>
       </div>
-      <Link
-        to={(location) => {
-          if (!location.isLogged && location.onClicked) {
-            // alert("로그인이 필요합니다!");
-            // return { pathname: "/login" };
-            setLoginAlert(true);
-          } else {
-            if (todayMyA.length > 0 && location.onClicked) {
-              if (
-                window.confirm(
-                  "오늘 답변이 이미 존재합니다! 수정하시겠습니까 ?"
-                )
-              ) {
-                return {
-                  pathname: `/write/${day}`,
-                  state: {
-                    question: question,
-                    data: {
-                      answer: todayMyA[0].answer,
-                      public_answer: todayMyA[0].public_answer,
-                      answer_date: todayMyA[0].answer_date,
-                      answer_year: todayMyA[0].answer_year,
-                      member_num: memberNum,
-                      answer_num: todayMyA[0].answer_num,
-                    },
-                  },
-                };
-              } else {
-                return { pathname: `/365` };
-              }
-            } else if (todayMyTrashA && location.onClicked) {
-              alert("휴지통에 오늘 답변이 존재합니다");
-              return { pathname: "/365" };
-            } else {
-              return { pathname: "/write" };
-            }
-          }
-        }}
-        onClick={handleClick}
-      >
-        <button id="goWriteBtn">
-          <p>오늘 나의 생각 남기기</p>
-          <img src={Vector} alt="vector"></img>
-        </button>
-      </Link>
+      <button id="goWriteBtn" onClick={handleClick}>
+        <p>오늘 나의 생각 남기기</p>
+        <img src={Vector} alt="vector"></img>
+      </button>
       <div id={props.isMobile ? "bottom_mobile" : "bottom"}>
         <div className={props.isMobile ? "bottom_textBox_mobile" : "bottom"}>
           <p>365개의 질문,</p>
@@ -201,9 +179,21 @@ function Home(props) {
           src={main}
         ></img>
       </div>
-      {
-        loginAlert ? <LoginAlert setLoginAlert={setLoginAlert}></LoginAlert> : null
-      }
+      {loginAlert ? (
+        <LoginAlert setLoginAlert={setLoginAlert}></LoginAlert>
+      ) : null}
+
+      {confirmModalOn ? (
+        <ConfirmModal
+          question={question}
+          day={day}
+          member_num={memberNum}
+          setConfirmModalOn={setConfirmModalOn}
+          todayMyA={todayMyA}
+        />
+      ) : null}
+
+      {alertTrash ? <AlertTrash isClose={setAlertTrash} /> : null}
       <div className="backColor"></div>
     </div>
   );

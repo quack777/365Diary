@@ -152,9 +152,10 @@
   /* position: relative;
   bottom: 550px; */
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
+  opacity: 0.96;
 }
 
 .deleteModal > img {
@@ -200,11 +201,13 @@
 
 .deleteModal > section {
   display: flex;
+  height: 20%;
   align-self: center;
+  justify-content: center;
   margin-top: 20px;
 }
 
-.deleteModal > section > p {
+.deleteModal > section > p,.deleteModal > section > a {
   text-align: center;
   padding: 10px 0;
   margin: 5px 10px;
@@ -231,11 +234,15 @@
   box-sizing: border-box;
   border-radius: 16px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.deleteModal > section > p:nth-child(2) {
+.deleteModal > section > p:nth-child(2),.deleteModal > section > a:nth-child(2) {
   width: 198px;
   height: auto;
+  display: flex;
 
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
@@ -243,13 +250,13 @@
   font-size: 25px;
   line-height: 174.2%;
   /* identical to box height, or 44px */
-
+  justify-content: center;
+  align-items: center;
   letter-spacing: 0.07em;
 
   /* color/grey/01 */
 
   color: #f9f8f9;
-
   background: #7eb496;
   border-radius: 16px;
   cursor: pointer;
