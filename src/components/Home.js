@@ -7,7 +7,7 @@ import Vector from "../styles/images/Vector 1.png";
 import arrow from "../styles/images/arrow01_normal.png";
 import main from "../styles/images/mainpage.png";
 import "../styles/Home.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import { LoginAlert } from "./loginAlert";
 import ConfirmModal from "../components/util/ConfirmModal";
 import AlertTrash from "../components/util/AlertTrash";
@@ -33,7 +33,7 @@ function Home(props) {
   var oneDay = 1000 * 60 * 60 * 24;
   var day = Math.floor(diff / oneDay);
   // const member_num = sessionStorage.getItem("member_num");
-
+  const history = useHistory();
   const [todayNum, setTodayNum] = useState(day);
   const [memberNum, setmemberNum] = useState(
     sessionStorage.getItem("member_num") || null
@@ -52,7 +52,7 @@ function Home(props) {
       setAlertTrash(true);
       // return { pathname: "/365" };
     } else {
-      // return { pathname: "/write" };
+      history.push("/write");
     }
   };
 
