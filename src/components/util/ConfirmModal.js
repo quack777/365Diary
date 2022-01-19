@@ -7,7 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 export default function ConfirmModal({
   setConfirmModalOn,
   todayMyA,
-  memberNum,
+  member_num,
   day,
   question,
 }) {
@@ -29,7 +29,7 @@ export default function ConfirmModal({
                   public_answer: todayMyA[0].public_answer,
                   answer_date: todayMyA[0].answer_date,
                   answer_year: todayMyA[0].answer_year,
-                  member_num: memberNum,
+                  member_num: member_num,
                   answer_num: todayMyA[0].answer_num,
                 },
               },
