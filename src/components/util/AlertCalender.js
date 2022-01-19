@@ -3,11 +3,10 @@ import { useHistory } from "react-router-dom";
 import warning from "../../styles/images/warning.png";
 import alertX from "../../styles/images/alertX.png";
 
-export default function AlertCalender({ goAway, content, isClose }) {
-  console.log("goAway: ", goAway);
-  const history = useHistory();
+export default function AlertCalender({ calender, isClose }) {
+  const cal = calender;
   return (
-    <div className="alert">
+    <div className={cal ? `alert ${cal}` : "alert"}>
       <div className="alert_calender">
         <img src={warning}></img>
         <div className="textBox">

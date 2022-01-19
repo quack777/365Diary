@@ -10,7 +10,7 @@ export default function Calender(props) {
   const member_num = sessionStorage.getItem("member_num");
   const [answers, setAnswers] = useState([]);
   const [isModalOn, setIsModalOn] = useState(false);
-
+  const calender = "cal";
   const now = new Date();
   const dateInit = new Date(now.getFullYear(), 0, 0);
   const reqDay = Math.floor((now - dateInit) / (1000 * 60 * 60 * 24));
@@ -125,7 +125,9 @@ export default function Calender(props) {
           }}
           formatWeekDay={(nameOfDay) => nameOfDay.substr(0, 3).toUpperCase()}
         />
-        {isModalOn ? <AlertCalender isClose={setIsModalOn} /> : null}
+        {isModalOn ? (
+          <AlertCalender calender={calender} isClose={setIsModalOn} />
+        ) : null}
       </div>
     </div>
   );

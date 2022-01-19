@@ -363,15 +363,13 @@
   left: 35vw;
   width: 100vw;
   height: 150vh;
-  background-color: black;
-  opacity: 0.8;
+  /* background-color: black;
+  opacity: 0.8; */
 
 }
-.
-.alert_dup {
-  
-  margin: 0 auto;
 
+.alert_dup {
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -383,6 +381,12 @@
   z-index: 50;
 }
 
+.cal{
+
+  position: absolute;
+  top:10vh;
+  left: 10vw;
+}
 
 .alert_calender {
 
