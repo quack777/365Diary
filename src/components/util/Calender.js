@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import xxxxx from "../../styles/images/xxxxx.png";
 import { useState } from "react";
 import axios from "axios";
-import AlertCalender from "../util/AlertCalender";
+import AlertCalender from "../util/alert_modal/AlertCalender";
 
 export default function Calender(props) {
   const [startDate, setStartDate] = useState(new Date());

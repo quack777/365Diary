@@ -1,14 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
-import toggle_unselected from "../styles/images/main_private.png";
-import toggle_selected from "../styles/images/main_public.png";
-import alertCheck from "../styles/images/alertCheck.png";
-import alertX from "../styles/images/alertX.png";
-import { Alert } from "./alert";
+import toggle_unselected from "../../styles/images/main_private.png";
+import toggle_selected from "../../styles/images/main_public.png";
+import alertCheck from "../../styles/images/alertCheck.png";
+import alertX from "../../styles/images/alertX.png";
+import { Alert } from "../util/alert_modal/alert";
 import axios, { Axios } from "axios";
 
-import "../styles/Write.css";
+import "../../styles/Write.css";
 
 function Write() {
   const location = useLocation();

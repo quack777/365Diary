@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import xxxxx from "../styles/images/xxxxx.png";
-import "../styles/loginAlert.css";
+import xxxxx from "../../../styles/images/xxxxx.png";
+import "../../../styles/loginAlert.css";
 
 export function LoginAlert({ setLoginAlert, route }) {
   const history = useHistory();

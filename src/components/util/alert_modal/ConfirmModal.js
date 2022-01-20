@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import xxxxx from "../../styles/images/xxxxx.png";
-import "../../styles/List.css";
+import xxxxx from "../../../styles/images/xxxxx.png";
+import "../../../styles/List.css";
 import { Link, useLocation } from "react-router-dom";
 
 export default function ConfirmModal({

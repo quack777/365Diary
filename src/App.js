@@ -1,17 +1,16 @@
 import React from "react";
 import "./App.css";
-import Nav from "./components/Nav";
-import Home from "./components/Home";
-import Write from "./components/Write";
-import List from "./components/List";
-import Trash from "./components/Trash";
-import Login from "./components/Login";
-import Logout from "./components/Logout";
-import Signup from "./components/Sign";
-import OAuth2RedirectHandler from "./components/OAuth2RedirectHandeler";
+import Nav from "./components/Home/Nav";
+import Home from "./components/Home/Home";
+import Write from "./components/List/Write";
+import List from "./components/List/List";
+import Trash from "./components/Trash/Trash";
+import Login from "./components/Login/Login";
+import Logout from "./components/Login/Logout";
+import OAuth2RedirectHandler from "./components/Login/OAuth2RedirectHandeler";
 import { HashRouter, Route, BrowserRouter } from "react-router-dom";
-import Introduce from "./components/Introduce";
-import WriteUpdate from "./components/WriteUpdate";
+import Introduce from "./components/Home/Introduce";
+import WriteUpdate from "./components/List/WriteUpdate";
 import Error from "./components/error/Error";
 import { useMediaQuery } from "react-responsive";
 

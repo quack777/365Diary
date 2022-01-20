@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import warning from "../../styles/images/warning.png";
-import alertX from "../../styles/images/alertX.png";
+import warning from "../../../styles/images/warning.png";
+import alertX from "../../../styles/images/alertX.png";
 
 export default function AlertCalender({ calender, isClose }) {
   const cal = calender;

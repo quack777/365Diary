@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
-import modify_normal from "../styles/images/modify_normal.png";
-import Line from "../styles/images/Line45.png";
-import delete_normal from "../styles/images/delete_normal.png";
-import toggle_unselected from "../styles/images/list_private.png";
-import toggle_selected from "../styles/images/list_public.png";
-import girl from "../styles/images/Mask Group.png";
-import "../styles/List.css";
+import modify_normal from "../../styles/images/modify_normal.png";
+import Line from "../../styles/images/Line45.png";
+import delete_normal from "../../styles/images/delete_normal.png";
+import toggle_unselected from "../../styles/images/list_private.png";
+import toggle_selected from "../../styles/images/list_public.png";
+import girl from "../../styles/images/Mask Group.png";
+import "../../styles/List.css";
 import axios from "axios";
-import AlertTrash from "../components/util/AlertTrash";
+import AlertTrash from "../util/alert_modal/AlertTrash";
 
 export default function List_answer({
   question,
