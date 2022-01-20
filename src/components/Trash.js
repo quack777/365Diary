@@ -200,7 +200,7 @@ function TrashAllDeleteModal(props) {
     axios({
       url: "/trashes/all",
       method: "delete",
-      baseURL: "http://13.125.34.8:8080/365Project/",
+      baseURL: `${process.env.REACT_APP_SERVER_IP}`,
       data: sendData,
     })
       .then((response) => {
