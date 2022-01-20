@@ -9,7 +9,7 @@ import main from "../../styles/images/mainpage.png";
 import "../../styles/Home.css";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { LoginAlert } from "../util/alert_modal/loginAlert";
-import ConfirmModal from "../util/alert_modal/ConfirmModal";
+import ConfirmAlert from "../util/alert_modal/ConfirmAlert";
 import AlertTrash from "../util/alert_modal/AlertTrash";
 
 function Home(props) {
@@ -184,7 +184,7 @@ function Home(props) {
       ) : null}
 
       {confirmModalOn ? (
-        <ConfirmModal
+        <ConfirmAlert
           question={question}
           day={day}
           member_num={memberNum}
