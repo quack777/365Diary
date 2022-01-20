@@ -357,14 +357,12 @@
 }
 
 
-.alert {
+/* .alert {
   position: absolute;
   top:20vh;
   left: 35vw;
   width: 100vw;
   height: 150vh;
-  /* background-color: black;
-  opacity: 0.8; */
 
 }
 
@@ -379,7 +377,7 @@
   box-shadow: 0px 15px 75px rgba(156, 156, 156, 0.15);
   border-radius: 12px;
   z-index: 50;
-}
+} */
 
 .cal{
 

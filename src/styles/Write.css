@@ -185,18 +185,17 @@
 
 .bigAlert {
   position: absolute;
-  top:-150px;
+  top: 0;
   left: 0;
   width: 100vw;
-  height: 150vh;
-  background-color: black;
-  opacity: 0.7;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .alert {
-  
+  position: relative;
+  top: 40%;
   margin: 0 auto;
-  transform: translateY(150%);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
