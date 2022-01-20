@@ -84,6 +84,7 @@ function List() {
       setQuestionData(questions.data);
     } catch (error) {
       console.log("error: ", error);
+      history.push("/error")
     }
   }, [member_num, date]);
 
@@ -134,6 +135,7 @@ function List() {
       })
       .catch((error) => {
         console.log(error);
+        history.push("/error")
       });
   }
 
@@ -157,6 +159,7 @@ function List() {
       })
       .catch((error) => {
         console.log(error);
+        history.push("/error")
       });
   }
 

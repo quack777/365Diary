@@ -48,6 +48,7 @@ export default function List_answer({
       setAnswersFromTrash(res.data);
     } catch (error) {
       console.log("error: ", error);
+      history.push("/error")
     }
   };
 

@@ -110,6 +110,7 @@ function Home(props) {
       }
     } catch (error) {
       console.log("error: ", error);
+      history.push("/error")
     }
   };
 

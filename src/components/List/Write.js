@@ -58,6 +58,7 @@ function Write() {
       })
       .catch(function (error) {
         console.log(error);
+        history.push("/error")
       });
   }
 
@@ -91,6 +92,7 @@ function Write() {
       })
       .catch(function (error) {
         console.log(error);
+        history.push("/error")
       });
   }, [day]);
 

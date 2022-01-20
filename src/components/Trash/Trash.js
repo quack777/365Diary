@@ -7,6 +7,7 @@ import axios from "axios";
 import xxxxx from "../../styles/images/xxxxx.png";
 import Pagination from "./Pagination";
 import Posts from "./Posts";
+import { useHistory } from "react-router-dom";
 
 function Trash() {
   const [member, setMember] = useState();
@@ -20,6 +21,8 @@ function Trash() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(5);
+
+  const history = useHistory();
 
   useEffect(() => {
     // 첫 렌더링 때 usestate => member에 값 저장해서 Trash 컴포넌트 전체에서 member_num이 필요할 때 사용할 수 있게함
@@ -40,6 +43,7 @@ function Trash() {
       })
       .catch(function (error) {
         console.log(error);
+        history.push("/error")
       });
   }, []); // 렌더링 didupdate unmount 다시 생각해보기!!!!!!!!!!!
 
@@ -73,6 +77,7 @@ function Trash() {
       })
       .catch(function (error) {
         console.log(error);
+        history.push("/error")
       });
   }
 
@@ -104,6 +109,7 @@ function Trash() {
             setTrashAlldata={setTrashAlldata}
             posts={posts}
             setPosts={setPosts}
+            history={history}
           />
         ) : null}
         {openTrashAllDeleteModal ? (
@@ -115,6 +121,7 @@ function Trash() {
             setGotrashdata={setGotrashdata}
             posts={posts}
             setPosts={setPosts}
+            history={history}
           />
         ) : null}
       </section>
@@ -161,6 +168,7 @@ function DeleteModal(props) {
       })
       .catch(function (error) {
         console.log(error);
+        props.history.push("/error")
       });
   }
 
@@ -211,6 +219,7 @@ function TrashAllDeleteModal(props) {
       })
       .catch((error) => {
         console.log(error);
+        props.history.push("/error")
       });
   }
 

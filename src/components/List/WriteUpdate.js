@@ -48,6 +48,7 @@ function WriteUpdate() {
       })
       .catch(function (error) {
         console.log(error);
+        history.push("/error")
       });
   }
 
@@ -58,6 +59,7 @@ function WriteUpdate() {
       console.log("res: ", res);
     } catch (error) {
       console.log("error: ", error);
+      history.push("/error")
     }
   };
   console.log(location);
