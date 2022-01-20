@@ -1,16 +1,16 @@
 import React from "react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import axios from "axios";
-import VectorLeft from "../styles/images/Vector left.png";
-import VectorRight from "../styles/images/Vector right.png";
-import Vector from "../styles/images/Vector 1.png";
-import arrow from "../styles/images/arrow01_normal.png";
-import main from "../styles/images/mainpage.png";
-import "../styles/Home.css";
+import VectorLeft from "../../styles/images/Vector left.png";
+import VectorRight from "../../styles/images/Vector right.png";
+import Vector from "../../styles/images/Vector 1.png";
+import arrow from "../../styles/images/arrow01_normal.png";
+import main from "../../styles/images/mainpage.png";
+import "../../styles/Home.css";
 import { Link, useLocation, useHistory } from "react-router-dom";
-import { LoginAlert } from "./loginAlert";
-import ConfirmModal from "../components/util/ConfirmModal";
-import AlertTrash from "../components/util/AlertTrash";
+import { LoginAlert } from "../util/alert_modal/loginAlert";
+import ConfirmAlert from "../util/alert_modal/ConfirmAlert";
+import AlertTrash from "../util/alert_modal/AlertTrash";
 
 function Home(props) {
   const NewDate = new Date();
@@ -184,7 +184,7 @@ function Home(props) {
       ) : null}
 
       {confirmModalOn ? (
-        <ConfirmModal
+        <ConfirmAlert
           question={question}
           day={day}
           member_num={memberNum}

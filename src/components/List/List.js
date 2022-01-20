@@ -1,15 +1,15 @@
 import React from "react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useLocation, useHistory } from "react-router-dom";
-import "../styles/List.css";
-import monthBTN from "../styles/images/monthBTN.png";
-import xxxxx from "../styles/images/xxxxx.png";
+import "../../styles/List.css";
+import monthBTN from "../../styles/images/monthBTN.png";
+import xxxxx from "../../styles/images/xxxxx.png";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
-import Calender from "./util/Calender";
+import Calender from "../util/Calender";
 import ListAnswerComponent from "./ListAnswerComponent";
 import { unstable_batchedUpdates } from "react-dom";
-import { Alert } from "./alert";
+import { Alert } from "../util/alert_modal/alert";
 
 function List() {
   const location = useLocation();

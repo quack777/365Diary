@@ -1,20 +1,20 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-import loginImage from "../styles/images/loginImage.png";
-import login01 from "../styles/images/loginpage01.png";
-import login02 from "../styles/images/loginpage02.png";
-import rigthArrow from "../styles/images/Vector 1.png";
-import kaka from "../styles/images/kakao.png";
+import loginImage from "../../styles/images/loginImage.png";
+import login01 from "../../styles/images/loginpage01.png";
+import login02 from "../../styles/images/loginpage02.png";
+import rigthArrow from "../../styles/images/Vector 1.png";
+import kaka from "../../styles/images/kakao.png";
 import { Link, useHistory } from "react-router-dom";
 import queryString from "query-string";
-import "../styles/Login.css";
+import "../../styles/Login.css";
 import axios from "axios";
 
 // 배포환경
-const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL_PROD;
+// const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL_PROD;
 
 // 개발환경
-// const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL;
+const KAKAO_AUTH_URL = process.env.REACT_APP_KAKAO_AUTH_URL;
 
 function Login() {
   const slideData = [

@@ -1,17 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
-import toggle_unselected from "../styles/images/main_private.png";
-import toggle_selected from "../styles/images/main_public.png";
-import alertCheck from "../styles/images/alertCheck.png";
-import alertX from "../styles/images/alertX.png";
-import { Alert } from "./alert";
+import toggle_unselected from "../../styles/images/main_private.png";
+import toggle_selected from "../../styles/images/main_public.png";
+import alertCheck from "../../styles/images/alertCheck.png";
+import alertX from "../../styles/images/alertX.png";
+import { Alert } from "../util/alert_modal/alert";
 import axios, { Axios } from "axios";
 
-import "../styles/Write.css";
+import "../../styles/Write.css";
 
 function Write() {
-  const location = useLocation();
   const history = useHistory();
 
   const NewDate = new Date();
@@ -20,20 +19,14 @@ function Write() {
   const year = NewDate.getFullYear();
 
   const [question, setQuestion] = useState();
-  const [answer, setAnswer] = useState("");
   const [count, setCount] = useState(0);
   const [open, setOpen] = useState(false);
   const [publica, setPublica] = useState("N");
   const [questionN, setQuestionN] = useState();
   const [member, setMember] = useState();
   // month date year도 내 일기장에서 선택된 날짜로 값이 바껴야함
-  const [cMonth, setCMonth] = useState();
-  const [cDate, setCDate] = useState();
-  const [cYear, setCYear] = useState();
   const [content, setContent] = useState("");
   const [sucessWrite, setSucessWrite] = useState(false);
-
-  const loca = useLocation();
 
   const now = new Date();
   const start = new Date(now.getFullYear(), 0, 0);

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
-import modify_normal from "../styles/images/modify_normal.png";
-import Line from "../styles/images/Line45.png";
-import delete_normal from "../styles/images/delete_normal.png";
-import toggle_unselected from "../styles/images/list_private.png";
-import toggle_selected from "../styles/images/list_public.png";
-import girl from "../styles/images/Mask Group.png";
-import "../styles/List.css";
+import modify_normal from "../../styles/images/modify_normal.png";
+import Line from "../../styles/images/Line45.png";
+import delete_normal from "../../styles/images/delete_normal.png";
+import toggle_unselected from "../../styles/images/list_private.png";
+import toggle_selected from "../../styles/images/list_public.png";
+import girl from "../../styles/images/Mask Group.png";
+import "../../styles/List.css";
 import axios from "axios";
-import AlertTrash from "../components/util/AlertTrash";
+import AlertTrash from "../util/alert_modal/AlertTrash";
 
 export default function List_answer({
   question,
@@ -88,24 +88,8 @@ export default function List_answer({
             <img src={girl} alt="ㅎㅇ"></img>
             <p>오늘의 질문입니다. 지금은 나의 생각을 남겨보세요!</p>
           </div>
-          {/* <Link
-            onClick={handleClick}
-            to={(location) => {
-              if (location.onClicked && isInTrash) {
-                alert("이미 등록된 답변이 존재합니다. 휴지통을 확인해 주세요.");
-                return {
-                  // pathname: `/write/${todayAnswersInTrash[0].answer_num}`,
-                  // answer_num: todayAnswersInTrash[0].answer_num,
-                  pathname: "/list",
-                };
-              } else {
-                return { pathname: "/write" };
-              }
-            }}
-          > */}
           <a>
             <p onClick={handleClick}>답변작성하기</p>
-            {/* </Link> */}
           </a>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
-import "../styles/Nav.css";
-import { LoginAlert } from "./loginAlert";
+import "../../styles/Nav.css";
+import { LoginAlert } from "../util/alert_modal/loginAlert";
 
 function Nav(props) {
   const location = useLocation();

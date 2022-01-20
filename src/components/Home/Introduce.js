@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../styles/Introduce.css";
-import Introduce_top from "../styles/images/07.png";
-import ballon from "../styles/images/Group 5582.png";
+import "../../styles/Introduce.css";
+import Introduce_top from "../../styles/images/07.png";
+import ballon from "../../styles/images/Group 5582.png";
 import { Link, useLocation } from "react-router-dom";
-import made_people from "../styles/images/made_people.png";
-import soga00 from "../styles/images/soga00.png";
-import soga01 from "../styles/images/soga01.png";
-import soga02 from "../styles/images/soga02.png";
-import soga03 from "../styles/images/soga03.png";
-import soga04 from "../styles/images/soga04.png";
+import made_people from "../../styles/images/made_people.png";
+import soga00 from "../../styles/images/soga00.png";
+import soga01 from "../../styles/images/soga01.png";
+import soga02 from "../../styles/images/soga02.png";
+import soga03 from "../../styles/images/soga03.png";
+import soga04 from "../../styles/images/soga04.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
@@ -104,9 +104,11 @@ function Introduce() {
         })}
         <div className="introSlideNav">
           {slideData.map((slide, index) => {
-            return(
-              <button className={(current === index) ? "introSlideNavActive" : null}></button>
-            )
+            return (
+              <button
+                className={current === index ? "introSlideNavActive" : null}
+              ></button>
+            );
           })}
         </div>
         {/* <div>

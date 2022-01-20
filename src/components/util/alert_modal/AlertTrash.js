@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import alertCheck from "../../styles/images/alertCheck.png";
-import alertX from "../../styles/images/alertX.png";
+import alertCheck from "../../../styles/images/alertCheck.png";
+import alertX from "../../../styles/images/alertX.png";
 
 export default function AlertTrash({ goAway, content, isClose }) {
   console.log("goAway: ", goAway);

@@ -1,12 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useLocation, useHistory, useParams } from "react-router-dom";
-import toggle_unselected from "../styles/images/main_private.png";
-import toggle_selected from "../styles/images/main_public.png";
+import toggle_unselected from "../../styles/images/main_private.png";
+import toggle_selected from "../../styles/images/main_public.png";
 import axios from "axios";
 
-import "../styles/Write.css";
-import { Alert } from "./alert";
+import "../../styles/Write.css";
+import { Alert } from "../util/alert_modal/alert";
 
 function WriteUpdate() {
   const { id } = useParams();
@@ -51,6 +51,7 @@ function WriteUpdate() {
       });
   }
 
+  // 2차. 수정 내용 가져오는 API
   const getUpdate = async () => {
     try {
       const res = await axios.get(`/answers/pages/${answer_num}`);
