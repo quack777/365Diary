@@ -51,6 +51,7 @@ function WriteUpdate() {
       });
   }
 
+  // 2차. 수정 내용 가져오는 API
   const getUpdate = async () => {
     try {
       const res = await axios.get(`/answers/pages/${answer_num}`);
