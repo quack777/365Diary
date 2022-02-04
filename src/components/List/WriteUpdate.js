@@ -48,24 +48,24 @@ function WriteUpdate() {
       })
       .catch(function (error) {
         console.log(error);
-        history.push("/error")
+        history.push("/error");
       });
   }
 
   // 2차. 수정 내용 가져오는 API
-  const getUpdate = async () => {
-    try {
-      const res = await axios.get(`/answers/pages/${answer_num}`);
-      console.log("res: ", res);
-    } catch (error) {
-      console.log("error: ", error);
-      history.push("/error")
-    }
-  };
-  console.log(location);
-  useEffect(() => {
-    getUpdate();
-  }, []);
+  // const getUpdate = async () => {
+  //   try {
+  //     const res = await axios.get(`/answers/pages/${answer_num}`);
+  //     console.log("res: ", res);
+  //   } catch (error) {
+  //     console.log("error: ", error);
+  //     history.push("/error")
+  //   }
+  // };
+  // console.log(location);
+  // useEffect(() => {
+  //   getUpdate();
+  // }, []);
 
   function inputCount(e) {
     const inputValue = e.target.value;
