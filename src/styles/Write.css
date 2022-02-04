@@ -208,6 +208,24 @@
   z-index: 50;
 }
 
+
+.cal {
+  position: absolute;
+  top: 40%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 543px;
+  height: 83px;
+  background:rgba(255,255,255,1);
+
+  box-shadow: 0px 15px 75px rgba(156, 156, 156, 0.15);
+  border-radius: 12px;
+  z-index: 50;
+}
+
+
 .alert > span {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
