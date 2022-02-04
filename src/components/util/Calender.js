@@ -58,6 +58,7 @@ export default function Calender(props) {
       //  답변이 하나도 없고 다른날짜를 선택한 경우
       if (selectedDate !== reqDay) {
         setIsModalOn(true);
+        props.setDate(selectedDate);
       } else {
         // 답변이 하나도 없고 같은 날짜를 선택한 경우
         if (clickFag) {

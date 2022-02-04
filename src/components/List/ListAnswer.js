@@ -157,7 +157,9 @@ export default function ListAnswer({
         <TodayWrite todayAnswersInTrash={todayAnswersInTrash} />
       ) : !calender ? (
         <ListNoAnswer setQuestion={setQuestion} />
-      ) : null}
+      ) : (
+        <ListNoAnswer setQuestion={setQuestion} />
+      )}
 
       {alertTrash ? <AlertTrash isClose={setAlertTrash} /> : null}
     </div>
