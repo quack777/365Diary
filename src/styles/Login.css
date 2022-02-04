@@ -1,0 +1,195 @@
+.Login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Login > section:nth-child(1) {
+  width: 45%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-top: 10vh;
+}
+
+.Login > section:nth-child(1) .slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Login > section:nth-child(1) .slide > img {
+  margin-bottom: 30px;
+}
+
+.Login > section:nth-child(1) .slide > p:nth-child(2) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18.75px;
+  line-height: 23px;
+  text-align: center;
+
+  /* color/sub/blue */
+
+  color: #084861;
+}
+
+.Login > section:nth-child(1) .slide > p:nth-child(3) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 170%;
+  /* or 20px */
+
+  text-align: center;
+
+  /* color/grey/text02 */
+
+  color: #98999c;
+
+  flex: 0 0 auto;
+  height: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.Login > section:nth-child(1) .slide > p:nth-child(4) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 170%;
+  /* or 20px */
+
+  text-align: center;
+
+  /* color/grey/text02 */
+
+  color: #98999c;
+
+  flex: 0 0 auto;
+  height: auto;
+  margin-top: 0%;
+  margin-bottom: 50px;
+}
+
+.Login > section:nth-child(1) .practice > button {
+  width: 29px;
+  height: 29px;
+  border-style: none;
+  background: #E3E3E3;
+  border-radius: 8px;
+  margin: 0 7.5px;
+  
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 209.7%;
+
+  text-align: center;
+  letter-spacing: -0.05em;
+
+  color: #777777;
+}
+
+.Login > section:nth-child(1) .practice > .choice {
+  background: #7EB496;
+  color: #FFFFFF;
+}
+
+.Login > section:nth-child(2) {
+  width: 55%;
+  height: 100%;
+  /* background-color: #f9f8f9; */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Login > section:nth-child(2) > p {
+  margin-left: 100px;
+  position: relative;
+  bottom: 140px;
+}
+
+.Login > section:nth-child(2) > p:nth-child(1) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 38px;
+
+  /* color/sub/blue */
+
+  color: #084861;
+  margin-bottom: 10px;
+}
+
+.Login > section:nth-child(2) > p:nth-child(2) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 170%;
+  /* identical to box height, or 26px */
+
+  /* color/grey/text02 */
+
+  color: #98999c;
+
+  margin-top: 5px;
+}
+
+.Login > section:nth-child(2) .button {
+  width: 446px;
+  height: 63px;
+  background: #fdce52;
+  border-radius: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  
+  
+}
+
+.Login > section:nth-child(2) .button:hover {
+  background: #ffdb7b;
+  cursor: pointer;
+}
+
+.Login > section:nth-child(2) .button:active {
+  background: #f9c12e;
+}
+
+.Login > section:nth-child(2) .button a {
+  text-decoration: none;
+}
+
+.Login > section:nth-child(2) .button p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 174.2%;
+  /* identical to box height, or 26px */
+
+  letter-spacing: 0.07em;
+
+  color: #341a1f;
+  margin-left: 14px;
+}

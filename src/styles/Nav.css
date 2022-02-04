@@ -1,0 +1,146 @@
+
+.Nav {
+  height: 143px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 86px;
+  padding-right: 119px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 375px;
+  /* background-color: #f9f8f9; */
+  background-color: white;
+}
+
+#Nav {
+  height: 143px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 86px;
+  padding-right: 119px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.Nav a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.Nav #logo {
+  font-family: Volte;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 26.25px;
+  line-height: 32px;
+
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: #084861;
+}
+
+.Nav > #nav_btn, .Nav_mobile> #nav_btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 23px;
+  width: 458px;
+
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  /* identical to box height */
+
+  text-align: center;
+  color: #084861;
+}
+
+.Nav > #nav_btn > a, .Nav_mobile > #nav_btn > a {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13.5px;
+  line-height: 17px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  /* color/sub/blue */
+
+  color: #084861;
+}
+
+.Nav > #nav_btn > a:active ,.Nav_mobile > #nav_btn > a:active  {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13.5px;
+  line-height: 17px;
+  /* identical to box height */
+
+  text-align: center;
+
+  /* color/sub/blue */
+
+  color: #084861;
+}
+
+.Nav > #nav_btn > a:visited {
+  text-decoration: none;
+}
+
+.bctive {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13.5px;
+  line-height: 17px;
+  /* identical to box height */
+
+  text-align: center;
+
+  /* color/sub/blue */
+
+  color: #084861;
+
+  border-bottom: 2px solid #084861;
+}
+
+
+.home{
+  background-color: #f9f8f9;
+}
+
+/* 
+.Nav_mobile {
+  height: 143px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding:30px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 375px;
+}
+
+.Nav_mobile a {
+  text-decoration: none;
+}
+
+.Nav_mobile #logo {
+  font-family: Volte;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 26.25px;
+  line-height: 32px;
+
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: #084861;
+} */

@@ -1,0 +1,177 @@
+.Signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Signup > section:nth-child(1) {
+  width: 45%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-top: 10vh;
+}
+
+.Signup > section:nth-child(1) > p:nth-child(2) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 31px;
+  text-align: center;
+
+  /* color/sub/blue */
+
+  color: #084861;
+}
+
+.Signup > section:nth-child(1) > p:nth-child(3) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 170%;
+  /* or 27px */
+
+  text-align: center;
+
+  /* color/grey/text02 */
+
+  color: #98999c;
+}
+
+.Signup > section:nth-child(1) > div > img {
+  background: #e3e3e3;
+  margin: 0px 10px;
+  padding: 7px 9px;
+  border-radius: 50%;
+}
+
+.Signup > section:nth-child(2) {
+  width: 55%;
+  height: 100%;
+  background-color: #f9f8f9;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Signup > section:nth-child(2) > p {
+  margin-left: 108px;
+}
+
+.Signup > section:nth-child(2) > p:nth-child(1) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 50px;
+
+  /* color/sub/blue */
+
+  color: #084861;
+  margin-bottom: 10px;
+
+  position: relative;
+  bottom: 100px;
+}
+
+.Signup > section:nth-child(2) > p:nth-child(2) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 170%;
+  /* or 36px */
+
+  /* color/grey/text02 */
+
+  color: #98999c;
+
+  margin-top: 0px;
+  position: relative;
+  bottom: 100px;
+}
+
+.Signup form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 595px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.Signup form input {
+  width: 100%;
+  height: 84px;
+  margin: 10px auto;
+  /* color/grey/01 */
+
+  background: #f9f8f9;
+  /* color/sub/blue */
+
+  border: 1px solid #084861;
+  box-sizing: border-box;
+  border-radius: 100px;
+
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 174.2%;
+  /* identical to box height, or 35px */
+
+  letter-spacing: 0.07em;
+}
+
+.Signup form #id {
+}
+
+.Signup form #pwd {
+}
+
+.Signup form p:nth-child(3) {
+  align-self: flex-start;
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 174.2%;
+  /* identical to box height, or 35px */
+
+  letter-spacing: 0.07em;
+
+  color: #000000;
+}
+
+.Signup form p:nth-child(4) {
+  width: 595px;
+  height: auto;
+  background: #fdce52;
+  border-radius: 100px;
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 174.2%;
+  /* identical to box height, or 35px */
+
+  letter-spacing: 0.07em;
+
+  color: #000000;
+  text-align: center;
+  padding: 24px 0;
+}

@@ -1,0 +1,285 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+KR:wght@300;400;700&display=swap");
+
+.Introduce {
+  width: 70%;
+  max-width: 1016px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Introduce > .top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: flex-start;
+}
+
+.Introduce > .top > p:nth-child(1) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 41.25px;
+  line-height: 52px;
+
+  /* color/sub/blue */
+
+  color: #084861;
+
+  margin-bottom: 0px;
+}
+
+.Introduce > .top > p:nth-child(2) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 174.2%;
+  /* or 26px */
+
+  /* color/grey/text02 */
+
+  color: #98999c;
+  max-width: 330px;
+}
+
+.Introduce hr {
+  width: 100%;
+  opacity: 0.1;
+  /* color/sub/blue */
+
+  border: 1px solid #084861;
+
+  margin: 20px auto;
+}
+
+.Introduce > img {
+  margin: 30px auto;
+}
+
+.Introduce > .second {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 80%;
+  max-width: 851px;
+
+  margin: 50px;
+}
+
+.Introduce > .second > p:nth-child(1) {
+  align-self: flex-start;
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 41px;
+
+  color: #323436;
+}
+
+.Introduce > .second > p:nth-child(3) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18.75px;
+  line-height: 209.7%;
+  /* or 39px */
+
+  color: #323436;
+}
+
+.Introduce > .goHome {
+  width: 99vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: #f5f4f5;
+  padding: 30px 0px;
+}
+
+.Introduce > .goHome > p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 41.25px;
+  line-height: 56px;
+  text-align: center;
+
+  /* color/sub/blue */
+
+  color: #084861;
+}
+
+.Introduce > .goHome a {
+  text-decoration: none;
+}
+
+.Introduce > .goHome a > p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22.5px;
+  line-height: 209.7%;
+  /* or 47px */
+
+  display: flex;
+  align-items: flex-end;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  color: #ffffff;
+
+  /* color/main/green */
+
+  background: #7eb496;
+  border-radius: 16px;
+  padding: 18px 59px;
+  margin-top: 0px;
+}
+
+.Introduce > .goHome a > p:hover {
+  background: #9fd3b6;
+}
+
+.Introduce > .goHome a > p:active {
+  background: #78aa8e;
+}
+
+.Introduce > .bottom > p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 41px;
+  /* identical to box height */
+
+  color: #323436;
+
+  margin-top: 110px;
+}
+
+.Introduce > .bottom > img {
+  margin-top: 20px;
+  margin-bottom: 150px;
+}
+
+.casual {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 70px auto;
+}
+
+.casual > p {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 41px;
+
+  color: #323436;
+}
+
+.casual #clickBtns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -100px;
+  position: relative;
+  top: 230px;
+}
+
+.casual #clickBtns > button {
+  width: 105px;
+  height: 105px;
+  border-style: none;
+  background-color: transparent;
+  background-image: url(../styles/images/arrow01_normal.png);
+  background-position: center top;
+}
+
+.casual #clickBtns > button:hover {
+  background-image: url(../styles/images/arrow01_focused.png);
+}
+
+.casual #clickBtns > button:active {
+  background-image: url(../styles/images/arrow01_pressed.png);
+}
+
+.casual #clickBtns > button:nth-child(1) {
+  transform: rotateY(180deg);
+  position: relative;
+  right: 130px;
+}
+
+.casual #clickBtns > button:nth-child(2) {
+  position: relative;
+  left: 130px;
+}
+
+.casual > .slide {
+  align-self: center;
+}
+
+.casual > .slide > p:nth-child(2) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22.5px;
+  line-height: 28px;
+  text-align: center;
+
+  color: #323436;
+}
+
+.casual > .slide > p:nth-child(3) {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18.75px;
+  line-height: 170%;
+  /* or 32px */
+
+  text-align: center;
+
+  color: #323436;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+}
+
+.casual > .introSlideNav {
+  align-self: center;
+  margin-top: 50px;
+}
+
+.casual > .introSlideNav > .introSlideNavActive {
+  background: #7EB496;
+}
+
+.casual > .introSlideNav > button {
+  height: 12px;
+  width: 12px;
+  border-radius: 50px;
+  border-style: none;
+  margin: 0 7.5px;
+  background: #C4C4C4;
+}
