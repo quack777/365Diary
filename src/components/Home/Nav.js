@@ -14,7 +14,6 @@ function Nav(props) {
   const NavCssflag = location.pathname.split("/");
 
   let cssFlag = NavCssflag[NavCssflag.length - 1];
-  console.log("cssFlag: ", cssFlag);
   if (cssFlag === "365" || cssFlag === "") cssFlag = "home";
 
   const handleClick = (e) => {
@@ -31,7 +30,7 @@ function Nav(props) {
   };
 
   return (
-    <div className={props.isMobile ? "Nav_mobile" : `Nav ${cssFlag}`}>
+    <div className={props.isMobile ? "nav_mobile" : `Nav ${cssFlag}`}>
       <Link to="/365">
         <p className={location.pathname === "/365" ? "home" : ""} id="logo">
           365

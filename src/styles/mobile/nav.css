@@ -1,0 +1,39 @@
+body {
+    margin : 0
+}
+.nav_container{
+
+    width: 100%;
+    height: 102.2px;
+    background-color: #f9f8f9;
+    
+}
+
+.nav_container > .nav_wrapper{  
+    width: 100%;
+    height: 54px;
+    position: absolute;
+    top:49.31px;
+    background-color: transparent;
+    border-bottom: 1.3px solid  rgba(8, 72, 97, 0.1);
+}
+
+
+
+.nav_container > .nav_wrapper >.nav_logo {  
+    
+    position: absolute;
+    top: 30%;
+    left : 50%;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
+
+}
+
+.nav_container > .nav_wrapper >.nav_hamburger {  
+
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: 20px;
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Nav from "./components/Home/Nav";
+import NavMobile from "./components/mobile/Nav/NavMobile";
 import Home from "./components/Home/Home";
 import Write from "./components/List/Write";
 import List from "./components/List/List";
@@ -22,7 +23,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Nav isMobile={isMobile} />
+        {isMobile ? <NavMobile isMobile={isMobile} /> : <Nav />}
+        {/* <Nav isMobile={isMobile} /> */}
         <Route exact path="/" render={() => <Home isMobile={isMobile} />} />
         <Route
           path="/365"
