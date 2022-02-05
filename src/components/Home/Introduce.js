@@ -11,37 +11,38 @@ import soga03 from "../../styles/images/soga03.png";
 import soga04 from "../../styles/images/soga04.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-function Introduce() {
-  const slideData = [
-    {
-      img: soga00,
-      title: "회원가입/로그인",
-      pp: "카카오로 간편하게 회원가입과 로그인을 할 수 있어요.",
-    },
-    {
-      img: soga01,
-      title: "메인페이지",
-      pp:
-        "공개 설정한 일기에 한해 랜덤으로 다른 사람들의 이야기를 볼 수 있어요.",
-    },
-    {
-      img: soga02,
-      title: "나의 일기장",
-      pp: "내 일기장에서 누적된 내 일기들을 날짜별로 모아 볼 수 있어요.",
-    },
-    {
-      img: soga03,
-      title: "휴지통",
-      pp:
-        "삭제된 일기는 휴지통에 7일간 보관됩니다. 삭제되기 전, 다시 되돌릴 수도 있어요.",
-    },
-    {
-      img: soga04,
-      title: "잠깐!",
-      pp:
-        "해당 날짜마다 질문이 달라져요. 답변은 그 날까지만 작성, 수정이 가능해요. 오늘의 질문을 놓치지 마세요!",
-    },
-  ];
+const slideData = [
+  {
+    img: soga00,
+    title: "회원가입/로그인",
+    pp: "카카오로 간편하게 회원가입과 로그인을 할 수 있어요.",
+  },
+  {
+    img: soga01,
+    title: "메인페이지",
+    pp:
+      "공개 설정한 일기에 한해 랜덤으로 다른 사람들의 이야기를 볼 수 있어요.",
+  },
+  {
+    img: soga02,
+    title: "나의 일기장",
+    pp: "내 일기장에서 누적된 내 일기들을 날짜별로 모아 볼 수 있어요.",
+  },
+  {
+    img: soga03,
+    title: "휴지통",
+    pp:
+      "삭제된 일기는 휴지통에 7일간 보관됩니다. 삭제되기 전, 다시 되돌릴 수도 있어요.",
+  },
+  {
+    img: soga04,
+    title: "잠깐!",
+    pp:
+      "해당 날짜마다 질문이 달라져요. 답변은 그 날까지만 작성, 수정이 가능해요. 오늘의 질문을 놓치지 마세요!",
+  },
+];
+
+const Introduce = () => {
 
   const location = useLocation();
 
@@ -110,10 +111,6 @@ function Introduce() {
             );
           })}
         </div>
-        {/* <div>
-          <p>회원가입/로그인</p>
-          <p>카카오로 간편하게 회원가입과 로그인을 할 수 있어요.</p>
-        </div>  */}
       </section>
       <section className="goHome">
         <p>“나와 나를 연결할 준비, 되셨나요?”</p>
