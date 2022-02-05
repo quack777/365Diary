@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useSwipeable } from "react-swipeable";
 import "../../styles/Introduce.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import Introduce_top from "../../styles/images/07.png";
 import ballon from "../../styles/images/Group 5582.png";
-import { Link, useLocation } from "react-router-dom";
+import ballonMobile from "../../styles/images/ballon_mobile.png";
 import made_people from "../../styles/images/made_people.png";
 import made_people_mobile from "../../styles/images/made_people_mobile.png";
 import soga00 from "../../styles/images/soga00.png";
@@ -15,8 +18,6 @@ import soga01Mobile from "../../styles/images/soga01_mobile.png";
 import soga02Mobile from "../../styles/images/soga02_mobile.png";
 import soga03Mobile from "../../styles/images/soga03_mobile.png";
 import soga04Mobile from "../../styles/images/soga04_mobile.png";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { useSwipeable } from "react-swipeable";
 
 const slideData = [
   {
@@ -68,10 +69,8 @@ const Introduce = ({ isMobile }) => {
   const location = useLocation();
 
   const mobileSwipe = useSwipeable({
-    onSwipedRight: () => console.log("right"),
-    onSwipedRight: () => nextSlide(),
-    onSwipedLeft: () => prevSlide(),
-    onSwiped: (event) => console.log(event),
+    onSwipedRight: () => prevSlide(),
+    onSwipedLeft: () => nextSlide(),
     preventDefaultTouchmoveEvent: true,
     trackMouse: true,
     trackTouch: true,
@@ -94,7 +93,7 @@ const Introduce = ({ isMobile }) => {
   }
 
   return (
-    <div className="Introduce">
+    <div className="Introduce" style={{ overflow: isMobile && "hidden" }}>
       <section className={isMobile ? "top topMobile" : "top"}>
         <p>365 소개</p>
         <hr style={{ display: !isMobile && "none" }}></hr>
@@ -109,9 +108,9 @@ const Introduce = ({ isMobile }) => {
         alt="Introduce_top"
         id={isMobile && "Introduce_top_mobile"}
       ></img>
-      <section className="second">
+      <section className={isMobile ? "second secondMobile" : "second"}>
         <p>365개의 질문, 그리고 나와 나를 연결할 기록들.</p>
-        <img src={ballon}></img>
+        <img src={isMobile ? ballonMobile : ballon}></img>
         <p>
           생각해보신적이 있나요? 매일 달라지는 질문에 답해 보세요. 사소하지만 큰
           기록은 분명 당신과 당신을 이어주는 고리가 될거에요. 3년동안의 기록을
@@ -120,7 +119,10 @@ const Introduce = ({ isMobile }) => {
         </p>
       </section>
       <hr></hr>
-      <section className="casual" {...mobileSwipe}>
+      <section
+        className={isMobile ? "casual casual_mobile" : "casual"}
+        {...mobileSwipe}
+      >
         <p>365 알차게 사용하기</p>
         <div id="clickBtns" style={{ display: isMobile && "none" }}>
           <button onClick={prevSlide}></button>
@@ -172,7 +174,7 @@ const Introduce = ({ isMobile }) => {
               })}
         </div>
       </section>
-      <section className="goHome">
+      <section className={isMobile ? "goHome goHome_mobile" : "goHome"}>
         <p>“나와 나를 연결할 준비, 되셨나요?”</p>
         {location.isLogged ? (
           <Link to="/list">
@@ -184,7 +186,7 @@ const Introduce = ({ isMobile }) => {
           </Link>
         )}
       </section>
-      <section className="bottom">
+      <section className={isMobile ? "bottom bottom_mobile" : "bottom"}>
         <p>만든 사람들</p>
         <img
           alt="만든 사람들"

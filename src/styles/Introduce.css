@@ -11,7 +11,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden;
 }
 
 .Introduce > .top {
@@ -111,6 +110,12 @@
   color: #323436;
 }
 
+.Introduce > .secondMobile > p:nth-child(1) {
+  margin-left: 22px;
+  font-size: 18px;
+  line-height: 29px;
+}
+
 .Introduce > .second > img {
   margin: 20px 0;
 }
@@ -126,6 +131,15 @@
   color: #323436;
 }
 
+.Introduce > .secondMobile > p:nth-child(3) {
+  width: 370px;
+  align-self: center;
+  font-size: 14px;
+  line-height: 176%;
+  /* or 25px */
+  text-align: justify;
+}
+
 .Introduce > .goHome {
   width: 99vw;
   height: auto;
@@ -136,6 +150,10 @@
 
   background: #f5f4f5;
   padding: 30px 0px;
+}
+
+.Introduce > .goHome_mobile {
+  width: 100vw;
 }
 
 .Introduce > .goHome > p {
@@ -149,6 +167,12 @@
   /* color/sub/blue */
 
   color: #084861;
+}
+
+.Introduce > .goHome_mobile > p {
+  font-size: 18px;
+  line-height: 160%;
+  /* or 29px */
 }
 
 .Introduce > .goHome a {
@@ -176,6 +200,14 @@
   border-radius: 16px;
   padding: 18px 59px;
   margin-top: 0px;
+}
+
+.Introduce > .goHome_mobile a > p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 172%;
+  /* or 28px */
+  border-radius: 61.2245px;
 }
 
 .Introduce > .goHome a > p:hover {
@@ -208,6 +240,13 @@
   margin-top: 110px;
 }
 
+.Introduce > .bottom_mobile > p {
+  margin-left: 22px ;
+  font-size: 18px;
+  line-height: 160%;
+  /* or 29px */
+}
+
 .Introduce > .bottom > img {
   margin-top: 20px;
   margin-bottom: 150px;
@@ -233,8 +272,15 @@
   font-weight: bold;
   font-size: 30px;
   line-height: 41px;
-
+  
   color: #323436;
+}
+
+.casual_mobile > p {
+  margin-left: 22px;
+  font-size: 18px;
+  line-height: 160%;
+  /* or 29px */
 }
 
 .casual #clickBtns {
