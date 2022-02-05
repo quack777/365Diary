@@ -11,13 +11,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .Introduce > .top {
+  width: 90%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-self: flex-start;
+}
+
+.Introduce > .topMobile {
+  margin-top: 50px;
 }
 
 .Introduce > .top > p:nth-child(1) {
@@ -34,6 +41,14 @@
   margin-bottom: 0px;
 }
 
+.Introduce > .topMobile > p:nth-child(1){
+  font-size: 24px;
+  line-height: 155%;
+  /* or 37px */
+
+  letter-spacing: -0.05em;
+}
+
 .Introduce > .top > p:nth-child(3) {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
@@ -46,6 +61,14 @@
 
   color: #98999c;
   max-width: 330px;
+}
+
+.Introduce > .topMobile > p:nth-child(3){
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 176%;
+  margin-top: -5px;
+  max-width: 311px;
 }
 
 .Introduce hr {

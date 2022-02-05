@@ -84,7 +84,7 @@ const Introduce = ({ isMobile }) => {
 
   return (
     <div className="Introduce">
-      <section className="top">
+      <section className={isMobile ? "top topMobile" : "top"}>
         <p>365 소개</p>
         <hr style={{ display: !isMobile && "none" }}></hr>
         <p>
