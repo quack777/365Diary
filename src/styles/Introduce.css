@@ -34,7 +34,7 @@
   margin-bottom: 0px;
 }
 
-.Introduce > .top > p:nth-child(2) {
+.Introduce > .top > p:nth-child(3) {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: 600;
@@ -60,6 +60,10 @@
 
 .Introduce > img {
   margin: 30px 0;
+}
+
+.Introduce > #Introduce_top_mobile {
+  width: 605.16px;
 }
 
 .Introduce > .second {

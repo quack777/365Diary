@@ -10,6 +10,11 @@ import soga01 from "../../styles/images/soga01.png";
 import soga02 from "../../styles/images/soga02.png";
 import soga03 from "../../styles/images/soga03.png";
 import soga04 from "../../styles/images/soga04.png";
+import soga00Mobile from "../../styles/images/soga00_mobile.png";
+import soga01Mobile from "../../styles/images/soga01_mobile.png";
+import soga02Mobile from "../../styles/images/soga02_mobile.png";
+import soga03Mobile from "../../styles/images/soga03_mobile.png";
+import soga04Mobile from "../../styles/images/soga04_mobile.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 const slideData = [
@@ -21,8 +26,7 @@ const slideData = [
   {
     img: soga01,
     title: "메인페이지",
-    pp:
-      "공개 설정한 일기에 한해 랜덤으로 다른 사람들의 이야기를 볼 수 있어요.",
+    pp: "공개 설정한 일기에 한해 랜덤으로 다른 사람들의 이야기를 볼 수 있어요.",
   },
   {
     img: soga02,
@@ -32,19 +36,34 @@ const slideData = [
   {
     img: soga03,
     title: "휴지통",
-    pp:
-      "삭제된 일기는 휴지통에 7일간 보관됩니다. 삭제되기 전, 다시 되돌릴 수도 있어요.",
+    pp: "삭제된 일기는 휴지통에 7일간 보관됩니다. 삭제되기 전, 다시 되돌릴 수도 있어요.",
   },
   {
     img: soga04,
     title: "잠깐!",
-    pp:
-      "해당 날짜마다 질문이 달라져요. 답변은 그 날까지만 작성, 수정이 가능해요. 오늘의 질문을 놓치지 마세요!",
+    pp: "해당 날짜마다 질문이 달라져요. 답변은 그 날까지만 작성, 수정이 가능해요. 오늘의 질문을 놓치지 마세요!",
   },
 ];
 
-const Introduce = (props) => {
+const slideDataMobile = [
+  {
+    img: soga00Mobile,
+  },
+  {
+    img: soga01Mobile,
+  },
+  {
+    img: soga02Mobile,
+  },
+  {
+    img: soga03Mobile,
+  },
+  {
+    img: soga04Mobile,
+  },
+];
 
+const Introduce = ({ isMobile }) => {
   const location = useLocation();
 
   location.isLogged = (sessionStorage.getItem("nickname") && true) || false;
@@ -67,13 +86,18 @@ const Introduce = (props) => {
     <div className="Introduce">
       <section className="top">
         <p>365 소개</p>
+        <hr style={{ display: !isMobile && "none" }}></hr>
         <p>
           3년동안 365개의 질문에 대한 답변을 관리할 수 있는웹, 앱 다이어리
           서비스입니다
         </p>
       </section>
-      <hr></hr>
-      <img src={Introduce_top}></img>
+      <hr style={{ display: isMobile && "none" }}></hr>
+      <img
+        src={Introduce_top}
+        alt="Introduce_top"
+        id={isMobile && "Introduce_top_mobile"}
+      ></img>
       <section className="second">
         <p>365개의 질문, 그리고 나와 나를 연결할 기록들.</p>
         <img src={ballon}></img>
@@ -87,22 +111,37 @@ const Introduce = (props) => {
       <hr></hr>
       <section className="casual">
         <p>365 알차게 사용하기</p>
-        <div id="clickBtns">
+        <div id="clickBtns" style={{ display: isMobile && "none" }}>
           <button onClick={prevSlide}></button>
           <button onClick={nextSlide}></button>
         </div>
-        {slideData.map((slide, index) => {
-          return (
-            <div
-              className={index === current ? "slide active" : "slide"}
-              key={index}
-            >
-              {index === current && <img src={slide.img} className="image" />}
-              {index === current && <p>{slide.title}</p>}
-              {index === current && <p>{slide.pp}</p>}
-            </div>
-          );
-        })}
+        {isMobile
+          ? slideDataMobile.map((slide, index) => {
+              return (
+                <div
+                  className={index === current ? "slide active" : "slide"}
+                  key={index}
+                >
+                  {index === current && (
+                    <img src={slide.img} className="image" />
+                  )}
+                </div>
+              );
+            })
+          : slideData.map((slide, index) => {
+              return (
+                <div
+                  className={index === current ? "slide active" : "slide"}
+                  key={index}
+                >
+                  {index === current && (
+                    <img src={slide.img} className="image" />
+                  )}
+                  {index === current && <p>{slide.title}</p>}
+                  {index === current && <p>{slide.pp}</p>}
+                </div>
+              );
+            })}
         <div className="introSlideNav">
           {slideData.map((slide, index) => {
             return (
@@ -127,10 +166,14 @@ const Introduce = (props) => {
       </section>
       <section className="bottom">
         <p>만든 사람들</p>
-        <img alt="만든 사람들" className={props.isMobile && "madePeopleImg_mobile"} src={props.isMobile ? made_people_mobile : made_people}></img>
+        <img
+          alt="만든 사람들"
+          className={isMobile && "madePeopleImg_mobile"}
+          src={isMobile ? made_people_mobile : made_people}
+        ></img>
       </section>
     </div>
   );
-}
+};
 
 export default Introduce;
