@@ -36,7 +36,7 @@ function App() {
         <Route path="/list" component={List} />
         <Route path="/trash" component={Trash} />
         <Route path="/login" component={Login} />
-        <Route path="/introduce" component={Introduce} />
+        <Route path="/introduce" render={() => <Introduce isMobile={isMobile} />} />
         <Route exact path="/logoutRoute" component={Logout} />
         <Route
           path="/365Project/login/oauth_kakao"

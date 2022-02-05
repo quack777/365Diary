@@ -4,6 +4,7 @@ import Introduce_top from "../../styles/images/07.png";
 import ballon from "../../styles/images/Group 5582.png";
 import { Link, useLocation } from "react-router-dom";
 import made_people from "../../styles/images/made_people.png";
+import made_people_mobile from "../../styles/images/made_people_mobile.png";
 import soga00 from "../../styles/images/soga00.png";
 import soga01 from "../../styles/images/soga01.png";
 import soga02 from "../../styles/images/soga02.png";
@@ -42,7 +43,7 @@ const slideData = [
   },
 ];
 
-const Introduce = () => {
+const Introduce = (props) => {
 
   const location = useLocation();
 
@@ -126,7 +127,7 @@ const Introduce = () => {
       </section>
       <section className="bottom">
         <p>만든 사람들</p>
-        <img src={made_people}></img>
+        <img alt="만든 사람들" className={props.isMobile && "madePeopleImg_mobile"} src={props.isMobile ? made_people_mobile : made_people}></img>
       </section>
     </div>
   );
