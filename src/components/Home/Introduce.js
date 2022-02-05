@@ -16,6 +16,7 @@ import soga02Mobile from "../../styles/images/soga02_mobile.png";
 import soga03Mobile from "../../styles/images/soga03_mobile.png";
 import soga04Mobile from "../../styles/images/soga04_mobile.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { useSwipeable } from "react-swipeable";
 
 const slideData = [
   {
@@ -66,6 +67,16 @@ const slideDataMobile = [
 const Introduce = ({ isMobile }) => {
   const location = useLocation();
 
+  const mobileSwipe = useSwipeable({
+    onSwipedRight: () => console.log("right"),
+    onSwipedRight: () => nextSlide(),
+    onSwipedLeft: () => prevSlide(),
+    onSwiped: (event) => console.log(event),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+    trackTouch: true,
+  });
+
   location.isLogged = (sessionStorage.getItem("nickname") && true) || false;
   const [current, setCurrent] = useState(0);
   const length = slideData.length;
@@ -109,7 +120,7 @@ const Introduce = ({ isMobile }) => {
         </p>
       </section>
       <hr></hr>
-      <section className="casual">
+      <section className="casual" {...mobileSwipe}>
         <p>365 알차게 사용하기</p>
         <div id="clickBtns" style={{ display: isMobile && "none" }}>
           <button onClick={prevSlide}></button>
@@ -121,6 +132,7 @@ const Introduce = ({ isMobile }) => {
                 <div
                   className={index === current ? "slide active" : "slide"}
                   key={index}
+                  {...mobileSwipe}
                 >
                   {index === current && (
                     <img src={slide.img} className="image" />
@@ -143,13 +155,21 @@ const Introduce = ({ isMobile }) => {
               );
             })}
         <div className="introSlideNav">
-          {slideData.map((slide, index) => {
-            return (
-              <button
-                className={current === index ? "introSlideNavActive" : null}
-              ></button>
-            );
-          })}
+          {isMobile
+            ? slideDataMobile.map((slide, index) => {
+                return (
+                  <button
+                    className={current === index ? "introSlideNavActive" : null}
+                  ></button>
+                );
+              })
+            : slideData.map((slide, index) => {
+                return (
+                  <button
+                    className={current === index ? "introSlideNavActive" : null}
+                  ></button>
+                );
+              })}
         </div>
       </section>
       <section className="goHome">

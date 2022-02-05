@@ -22,6 +22,7 @@
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "react-spinners": "^0.11.0",
+    "react-swipeable": "^6.2.0",
     "s3-proxy-middleware": "^1.1.4",
     "styled-components": "^5.3.3",
     "web-vitals": "^1.1.2"
@@ -31,7 +32,7 @@
     "build": "react-scripts build",
     "deploy": "aws s3 sync ./build s3://front365 --profile=project365",
     "predeploy": "npm run build",
-    "postInstall" : "patch-package"
+    "postInstall": "patch-package"
   },
   "eslintConfig": {
     "extends": [
