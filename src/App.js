@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Nav from "./components/Home/Nav";
 import NavMobile from "./components/mobile/Nav/NavMobile";
+import HomeMobile from "./components/mobile/Home/HomeMobile";
 import Home from "./components/Home/Home";
 import Write from "./components/List/Write";
 import List from "./components/List/List";
@@ -21,11 +22,10 @@ function App() {
   });
 
   return (
-    <div className="App">
+    <div className={isMobile ? "mobile_App" : "App"}>
       <BrowserRouter>
         {isMobile ? <NavMobile isMobile={isMobile} /> : <Nav />}
-        {/* <Nav isMobile={isMobile} /> */}
-        <Route exact path="/" render={() => <Home isMobile={isMobile} />} />
+        {isMobile ? <HomeMobile exact path="/" /> : <Home exact path="/" />}
         <Route
           path="/365"
           exact={true}
@@ -36,7 +36,10 @@ function App() {
         <Route path="/list" component={List} />
         <Route path="/trash" component={Trash} />
         <Route path="/login" component={Login} />
-        <Route path="/introduce" render={() => <Introduce isMobile={isMobile} />} />
+        <Route
+          path="/introduce"
+          render={() => <Introduce isMobile={isMobile} />}
+        />
         <Route exact path="/logoutRoute" component={Logout} />
         <Route
           path="/365Project/login/oauth_kakao"
