@@ -31,7 +31,7 @@ function Nav(props) {
 
   return (
     <div className={props.isMobile ? "nav_mobile" : `Nav ${cssFlag}`}>
-      <Link to="/365">
+      <Link to="/">
         <p className={location.pathname === "/365" ? "home" : ""} id="logo">
           365
         </p>

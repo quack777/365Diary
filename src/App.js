@@ -18,19 +18,19 @@ import { useMediaQuery } from "react-responsive";
 
 function App() {
   const isMobile = useMediaQuery({
-    query: "(max-width:767px)",
+    query: "(max-width:414px)",
   });
 
   return (
     <div className={isMobile ? "mobile_App" : "App"}>
       <BrowserRouter>
         {isMobile ? <NavMobile isMobile={isMobile} /> : <Nav />}
-        {isMobile ? <HomeMobile exact path="/" /> : <Home exact path="/" />}
-        <Route
-          path="/365"
-          exact={true}
-          render={() => <Home isMobile={isMobile} />}
-        />
+        {isMobile ? (
+          <Route exact path="/" component={HomeMobile} />
+        ) : (
+          <Route exact path="/" component={Home} />
+        )}
+        {/* <Route exact path="/365" render={() => <Home isMobile={isMobile} />} /> */}
         <Route exact path="/write" component={Write} />
         <Route path="/write/:id" component={WriteUpdate} />
         <Route path="/list" component={List} />
