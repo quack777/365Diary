@@ -8,14 +8,13 @@
 
 }
 
-
 .home_container > .home_wrapper> .home_titleBox{ 
 margin: 34.5px 0 22px 0;
 }
 
 
 .home_container > .home_wrapper >.home_titleBox > .home_titleBox_date{ 
-    margin: 0 auto ;
+    margin: 4px  auto ;
     width: 40px;
     height: 20px;
     color : #F88270;
@@ -94,5 +93,47 @@ color: #F9F8F9;
     width: 100%;
     background-color: white;
     
+}
+
+.home_container >.home_wrapper > .home_bottom_conatiner >.home_bottomText{
+
+    padding-bottom: 21px;
+}
+.home_container >.home_wrapper > .home_bottom_conatiner >.home_bottomText >.home_bottomText_content{
+
+
+font-family: Spoqa Han Sans Neo;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 160%;
+
+text-align: center;
+
+
+color: #084861;
+margin-bottom: 5px;
+
+}
+
+
+.home_container >.home_wrapper > .home_bottom_conatiner >.home_bottomText >.home_bottomText_subContent{
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 176%;
+    /* or 25px */
+    
+    text-align: center;
+    
+    color: #084861;
+}
+
+
+.home_container >.home_wrapper > .home_bottom_conatiner >.home_bottom_img
+{
+    text-align: center;
+
 }
 
