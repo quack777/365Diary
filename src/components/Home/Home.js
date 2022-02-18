@@ -11,6 +11,7 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import { LoginAlert } from "../util/alert_modal/loginAlert";
 import ConfirmAlert from "../util/alert_modal/ConfirmAlert";
 import AlertTrash from "../util/alert_modal/AlertTrash";
+import Day365 from "../util/Day365";
 
 function Home(props) {
   const NewDate = new Date();
@@ -27,11 +28,7 @@ function Home(props) {
   const [confirmModalOn, setConfirmModalOn] = useState(false);
   const [alertTrash, setAlertTrash] = useState(false);
 
-  let now = new Date();
-  let start = new Date(now.getFullYear(), 0, 0);
-  let diff = now - start;
-  let oneDay = 1000 * 60 * 60 * 24;
-  let day = Math.floor(diff / oneDay);
+  let day = Day365();
 
   const history = useHistory();
   const [todayNum, setTodayNum] = useState(day);
