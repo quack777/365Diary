@@ -49,6 +49,7 @@
 
   position: relative;
   left: 70px;
+  cursor: pointer;
 }
 
 .Trash > div > p:nth-child(2):hover {
@@ -172,6 +173,7 @@
 
 .Trash section .btns > img {
   padding: 5px 15px;
+  cursor: pointer;
 }
 
 .Trash section .btns > img:hover {
