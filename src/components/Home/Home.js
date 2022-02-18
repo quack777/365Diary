@@ -146,7 +146,7 @@ function Home(props) {
         <div className="Aanswers" ref={answersBox}>
           {answer8.map((answer, index) => {
             return (
-              <div className="Aanswer">
+              <div className="Aanswer" key={index}>
                 <p>{ranname[index]}</p>
                 <p>{answer}</p>
               </div>
