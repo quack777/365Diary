@@ -13,7 +13,7 @@ export const ModalWrapper = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 99;
-  @media ${(props) => props.theme.mobile} {
+  @media ${({ theme }) => theme.device.mobile} {
     align-items: flex-end;
   }
 `;
@@ -29,7 +29,7 @@ export const TrashDeleteModal = styled.div`
   box-shadow: 0px 20px 100px rgb(156 156 156 / 15%);
   border-radius: 16px;
   z-index: 4;
-  @media ${(props) => props.theme.mobile} {
+  @media ${({ theme }) => theme.device.mobile} {
     width: 100%;
   }
 `;

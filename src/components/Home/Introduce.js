@@ -71,7 +71,7 @@ const Introduce = ({ isMobile }) => {
   const mobileSwipe = useSwipeable({
     onSwipedRight: () => prevSlide(),
     onSwipedLeft: () => nextSlide(),
-    preventDefaultTouchmoveEvent: true,
+    preventDefaultTouchmoveEvent: false,
     trackMouse: true,
     trackTouch: true,
   });
