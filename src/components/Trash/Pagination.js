@@ -1,6 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 
+const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+  return (
+    <div id="navDiv">
+      <nav>
+        <PageUl className="pagination">
+          {pageNumbers.map((number) => (
+            <PageLi
+              key={number}
+              className="page-item"
+              onClick={() => paginate(number)}
+            >
+              <PageSpan className="page-link">{number}</PageSpan>
+            </PageLi>
+          ))}
+        </PageUl>
+      </nav>
+    </div>
+  );
+};
+
 const PageUl = styled.ul`
   float: left;
   list-style: none;
@@ -18,11 +42,11 @@ const PageLi = styled.li`
   border-radius: 5px;
   width: 25px;
   margin: 0 4.5px;
-  background: #E3E3E3;
+  background: #e3e3e3;
   &:hover {
     cursor: pointer;
-    color: #FFFFFF;
-    background: #7EB496;
+    color: #ffffff;
+    background: #7eb496;
   }
   &:focus::after {
     color: white;
@@ -38,27 +62,5 @@ const PageSpan = styled.span`
     background-color: #263a6c;
   }
 `;
-
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-  return (
-    <div id="navDiv">
-      <nav>
-        <PageUl className="pagination">
-          {pageNumbers.map((number) => (
-            <PageLi key={number} className="page-item" onClick={() => paginate(number)}>
-              <PageSpan className="page-link">
-                {number}
-              </PageSpan>
-            </PageLi>
-          ))}
-        </PageUl>
-      </nav>
-    </div>
-  );
-};
 
 export default Pagination;

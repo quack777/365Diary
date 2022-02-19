@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "../../styles/Trash.css";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
+import "../../styles/Trash.css";
 import Pagination from "./Pagination";
 import Posts from "./Posts";
-import { useHistory } from "react-router-dom";
 import TrashAllDeleteModal from "./TrashAllDeleteModal";
 
 function Trash() {
@@ -12,7 +12,6 @@ function Trash() {
   );
   const [trashAllData, setTrashAlldata] = useState([]);
   const [openTrashAllDeleteModal, setOpenTrashAllDeleteModal] = useState(false);
-  const [clickAN, setClickAN] = useState();
   const [gotrashdata, setGotrashdata] = useState([]);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -59,7 +58,6 @@ function Trash() {
         posts={currentPosts(posts)}
         setPosts={setPosts}
         member={member}
-        setClickAN={setClickAN}
       ></Posts>
       {posts.length > 5 ? (
         <Pagination

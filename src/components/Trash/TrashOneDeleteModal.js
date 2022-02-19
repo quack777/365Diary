@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import xxxxx from "../../styles/images/xxxxx.png";
 import DeleteModal from "../util/alert_modal/DeleteModal";
 
 export default function TrashOneDeleteModal(props) {
@@ -10,7 +9,7 @@ export default function TrashOneDeleteModal(props) {
         `${process.env.REACT_APP_SERVER_IP}/trashes/${props.clickAN[0]}`,
         {
           data: {
-            member_num: props.member, //props.member
+            member_num: props.member,
             answer_delete: props.clickAN[1],
           },
         }
@@ -19,8 +18,7 @@ export default function TrashOneDeleteModal(props) {
       props.setPosts(
         props.posts.filter((data) => data.answer_num !== props.clickAN[0])
       );
-      //   console.log(response);
-      props.setOpenDeleteModal(false); // 성공했으니까 모달 창 다시 닫기
+      props.setOpenDeleteModal(false);
     } catch (error) {
       console.log("error: ", error);
       props.history.push("/error");

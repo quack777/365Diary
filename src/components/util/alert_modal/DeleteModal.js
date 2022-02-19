@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import xxxxx from "../../../styles/images/xxxxx.png";
 import styled from "styled-components";
+import { useKeyEscClose } from "../../../hooks/useKeyEscClose";
 
 export default function DeleteModal({ content, xDelete, goTrash }) {
-  useEffect(() => {
+  /* useEffect(() => {
     const escKeyModalClose = (e) => {
       if (e.keyCode === 27) {
         xDelete();
@@ -11,7 +12,8 @@ export default function DeleteModal({ content, xDelete, goTrash }) {
     };
     window.addEventListener("keydown", escKeyModalClose);
     return () => window.removeEventListener("keydown", escKeyModalClose);
-  }, []);
+  }, []); */
+  useKeyEscClose(xDelete);
 
   return (
     <ModalWrapper onClick={xDelete}>
