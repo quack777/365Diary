@@ -1,7 +1,7 @@
 import React from "react";
 import { useKeyEscClose } from "../../../hooks/useKeyEscClose";
-import xxxxx from "../../../styles/images/xxxxx.png";
 import * as M from "./modal.style";
+import xxxxx from "../../../styles/images/xxxxx.png";
 
 export const DeleteModal = ({ content, xDelete, goTrash }) => {
   useKeyEscClose(xDelete);
@@ -18,7 +18,7 @@ export const DeleteModal = ({ content, xDelete, goTrash }) => {
           <M.ModalBtns name="delete" onClick={goTrash}>
             삭제하기
           </M.ModalBtns>
-          <M.ModalBtns naem="cancel" onClick={xDelete}>
+          <M.ModalBtns name="cancel" onClick={xDelete}>
             취소하기
           </M.ModalBtns>
         </M.ModalBtnBox>

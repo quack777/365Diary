@@ -62,15 +62,15 @@ export const ModalBtnBox = styled.section`
 `;
 
 export const ModalBtns = styled.button`
-  width: 148px;
+  width: ${(props) => (props.name === "login" ? "187px" : "148px")};
   height: 55.5px;
   margin: 0 10px;
   padding: 11.25px 37.5px;
   border: 1.5px solid;
   border-radius: 12px;
   background-color: ${(props) =>
-    props.name === "delete" ? "#F9F8F9" : " #7EB496"};
-  color: ${(props) => (props.name === "delete" ? "#98999C" : "#F9F8F9")};
+    props.name === "cancel" ? "#7EB496" : "#F9F8F9"};
+  color: ${(props) => (props.name === "cancel" ? "#F9F8F9" : "#98999C")};
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: 500;
