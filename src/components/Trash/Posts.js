@@ -41,7 +41,7 @@ const Posts = ({ posts, setPosts, member }) => {
     <section>
       {posts.map((data) => {
         return (
-          <div>
+          <div key={data.answer_num}>
             <hr></hr>
             <div className="question">
               <p>

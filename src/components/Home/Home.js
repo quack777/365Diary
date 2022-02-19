@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import VectorLeft from "../../styles/images/Vector left.png";
@@ -124,6 +124,7 @@ function Home(props) {
     setAnswer8(dataArray);
   }
 
+  const closeLoginAlert = useCallback(() => setLoginAlert(false), [loginAlert]);
   return (
     <div className="Home">
       <div className={props.isMobile ? "questions_mobile" : "questions"}>
@@ -177,7 +178,7 @@ function Home(props) {
         ></img>
       </div>
       {loginAlert ? (
-        <LoginAlert setLoginAlert={setLoginAlert}></LoginAlert>
+        <LoginAlert closeLoginAlert={closeLoginAlert}></LoginAlert>
       ) : null}
 
       {confirmModalOn ? (

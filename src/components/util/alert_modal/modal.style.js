@@ -12,6 +12,7 @@ export const ModalWrapper = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 99;
 `;
 
 export const TrashDeleteModal = styled.div`
