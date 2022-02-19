@@ -1,13 +1,12 @@
 import React from "react";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import VectorLeft from "../../styles/images/Vector left.png";
 import VectorRight from "../../styles/images/Vector right.png";
 import Vector from "../../styles/images/Vector 1.png";
-import arrow from "../../styles/images/arrow01_normal.png";
 import main from "../../styles/images/mainpage.png";
 import "../../styles/Home.css";
-import { Link, useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { LoginAlert } from "../util/alert_modal/loginAlert";
 import ConfirmAlert from "../util/alert_modal/ConfirmAlert";
 import AlertTrash from "../util/alert_modal/AlertTrash";
@@ -56,15 +55,14 @@ function Home(props) {
 
   const answersBox = useRef();
 
-  function rightMove(a) {
+  function rightMove() {
     if (num >= -150) {
-      // num = num - 30;
       num === -150 ? (num = -160) : (num = num - 30);
       answersBox.current.style.transform = `translateX(${num}%)`;
       console.log(num);
     }
   }
-  //데이터 세팅
+
   function leftMove() {
     if (num < 0) {
       num = num + 30;
