@@ -78,4 +78,13 @@ export const ModalBtns = styled.button`
   font-size: 18.75px;
   line-height: 174.2%;
   cursor: pointer;
+  &:hover {
+    border-style: none;
+    background-color: ${(props) =>
+      props.name === "cancel" ? "#9FD3B6" : "#EDEDED"};
+  }
+  &:focus {
+    background-color: ${(props) =>
+      props.name === "cancel" ? "#78AA8E" : "#DBDBDB"};
+  }
 `;
