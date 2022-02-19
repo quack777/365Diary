@@ -1,7 +1,8 @@
 import React from "react";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import "../../styles/List.css";
+import * as M from "../util/alert_modal/modal.style";
 import monthBTN from "../../styles/images/monthBTN.png";
 import xxxxx from "../../styles/images/xxxxx.png";
 import axios from "axios";
@@ -10,10 +11,12 @@ import Calender from "../util/Calender";
 import ListAnswer from "./ListAnswer";
 import { Alert } from "../util/alert_modal/alert";
 import Day365 from "../util/Day365";
+import { useKeyEscClose } from "../../hooks/useKeyEscClose";
 
 function List() {
   const location = useLocation();
   const history = useHistory();
+  useKeyEscClose(xDelete);
 
   // 다이렉트로 url 접근 시 뒤로가기
   // const getId = sessionStorage.getItem("id");
@@ -36,7 +39,6 @@ function List() {
   const [isDelete, setIsDelete] = useState(false);
   const [questionData, setQuestionData] = useState([]);
   const [day31, setDay31] = useState(new Date());
-  const deleteModalContainer = useRef();
   const member_num = sessionStorage.getItem("member_num");
 
   let day365 = Day365();
@@ -207,16 +209,26 @@ function List() {
       />
 
       {deletes ? (
-        <div className="deleteModal" ref={deleteModalContainer}>
-          <img onClick={xDelete} src={xxxxx}></img>
-          <p>답변을 정말 삭제하시겠어요?</p>
-          <p>일기를 모두 삭제한 후엔 더 이상 질문을 확인할 수 없습니다.</p>
-          <p>삭제된 답변은 휴지통에 일주일 동안 보관됩니다</p>
-          <section>
-            <p onClick={goTrash}>삭제하기</p>
-            <p onClick={xDelete}>취소하기</p>
-          </section>
-        </div>
+        <M.ModalWrapper onClick={xDelete}>
+          <M.TrashDeleteModal>
+            <M.ModalCloseXBtn onClick={xDelete} src={xxxxx}></M.ModalCloseXBtn>
+            <M.TrashModalTitile>답변을 정말 삭제하시겠어요?</M.TrashModalTitile>
+            <M.TrashModalTitileContent>
+              일기를 모두 삭제한 후엔 더 이상 질문을 확인할 수 없습니다.
+            </M.TrashModalTitileContent>
+            <M.TrashModalTitileContent style={{ margin: 0 }}>
+              삭제된 답변은 휴지통에 일주일 동안 보관됩니다
+            </M.TrashModalTitileContent>
+            <M.ModalBtnBox>
+              <M.ModalBtns name="delete" onClick={goTrash}>
+                삭제하기
+              </M.ModalBtns>
+              <M.ModalBtns name="cancel" onClick={xDelete}>
+                취소하기
+              </M.ModalBtns>
+            </M.ModalBtnBox>
+          </M.TrashDeleteModal>
+        </M.ModalWrapper>
       ) : null}
       {isDelete ? (
         <Alert goAway={"/list"} isClose={setIsDelete} content={"삭제"}></Alert>
