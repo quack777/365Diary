@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import DeleteModal from "../util/alert_modal/DeleteModal";
+import { DeleteModal } from "../util/alert_modal/DeleteModal";
 
 export default function TrashOneDeleteModal(props) {
   const goTrash = () => {

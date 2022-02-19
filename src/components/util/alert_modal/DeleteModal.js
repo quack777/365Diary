@@ -1,18 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import xxxxx from "../../../styles/images/xxxxx.png";
 import styled from "styled-components";
 import { useKeyEscClose } from "../../../hooks/useKeyEscClose";
 
-export default function DeleteModal({ content, xDelete, goTrash }) {
-  /* useEffect(() => {
-    const escKeyModalClose = (e) => {
-      if (e.keyCode === 27) {
-        xDelete();
-      }
-    };
-    window.addEventListener("keydown", escKeyModalClose);
-    return () => window.removeEventListener("keydown", escKeyModalClose);
-  }, []); */
+export const DeleteModal = ({ content, xDelete, goTrash }) => {
   useKeyEscClose(xDelete);
 
   return (
@@ -34,7 +25,7 @@ export default function DeleteModal({ content, xDelete, goTrash }) {
       </TrashDeleteModal>
     </ModalWrapper>
   );
-}
+};
 
 const ModalWrapper = styled.div`
   position: fixed;
