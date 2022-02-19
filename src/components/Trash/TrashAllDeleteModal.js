@@ -36,5 +36,7 @@ export default function TrashAllDeleteModal(props) {
     props.setOpenTrashAllDeleteModal(false);
   }
 
-  return <DeleteModal xDelete={xDelete} goTrash={goTrash} />;
+  return (
+    <DeleteModal content={"휴지통을"} xDelete={xDelete} goTrash={goTrash} />
+  );
 }
