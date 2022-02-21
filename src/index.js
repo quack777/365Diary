@@ -6,10 +6,10 @@ import theme from "./styles/theme";
 import { ThemeProvider } from "styled-components";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+    <React.StrictMode>
+        <ThemeProvider theme={theme}>
+            <App />
+        </ThemeProvider>
+    </React.StrictMode>,
+    document.getElementById("root"),
 );

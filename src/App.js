@@ -17,38 +17,28 @@ import Error from "./components/error/Error";
 import { useMediaQuery } from "react-responsive";
 
 function App() {
-  const isMobile = useMediaQuery({
-    query: "(max-width:414px)",
-  });
+    const isMobile = useMediaQuery({
+        query: "(max-width:414px)",
+    });
 
-  return (
-    <div className={isMobile ? "mobile_App" : "App"}>
-      <BrowserRouter>
-        {isMobile ? <NavMobile isMobile={isMobile} /> : <Nav />}
-        {isMobile ? (
-          <Route exact path="/" component={HomeMobile} />
-        ) : (
-          <Route exact path="/" component={Home} />
-        )}
-        {/* <Route exact path="/365" render={() => <Home isMobile={isMobile} />} /> */}
-        <Route exact path="/write" component={Write} />
-        <Route path="/write/:id" component={WriteUpdate} />
-        <Route path="/list" component={List} />
-        <Route path="/trash" component={Trash} />
-        <Route path="/login" component={Login} />
-        <Route
-          path="/introduce"
-          render={() => <Introduce isMobile={isMobile} />}
-        />
-        <Route exact path="/logoutRoute" component={Logout} />
-        <Route
-          path="/365Project/login/oauth_kakao"
-          component={OAuth2RedirectHandler}
-        ></Route>
-        <Route path="/error" component={Error} />
-      </BrowserRouter>
-    </div>
-  );
+    return (
+        <div className={isMobile ? "mobile_App" : "App"}>
+            <BrowserRouter>
+                {isMobile ? <NavMobile isMobile={isMobile} /> : <Nav />}
+                {isMobile ? <Route exact path="/" component={HomeMobile} /> : <Route exact path="/" component={Home} />}
+                {/* <Route exact path="/365" render={() => <Home isMobile={isMobile} />} /> */}
+                <Route exact path="/write" component={Write} />
+                <Route path="/write/:id" component={WriteUpdate} />
+                <Route path="/list" component={List} />
+                <Route path="/trash" component={Trash} />
+                <Route path="/login" component={Login} />
+                <Route path="/introduce" render={() => <Introduce isMobile={isMobile} />} />
+                <Route exact path="/logoutRoute" component={Logout} />
+                <Route path="/365Project/login/oauth_kakao" component={OAuth2RedirectHandler}></Route>
+                <Route path="/error" component={Error} />
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
