@@ -6,36 +6,15 @@ import delete_normal from "../../styles/images/delete_normal.png";
 import restore_normal from "../../styles/images/restore_normal.png";
 import Line from "../../styles/images/Line45.png";
 
-const Posts = ({ posts, setPosts, member }) => {
+const Posts = ({ revert, setPosts, posts, member }) => {
     const history = useHistory();
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [clickAN, setClickAN] = useState();
 
-    function revert(answer_num, answer_delete, delete_date, question_num) {
-        axios({
-            url: `/trashes/settings/${answer_num}/${member}`,
-            method: "patch",
-            baseURL: process.env.REACT_APP_SERVER_IP,
-            data: {
-                answer_delete: answer_delete,
-                delete_date: delete_date,
-                question_num: question_num,
-            },
-        })
-            .then(function (response) {
-                console.log(response);
-                setPosts(posts.filter((data) => data.answer_num !== answer_num));
-            })
-            .catch(function (error) {
-                console.log(error);
-                history.push("/error");
-            });
-    }
-
-    function oneRemove(answer_num, answer_delete) {
+    const oneRemove = (answer_num, answer_delete) => {
         setOpenDeleteModal(true);
         setClickAN([answer_num, answer_delete]);
-    }
+    };
 
     return (
         <section>
