@@ -114,8 +114,8 @@ function Home(props) {
         setAnswer8(dataArray);
     }
 
-    const closeLoginAlert = useCallback(() => setLoginAlert(false), [loginAlert]);
-    const closeConfirmModal = useCallback(() => setConfirmModalOn(false), [confirmModalOn]);
+    const closeLoginAlert = useCallback(() => setLoginAlert(false), []);
+    const closeConfirmModal = useCallback(() => setConfirmModalOn(false), []);
 
     return (
         <div className="Home">

@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useKeyEscClose } from "../../../hooks/useKeyEscClose";
 import xxxxx from "../../../styles/images/xxxxx.png";
 import * as M from "../alert_modal/modal.style";
 
 export const ConfirmAlert = ({ closeConfirmModal, todayMyA, member_num, day, question }) => {
+    useKeyEscClose(closeConfirmModal);
     return (
         <M.ModalWrapper onClick={() => closeConfirmModal()}>
             <M.TrashDeleteModal>
