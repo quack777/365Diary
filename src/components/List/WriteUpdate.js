@@ -1,12 +1,11 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocation, useHistory, useParams } from "react-router-dom";
+import axios from "axios";
+import { Alert } from "../util/alert_modal/Alert";
 import toggle_unselected from "../../styles/images/main_private.png";
 import toggle_selected from "../../styles/images/main_public.png";
-import axios from "axios";
-
 import "../../styles/Write.css";
-import { Alert } from "../util/alert_modal/alert";
 
 function WriteUpdate() {
     const { id } = useParams();
@@ -17,19 +16,15 @@ function WriteUpdate() {
     const targetYear = location?.state?.data?.answer_year;
     const [initialValue, setInitialValue] = useState(location?.state?.data?.answer);
 
-    const answer_num = location.answer_num;
-
     const [question] = useState(location?.state?.question);
     const [count, setCount] = useState(0);
-    const [open, setOpen] = useState(false);
     const [publica, setPublica] = useState(location?.state?.data?.public_answer);
     const [update, setUpdate] = useState(false);
 
     function writeSubmit(e) {
         e.preventDefault();
         axios({
-            url: `/answers/pages`, // 임시 member => 1
-            // /answers/pages/{answer_num}/{member_num}
+            url: `/answers/pages`,
             method: "patch",
             baseURL: process.env.REACT_APP_SERVER_IP,
             data: {
@@ -73,12 +68,10 @@ function WriteUpdate() {
     }
 
     function stateClose() {
-        setOpen(false);
         setPublica("N");
     }
 
     function stateOpen() {
-        setOpen(true);
         setPublica("Y");
     }
 
@@ -119,7 +112,7 @@ function WriteUpdate() {
             </form>
             <div className="backColor"></div>
             <div id="WriteBack"></div>
-            {update ? <Alert goAway={"/list"} isClose={setUpdate} content={"수정"}></Alert> : null}
+            {update ? <Alert url={"/list"} content={"수정"}></Alert> : null}
         </div>
     );
 }

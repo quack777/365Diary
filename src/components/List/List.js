@@ -9,7 +9,7 @@ import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 import Calender from "../util/Calender";
 import ListAnswer from "./ListAnswer";
-import { Alert } from "../util/alert_modal/alert";
+import { Alert } from "../util/alert_modal/Alert";
 import Day365 from "../util/Day365";
 import { useKeyEscClose } from "../../hooks/useKeyEscClose";
 
@@ -154,6 +154,10 @@ function List() {
         patchPublic(public_answer[index], index);
     }
 
+    const closeDeleteAlert = () => {
+        setIsDelete(false);
+    };
+
     return (
         <div className="List">
             <div className="questions">
@@ -165,8 +169,6 @@ function List() {
                 </div>
                 <img src={monthBTN} alt="seeCalenderBtn" style={{ cursor: "pointer" }} onClick={seeCalender} />
             </div>
-
-            {/* 이것은 당일에 해당하는 답변이 없을 떄만 보여주어야 합니다 */}
 
             <ListAnswer
                 showDelete={showDelete}
@@ -211,7 +213,7 @@ function List() {
                     </M.TrashDeleteModal>
                 </M.ModalWrapper>
             ) : null}
-            {isDelete ? <Alert goAway={"/list"} isClose={setIsDelete} content={"삭제"}></Alert> : null}
+            {isDelete ? <Alert closeDeleteAlert={closeDeleteAlert} content={"삭제"}></Alert> : null}
             {calender ? (
                 <Calender
                     setDataYear={setDataYear}
