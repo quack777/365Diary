@@ -24,7 +24,7 @@ export const AlertBox = styled.div`
     background: rgba(255, 255, 255, 1);
     border-radius: 12px;
     z-index: 50;
-    &:nth-child(3) {
+    & > img:nth-child(3) {
         cursor: pointer;
     }
 `;

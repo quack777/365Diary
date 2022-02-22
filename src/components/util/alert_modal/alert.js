@@ -8,10 +8,9 @@ import * as A from "./alert.style";
 export const Alert = ({ url, content, closeDeleteAlert }) => {
     const history = useHistory();
     const handleCloseBtn = () => {
-        if (content !== "삭제") {
+        if (content !== "삭제" && content !== "answerInTrash") {
             history.push(url);
         } else {
-            console.log("삭제");
             closeDeleteAlert();
         }
     };
@@ -19,14 +18,18 @@ export const Alert = ({ url, content, closeDeleteAlert }) => {
     useEffect(() => {
         setTimeout(() => {
             handleCloseBtn();
-        }, 1800);
+        }, 2000);
     }, []);
 
     return (
         <A.AlertWrapper onClick={handleCloseBtn}>
             <A.AlertBox>
                 <img alt="alertCheck" src={alertCheck}></img>
-                <A.AlertContent>일기가 정상적으로 {content}되었습니다.</A.AlertContent>
+                <A.AlertContent>
+                    {content === "answerInTrash"
+                        ? "휴지통에 오늘 답변이 존재합니다."
+                        : `일기가 정상적으로 ${content}되었습니다.`}
+                </A.AlertContent>
                 <img alt="alertX" src={alertX} onClick={handleCloseBtn}></img>
             </A.AlertBox>
         </A.AlertWrapper>

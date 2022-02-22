@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
+import ListNoAnswer from "./ListNoAnswer";
+import { Alert } from "../util/alert_modal/Alert";
+
 import modify_normal from "../../styles/images/modify_normal.png";
 import Line from "../../styles/images/Line45.png";
 import delete_normal from "../../styles/images/delete_normal.png";
@@ -8,8 +11,6 @@ import toggle_unselected from "../../styles/images/list_private.png";
 import toggle_selected from "../../styles/images/list_public.png";
 import girl from "../../styles/images/Mask Group.png";
 import "../../styles/List.css";
-import AlertTrash from "../util/alert_modal/AlertTrash";
-import ListNoAnswer from "./ListNoAnswer";
 
 export default function ListAnswer({
     question,
@@ -97,6 +98,10 @@ export default function ListAnswer({
         );
     }
 
+    const closeAlertAnswerInTrash = () => {
+        setAlertTrash(false);
+    };
+
     return (
         <div className="List">
             {answerAllData.length > 0 ? (
@@ -146,7 +151,7 @@ export default function ListAnswer({
                 <ListNoAnswer setQuestion={setQuestion} />
             )}
 
-            {alertTrash ? <AlertTrash isClose={setAlertTrash} /> : null}
+            {alertTrash ? <Alert content="answerInTrash" closeDeleteAlert={closeAlertAnswerInTrash} /> : null}
         </div>
     );
 }

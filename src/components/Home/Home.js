@@ -1,18 +1,19 @@
 import React, { useCallback } from "react";
 import { useState, useRef, useEffect } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
+import { LoginAlert } from "../util/alert_modal/loginAlert";
+import { ConfirmAlert } from "../util/alert_modal/ConfirmAlert";
+import Day365 from "../util/Day365";
+import { Alert } from "../util/alert_modal/Alert";
+
 import VectorLeft from "../../styles/images/Vector left.png";
 import VectorRight from "../../styles/images/Vector right.png";
 import Vector from "../../styles/images/Vector 1.png";
 import main from "../../styles/images/mainpage.png";
 import "../../styles/Home.css";
-import { useLocation, useHistory } from "react-router-dom";
-import { LoginAlert } from "../util/alert_modal/loginAlert";
-import { ConfirmAlert } from "../util/alert_modal/ConfirmAlert";
-import AlertTrash from "../util/alert_modal/AlertTrash";
-import Day365 from "../util/Day365";
 
-function Home(props) {
+const Home = (props) => {
     const NewDate = new Date();
     const month = NewDate.getMonth() + 1;
     const date = NewDate.getDate();
@@ -117,6 +118,10 @@ function Home(props) {
     const closeLoginAlert = useCallback(() => setLoginAlert(false), []);
     const closeConfirmModal = useCallback(() => setConfirmModalOn(false), []);
 
+    const closeAlertAnswerInTrash = () => {
+        setAlertTrash(false);
+    };
+
     return (
         <div className="Home">
             <div className={props.isMobile ? "questions_mobile" : "questions"}>
@@ -172,10 +177,10 @@ function Home(props) {
                 />
             ) : null}
 
-            {alertTrash ? <AlertTrash isClose={setAlertTrash} /> : null}
+            {alertTrash ? <Alert content="answerInTrash" closeDeleteAlert={closeAlertAnswerInTrash} /> : null}
             <div className="backColor"></div>
         </div>
     );
-}
+};
 
 export default Home;
