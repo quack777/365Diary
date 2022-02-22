@@ -1,7 +1,7 @@
 import React from "react";
 import { useKeyEscClose } from "../../../hooks/useKeyEscClose";
-import * as M from "./modal.style";
 import xxxxx from "../../../styles/images/xxxxx.png";
+import * as M from "./modal.style";
 
 export const DeleteModal = ({ content, xDelete, goTrash }) => {
     useKeyEscClose(xDelete);
