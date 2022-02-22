@@ -7,6 +7,7 @@ import Day365 from "../util/Day365";
 import toggle_unselected from "../../styles/images/main_private.png";
 import toggle_selected from "../../styles/images/main_public.png";
 import "../../styles/Write.css";
+import styled from "styled-components";
 
 const Write = () => {
     const history = useHistory();
@@ -110,6 +111,9 @@ const Write = () => {
                             <img src={toggle_unselected} alt="private" onClick={stateOpen}></img>
                         )}
                     </div>
+                    <MobileToggleExplain>
+                        <p>익명으로 공개되며, 모두가 이 글을 볼 수 있습니다.</p>
+                    </MobileToggleExplain>
                     <div className="twoBtn">
                         <button
                             style={{ borderStyle: "none", backgroundColor: "transparent" }}
@@ -129,4 +133,17 @@ const Write = () => {
         </div>
     );
 };
+
+const MobileToggleExplain = styled.div`
+    display: none;
+    color: #98999c;
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    @media ${({ theme }) => theme.device.mobile} {
+        display: block;
+    }
+`;
+
 export default Write;
