@@ -115,6 +115,8 @@ function Home(props) {
     }
 
     const closeLoginAlert = useCallback(() => setLoginAlert(false), [loginAlert]);
+    const closeConfirmModal = useCallback(() => setConfirmModalOn(false), [confirmModalOn]);
+
     return (
         <div className="Home">
             <div className={props.isMobile ? "questions_mobile" : "questions"}>
@@ -165,7 +167,7 @@ function Home(props) {
                     question={question}
                     day={day}
                     member_num={memberNum}
-                    setConfirmModalOn={setConfirmModalOn}
+                    closeConfirmModal={closeConfirmModal}
                     todayMyA={todayMyA}
                 />
             ) : null}
