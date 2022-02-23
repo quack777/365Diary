@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import "../../styles/Login.css";
 import axios from "axios";
 import PulseLoader from "react-spinners/PulseLoader";
+import "../../styles/Login.css";
 
 function Logout() {
     const history = useHistory();

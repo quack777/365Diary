@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+import styled from "styled-components";
 import TrashOneDeleteModal from "./TrashOneDeleteModal";
 import delete_normal from "../../styles/images/delete_normal.png";
 import restore_normal from "../../styles/images/restore_normal.png";
 import Line from "../../styles/images/Line45.png";
-import styled from "styled-components";
 
 const Posts = ({ revert, setPosts, posts, member }) => {
     const history = useHistory();

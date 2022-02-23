@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import styled from "styled-components";
 import Pagination from "./Pagination";
 import Posts from "./Posts";
 import TrashAllDeleteModal from "./TrashAllDeleteModal";
 import "../../styles/Trash.css";
-import styled from "styled-components";
 
 const Trash = () => {
     const [member, setMember] = useState(Number(sessionStorage.getItem("member_num")));

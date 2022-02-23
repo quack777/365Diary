@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import PulseLoader from "react-spinners/PulseLoader";
 
-function OAuth2RedirectHandler() {
+const OAuth2RedirectHandler = () => {
     // 인가코드
 
     const history = useHistory();
@@ -49,6 +49,6 @@ function OAuth2RedirectHandler() {
             <PulseLoader height="160" width="32" color="#36D7B7" radius="8" />
         </div>
     );
-}
+};
 
 export default OAuth2RedirectHandler;

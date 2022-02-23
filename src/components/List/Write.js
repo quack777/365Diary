@@ -2,12 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import styled from "styled-components";
 import { Alert } from "../util/alert_modal/Alert";
 import Day365 from "../util/Day365";
 import toggle_unselected from "../../styles/images/main_private.png";
 import toggle_selected from "../../styles/images/main_public.png";
 import "../../styles/Write.css";
-import styled from "styled-components";
 
 const Write = () => {
     const history = useHistory();
