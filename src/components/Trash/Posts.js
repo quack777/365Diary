@@ -5,6 +5,7 @@ import TrashOneDeleteModal from "./TrashOneDeleteModal";
 import delete_normal from "../../styles/images/delete_normal.png";
 import restore_normal from "../../styles/images/restore_normal.png";
 import Line from "../../styles/images/Line45.png";
+import styled from "styled-components";
 
 const Posts = ({ revert, setPosts, posts, member }) => {
     const history = useHistory();
@@ -29,10 +30,10 @@ const Posts = ({ revert, setPosts, posts, member }) => {
                             </p>
                             <p>{data.question}</p>
                         </div>
-                        <div className="answers">
-                            <p>{data.answer_year}년의 나:</p>
-                            <p>{data.answer}</p>
-                        </div>
+                        <TrashAnswerBox>
+                            <TrashAnswerYear>{data.answer_year}년의 나:</TrashAnswerYear>
+                            <TrashAnswerContents>{data.answer}</TrashAnswerContents>
+                        </TrashAnswerBox>
                         <div className="btns">
                             <img
                                 onClick={() =>
@@ -64,4 +65,35 @@ const Posts = ({ revert, setPosts, posts, member }) => {
         </section>
     );
 };
+
+const TrashAnswerBox = styled.div`
+    align-self: flex-end;
+    width: 100%;
+    max-width: 759px;
+`;
+
+const TrashAnswerYear = styled.p`
+    color: #084861;
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22.5px;
+    line-height: 28px;
+    /* display: flex;
+    align-items: flex-end; */
+`;
+
+const TrashAnswerContents = styled.p`
+    /* width: 100%;
+    max-width: 759px; */
+    color: #084861;
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18.75px;
+    line-height: 209.7%;
+    letter-spacing: -0.05em;
+    word-wrap: break-word;
+`;
+
 export default Posts;
