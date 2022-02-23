@@ -5,6 +5,7 @@ import Pagination from "./Pagination";
 import Posts from "./Posts";
 import TrashAllDeleteModal from "./TrashAllDeleteModal";
 import "../../styles/Trash.css";
+import styled from "styled-components";
 
 const Trash = () => {
     const [member, setMember] = useState(Number(sessionStorage.getItem("member_num")));
@@ -68,12 +69,14 @@ const Trash = () => {
     );
 
     return (
-        <div className="Trash">
-            <div>
-                <p>휴지통</p>
-                <p onClick={allClear}>휴지통 비우기</p>
-            </div>
-            <p>휴지통에 있는 일기는 7일이 지나면 완전히 삭제됩니다</p>
+        <TrashLayout className="Trash">
+            <TrashHeader>
+                <div className="leftBox">
+                    <TrashTitle>휴지통</TrashTitle>
+                    <TrashContent>휴지통에 있는 일기는 7일이 지나면 완전히 삭제됩니다</TrashContent>
+                </div>
+                <TrashAllDeleteBtn onClick={allClear}>휴지통 비우기</TrashAllDeleteBtn>
+            </TrashHeader>
             <Posts posts={currentPosts(posts)} setPosts={setPosts} revert={revert} member={member}></Posts>
             {posts.length > 5 ? (
                 <Pagination
@@ -97,8 +100,77 @@ const Trash = () => {
                     />
                 ) : null}
             </section>
-        </div>
+        </TrashLayout>
     );
 };
+
+const TrashLayout = styled.div`
+    display: flex;
+    flex-direction: column;
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 70px;
+    @media ${({ theme }) => theme.device.mobile} {
+        width: 375px;
+    }
+`;
+
+const TrashHeader = styled.header`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+`;
+
+const TrashTitle = styled.p`
+    margin: 0;
+    color: #084861;
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 41.25px;
+    @media ${({ theme }) => theme.device.mobile} {
+        font-size: 24px;
+    }
+`;
+
+const TrashContent = styled.p`
+    margin-top: 30px;
+    margin-bottom: 61px;
+    color: #98999c;
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    @media ${({ theme }) => theme.device.mobile} {
+        display: none;
+    }
+`;
+
+const TrashAllDeleteBtn = styled.button`
+    align-self: flex-start;
+    // position: relative;
+    // left: 70px;
+    // width: 191px;
+    // height: 55.5px;
+    padding: 15px 40px;
+    border-radius: 16px;
+    color: #f9f8f9;
+    background: #7eb496;
+
+    font-size: 18.75px;
+    font-weight: 500;
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    line-height: 174.2%;
+    cursor: pointer;
+    @media ${({ theme }) => theme.device.mobile} {
+        position: relative;
+        bottom: 10px;
+        padding: 15px 30px;
+        border-radius: 8px;
+        font-size: 12px;
+    }
+`;
 
 export default Trash;
