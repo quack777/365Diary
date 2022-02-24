@@ -17,18 +17,18 @@ const Posts = ({ revert, setPosts, posts, member }) => {
     };
 
     return (
-        <section>
+        <TrashAnswerLayout>
             {posts.map((data) => {
                 return (
-                    <div key={data.answer_num}>
-                        <hr></hr>
-                        <div className="question">
-                            <p>
+                    <TrashOneDataBox key={data.answer_num}>
+                        <TrashDivisionLine></TrashDivisionLine>
+                        <TrashQuestionBox>
+                            <TrashQuestionDate>
                                 {data.answer_date && data.answer_date.substring(0, 2)}월{" "}
                                 {data.answer_date && data.answer_date.substring(2, 4)}일
-                            </p>
-                            <p>{data.question}</p>
-                        </div>
+                            </TrashQuestionDate>
+                            <TrashQuestionContents>{data.question}</TrashQuestionContents>
+                        </TrashQuestionBox>
                         <TrashAnswerBox>
                             <TrashAnswerYear>{data.answer_year}년의 나:</TrashAnswerYear>
                             <TrashAnswerContents>{data.answer}</TrashAnswerContents>
@@ -48,7 +48,7 @@ const Posts = ({ revert, setPosts, posts, member }) => {
                                 src={delete_normal}
                             ></img>
                         </div>
-                    </div>
+                    </TrashOneDataBox>
                 );
             })}
             {openDeleteModal ? (
@@ -61,9 +61,51 @@ const Posts = ({ revert, setPosts, posts, member }) => {
                     history={history}
                 />
             ) : null}
-        </section>
+        </TrashAnswerLayout>
     );
 };
+
+const TrashAnswerLayout = styled.section`
+    width: 100%;
+    max-width: 1014px;
+`;
+
+const TrashOneDataBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`;
+
+const TrashDivisionLine = styled.hr`
+    width: 100%;
+    border: 1px solid #084861;
+    opacity: 0.1;
+`;
+
+const TrashQuestionBox = styled.div`
+    margin-bottom: 40px;
+    @media ${({ theme }) => theme.device.mobile} {
+        margin-bottom: 25px;
+    }
+`;
+
+const TrashQuestionDate = styled.p`
+    color: #f88270;
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+`;
+
+const TrashQuestionContents = styled.p`
+    margin: 0;
+    color: #084861;
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22.5px;
+    line-height: 28px;
+`;
 
 const TrashAnswerBox = styled.div`
     align-self: flex-end;
@@ -77,14 +119,9 @@ const TrashAnswerYear = styled.p`
     font-style: normal;
     font-weight: bold;
     font-size: 22.5px;
-    line-height: 28px;
-    /* display: flex;
-    align-items: flex-end; */
 `;
 
 const TrashAnswerContents = styled.p`
-    /* width: 100%;
-    max-width: 759px; */
     color: #084861;
     font-family: Spoqa Han Sans Neo;
     font-style: normal;

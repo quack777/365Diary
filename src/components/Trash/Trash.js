@@ -112,7 +112,7 @@ const TrashLayout = styled.div`
     margin: 0 auto;
     margin-top: 70px;
     @media ${({ theme }) => theme.device.mobile} {
-        width: 375px;
+        width: 90%;
     }
 `;
 
