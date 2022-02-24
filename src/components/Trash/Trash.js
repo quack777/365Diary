@@ -82,6 +82,7 @@ const Trash = () => {
                 <Pagination
                     postsPerPage={postsPerPage}
                     totalPosts={posts.length}
+                    currentPage={currentPage}
                     paginate={setCurrentPage}
                 ></Pagination>
             ) : null}
