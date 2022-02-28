@@ -1,4 +1,4 @@
-# 365
+# 365Diary
 
 ## 💁 프로젝트 소개
 <p align="center">
