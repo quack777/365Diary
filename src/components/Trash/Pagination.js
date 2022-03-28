@@ -1,29 +1,43 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Pagination = ({ postsPerPage, totalPosts, currentPage, changeCurrentPage }) => {
-    const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-        pageNumbers.push(i);
-    }
+    const [pageNumbers, setPageNumbers] = useState();
+
+    const pageNumberCalculator = useCallback(() => {
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+            pageNumbers.push(i);
+        }
+        return pageNumbers;
+    }, [postsPerPage, totalPosts]);
+
+    useEffect(() => {
+        setPageNumbers(pageNumberCalculator);
+    }, [pageNumberCalculator]);
+
     return (
-        <div>
-            <nav>
-                <PageUl>
-                    {pageNumbers.map((number) => (
-                        <PageLi
-                            key={number}
-                            active={number === currentPage && true}
-                            onClick={() => changeCurrentPage(number)}
-                        >
-                            <PageSpan>{number}</PageSpan>
-                        </PageLi>
-                    ))}
-                </PageUl>
-            </nav>
-        </div>
+        <PageNav>
+            <PageUl>
+                {pageNumbers?.map((number) => (
+                    <PageLi
+                        key={number}
+                        active={number === currentPage && true}
+                        onClick={() => changeCurrentPage(number)}
+                    >
+                        <PageSpan>{number}</PageSpan>
+                    </PageLi>
+                ))}
+            </PageUl>
+        </PageNav>
     );
 };
+
+const PageNav = styled.nav`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
 const PageUl = styled.ul`
     float: left;
@@ -45,15 +59,6 @@ const PageLi = styled.li`
     font-size: 17px;
     font-weight: 600;
     cursor: pointer;
-    /* &:hover {
-        cursor: pointer;
-        color: #ffffff;
-        background: #7eb496;
-    }
-    &:focus::after {
-        color: white;
-        background-color: #263a6c;
-    } */
 `;
 
 const PageSpan = styled.span`
