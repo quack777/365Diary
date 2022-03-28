@@ -75,9 +75,9 @@ const Trash = () => {
     };
 
     return (
-        <TrashLayout className="Trash">
+        <TrashLayout>
             <TrashHeader>
-                <div className="leftBox">
+                <div>
                     <TrashTitle>휴지통</TrashTitle>
                     <TrashContent>휴지통에 있는 일기는 7일이 지나면 완전히 삭제됩니다</TrashContent>
                 </div>
