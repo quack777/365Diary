@@ -33,21 +33,21 @@ const Posts = ({ revert, setPosts, posts, member }) => {
                             <TrashAnswerYear>{data.answer_year}년의 나:</TrashAnswerYear>
                             <TrashAnswerContents>{data.answer}</TrashAnswerContents>
                         </TrashAnswerBox>
-                        <div className="btns">
-                            <img
+                        <TrashBtnsBox>
+                            <TrashBtn
+                                alt="revertBtn"
                                 onClick={() =>
                                     revert(data.answer_num, data.answer_delete, data.delete_date, data.question_num)
                                 }
-                                alt="복원"
                                 src={restore_normal}
-                            ></img>
-                            <img alt="line" src={Line}></img>
-                            <img
+                            ></TrashBtn>
+                            <TrashBtn alt="line" src={Line}></TrashBtn>
+                            <TrashBtn
+                                alt="deleteBtn"
                                 onClick={() => oneRemove(data.answer_num, data.answer_delete)}
-                                alt="삭제"
                                 src={delete_normal}
-                            ></img>
-                        </div>
+                            ></TrashBtn>
+                        </TrashBtnsBox>
                     </TrashOneDataBox>
                 );
             })}
@@ -130,6 +130,20 @@ const TrashAnswerContents = styled.p`
     line-height: 209.7%;
     letter-spacing: -0.05em;
     word-wrap: break-word;
+`;
+
+const TrashBtnsBox = styled.div`
+    align-self: flex-end;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 170px;
+    height: auto;
+`;
+
+const TrashBtn = styled.img`
+    padding: 5px 15px;
+    cursor: pointer;
 `;
 
 export default Posts;

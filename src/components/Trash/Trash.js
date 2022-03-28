@@ -12,6 +12,7 @@ const Trash = () => {
     const [trashAllData, setTrashAlldata] = useState([]);
     const [openTrashAllDeleteModal, setOpenTrashAllDeleteModal] = useState(false);
     const [gotrashdata, setGotrashdata] = useState([]);
+
     const [posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(5);
@@ -38,6 +39,7 @@ const Trash = () => {
 
     const indexOfLast = currentPage * postsPerPage;
     const indexOfFirst = indexOfLast - postsPerPage;
+
     function currentPosts(tmp) {
         let currentPosts = 0;
         currentPosts = tmp.slice(indexOfFirst, indexOfLast);
@@ -68,10 +70,14 @@ const Trash = () => {
         [history, member, posts],
     );
 
+    const changeCurrentPage = (activePageNum) => {
+        setCurrentPage(activePageNum);
+    };
+
     return (
-        <TrashLayout className="Trash">
+        <TrashLayout>
             <TrashHeader>
-                <div className="leftBox">
+                <div>
                     <TrashTitle>휴지통</TrashTitle>
                     <TrashContent>휴지통에 있는 일기는 7일이 지나면 완전히 삭제됩니다</TrashContent>
                 </div>
@@ -83,7 +89,7 @@ const Trash = () => {
                     postsPerPage={postsPerPage}
                     totalPosts={posts.length}
                     currentPage={currentPage}
-                    paginate={setCurrentPage}
+                    changeCurrentPage={changeCurrentPage}
                 ></Pagination>
             ) : null}
 
@@ -150,14 +156,10 @@ const TrashContent = styled.p`
 
 const TrashAllDeleteBtn = styled.button`
     align-self: flex-start;
-    // position: relative;
-    // left: 70px;
-    // width: 191px;
-    // height: 55.5px;
     padding: 15px 40px;
     border-radius: 16px;
     color: #f9f8f9;
-    background: #7eb496;
+    background: ${({ theme }) => theme.color.greenDefaultBtn};
 
     font-size: 18.75px;
     font-weight: 500;
@@ -165,6 +167,14 @@ const TrashAllDeleteBtn = styled.button`
     font-style: normal;
     line-height: 174.2%;
     cursor: pointer;
+
+    &:hover {
+        background: ${({ theme }) => theme.color.greenHoverBtn};
+    }
+    &:focus {
+        background: ${({ theme }) => theme.color.greenFocusBtn};
+    }
+
     @media ${({ theme }) => theme.device.mobile} {
         position: relative;
         bottom: 10px;
