@@ -12,6 +12,7 @@ const Trash = () => {
     const [trashAllData, setTrashAlldata] = useState([]);
     const [openTrashAllDeleteModal, setOpenTrashAllDeleteModal] = useState(false);
     const [gotrashdata, setGotrashdata] = useState([]);
+
     const [posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(5);
@@ -38,6 +39,7 @@ const Trash = () => {
 
     const indexOfLast = currentPage * postsPerPage;
     const indexOfFirst = indexOfLast - postsPerPage;
+
     function currentPosts(tmp) {
         let currentPosts = 0;
         currentPosts = tmp.slice(indexOfFirst, indexOfLast);
@@ -68,6 +70,10 @@ const Trash = () => {
         [history, member, posts],
     );
 
+    const changeCurrentPage = (activePageNum) => {
+        setCurrentPage(activePageNum);
+    };
+
     return (
         <TrashLayout className="Trash">
             <TrashHeader>
@@ -83,7 +89,7 @@ const Trash = () => {
                     postsPerPage={postsPerPage}
                     totalPosts={posts.length}
                     currentPage={currentPage}
-                    paginate={setCurrentPage}
+                    changeCurrentPage={changeCurrentPage}
                 ></Pagination>
             ) : null}
 

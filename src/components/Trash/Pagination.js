@@ -1,23 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
-const Pagination = ({ postsPerPage, totalPosts, currentPage, paginate }) => {
+const Pagination = ({ postsPerPage, totalPosts, currentPage, changeCurrentPage }) => {
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
         pageNumbers.push(i);
     }
     return (
-        <div id="navDiv">
+        <div>
             <nav>
-                <PageUl className="pagination">
+                <PageUl>
                     {pageNumbers.map((number) => (
                         <PageLi
                             key={number}
                             active={number === currentPage && true}
-                            className="page-item"
-                            onClick={() => paginate(number)}
+                            onClick={() => changeCurrentPage(number)}
                         >
-                            <PageSpan className="page-link">{number}</PageSpan>
+                            <PageSpan>{number}</PageSpan>
                         </PageLi>
                     ))}
                 </PageUl>
