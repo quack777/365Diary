@@ -8,7 +8,7 @@ const device = {
 };
 
 const color = {
-    greenBtn: "#7EB496",
+    greenDefaultBtn: "#7EB496",
     greenHoverBtn: "#9FD3B6",
     greenFocusBtn: "#78AA8E",
     grayBtn: "#F9F8F9",

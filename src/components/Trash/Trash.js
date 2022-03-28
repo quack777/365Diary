@@ -150,14 +150,10 @@ const TrashContent = styled.p`
 
 const TrashAllDeleteBtn = styled.button`
     align-self: flex-start;
-    // position: relative;
-    // left: 70px;
-    // width: 191px;
-    // height: 55.5px;
     padding: 15px 40px;
     border-radius: 16px;
     color: #f9f8f9;
-    background: #7eb496;
+    background: ${({ theme }) => theme.color.greenDefaultBtn};
 
     font-size: 18.75px;
     font-weight: 500;
@@ -165,6 +161,14 @@ const TrashAllDeleteBtn = styled.button`
     font-style: normal;
     line-height: 174.2%;
     cursor: pointer;
+
+    &:hover {
+        background: ${({ theme }) => theme.color.greenHoverBtn};
+    }
+    &:focus {
+        background: ${({ theme }) => theme.color.greenFocusBtn};
+    }
+
     @media ${({ theme }) => theme.device.mobile} {
         position: relative;
         bottom: 10px;
